@@ -1,84 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efootball Coin Shop BD</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { background-color: #0a0a0a; color: #ffffff; font-family: 'Inter', sans-serif; }
-        .product-card { background: linear-gradient(145deg, #171717, #0a0a0a); border: 1px solid #333; }
-        .buy-btn { background: linear-gradient(90deg, #eab308, #ca8a04); }
-    </style>
+    <title>E-Football Coin Store</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <nav class="border-b border-gray-800 bg-black/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img src="logo.png" class="w-10 h-10 rounded-full border border-yellow-500">
-                <span class="font-bold text-lg tracking-tight">Efootball Coin Shop BD</span>
+    <div class="container">
+        <h1>E-Football Coin Package</h1>
+        
+        <div class="package-list">
+            <div class="package-card">
+                <h3>260 Coin 🪙</h3>
+                <p class="price">BDT 180</p>
+                <button onclick="orderNow('260 Coin')">Buy Now</button>
             </div>
-            <a href="https://wa.me/8801733185830" class="text-green-500 text-xl"><i class="fa-brands fa-whatsapp"></i></a>
+
+            <div class="package-card">
+                <h3>840 Coin 🪙</h3>
+                <p class="price">BDT 630</p>
+                <button onclick="orderNow('840 Coin')">Buy Now</button>
+            </div>
+
+            <div class="package-card">
+                <h3>1630 Coin 🪙</h3>
+                <p class="price">BDT 1150</p>
+                <button onclick="orderNow('1630 Coin')">Buy Now</button>
+            </div>
         </div>
-    </nav>
+    </div>
 
-    <main class="max-w-5xl mx-auto px-4 py-8">
-        <!-- Banner -->
-        <div class="text-center mb-10">
-            <h1 class="text-3xl font-black text-white mb-2">eFootball Android Top-Up</h1>
-            <p class="text-gray-400">Select Platform & Package</p>
-        </div>
-
-        <!-- Platform Tabs -->
-        <div class="flex justify-center gap-4 mb-10">
-            <button onclick="setPlatform('Android')" id="btn-android" class="px-8 py-2 rounded-full font-bold bg-yellow-500 text-black">Android</button>
-            <button onclick="setPlatform('iOS')" id="btn-ios" class="px-8 py-2 rounded-full font-bold bg-gray-800 text-white">iOS</button>
-        </div>
-
-        <!-- Products -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Items -->
-            <script>
-                const products = [
-                    {name: "260 Coin", price: "180 TK"},
-                    {name: "840 Coin", price: "630 TK"},
-                    {name: "1630 Coin", price: "1150 TK"},
-                    {name: "50 Coin + Luis Suárez", price: "110 TK"},
-                    {name: "100 Coin + IKER CASILLAS", price: "300 TK"}
-                ];
-                
-                let selectedPlatform = 'Android';
-                function setPlatform(p) {
-                    selectedPlatform = p;
-                    document.getElementById('btn-android').className = p === 'Android' ? "px-8 py-2 rounded-full font-bold bg-yellow-500 text-black" : "px-8 py-2 rounded-full font-bold bg-gray-800 text-white";
-                    document.getElementById('btn-ios').className = p === 'iOS' ? "px-8 py-2 rounded-full font-bold bg-yellow-500 text-black" : "px-8 py-2 rounded-full font-bold bg-gray-800 text-white";
-                }
-
-                function buy(name, price) {
-                    const msg = `Hi, I want to buy ${name} for ${selectedPlatform}. Price: ${price}`;
-                    window.open(`https://wa.me/8801733185830?text=${encodeURIComponent(msg)}`);
-                }
-
-                products.forEach(p => {
-                    document.write(`
-                        <div class="product-card p-5 rounded-2xl flex flex-col items-center text-center">
-                            <div class="text-4xl mb-4">🪙</div>
-                            <h3 class="font-bold text-lg">${p.name}</h3>
-                            <p class="text-yellow-500 font-black text-xl my-3">${p.price}</p>
-                            <button onclick="buy('${p.name}', '${p.price}')" class="buy-btn w-full py-2.5 rounded-lg font-bold text-black">BUY NOW</button>
-                        </div>
-                    `);
-                });
-            </script>
-        </div>
-    </main>
-
-    <footer class="text-center py-10 text-gray-600 text-sm">
-        &copy; 2026 Efootball Coin Shop BD
-    </footer>
+    <script>
+        function orderNow(packageName) {
+            alert(packageName + " কেনার জন্য যোগাযোগ করুন!");
+            // এখানে আপনি আপনার হোয়াটসঅ্যাপ বা অর্ডার লিঙ্কে রিডাইরেক্ট করাতে পারেন
+        }
+    </script>
 </body>
 </html>
