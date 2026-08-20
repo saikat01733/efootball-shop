@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UC AND eFootball COIN SHOP BD</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #080b12;
+      color: white;
+      min-height: 100vh;
+    }
+
+    .header {
+      text-align: center;
+      padding: 35px 15px 25px;
+      background: linear-gradient(145deg, #111827, #05070b);
+      border-bottom: 1px solid #252b38;
+    }
+
+    .header h1 {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px 15px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 18px;
+      margin: 10px 0 15px;
+      font-weight: bold;
+    }
+
+    .version-box {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .version-btn {
+      flex: 1;
+      padding: 15px 10px;
+      border: 1px solid #303746;
+      border-radius: 14px;
+      background: #111722;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .version-btn.active {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      border-color: transparent;
+      box-shadow: 0 5px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .selected-version {
+      text-align: center;
+      color: #a5b4fc;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .product {
+      background: linear-gradient(145deg, #151b27, #0d1119);
+      border: 1px solid #252c3a;
+      border-radius: 18px;
+      padding: 18px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .product-info h3 {
+      font-size: 16px;
+      margin-bottom: 7px;
+    }
+
+    .product-info p {
+      color: #aab1bd;
+      font-size: 13px;
+    }
+
+    .price {
+      color: #4ade80;
+      font-weight: 800;
+      font-size: 17px;
+      white-space: nowrap;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      background: #16a34a;
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .buy-btn:hover {
+      background: #15803d;
+    }
+
+    .notice {
+      margin-top: 25px;
+      padding: 16px;
+      text-align: center;
+      border-radius: 15px;
+      background: #111722;
+      border: 1px solid #252c3a;
+      color: #b8c0cc;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px 10px;
+      color: #6b7280;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <h1>⚽ UC AND eFootball COIN SHOP BD</h1>
+    <p>Fast • Safe • Secure Purchase</p>
+  </div>
+
+  <div class="container">
+
+    <div class="section-title">📱 SELECT VERSION</div>
+
+    <div class="version-box">
+      <button class="version-btn active" onclick="selectVersion('Android', this)">
+        🟢 Android
+      </button>
+
+      <button class="version-btn" onclick="selectVersion('iOS', this)">
+        🍎 iOS
+      </button>
+    </div>
+
+    <div class="selected-version">
+      Selected Version: <strong id="version">Android</strong>
+    </div>
+
+    <div class="section-title">🪙 COIN LIST</div>
+
+    <div class="product">
+      <div class="product-info">
+        <h3>🪙 260 eFootball Coins</h3>
+        <p>260 Coin Package</p>
+        <a class="buy-btn"
+           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20260%20eFootball%20Coins"
+           target="_blank">
+          Buy Now
+        </a>
+      </div>
+      <div class="price">180 TK</div>
+    </div>
+
+    <div class="product">
+      <div class="product-info">
+        <h3>🪙 840 eFootball Coins</h3>
+        <p>840 Coin Package</p>
+        <a class="buy-btn"
+           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20840%20eFootball%20Coins"
+           target="_blank">
+          Buy Now
+        </a>
+      </div>
+      <div class="price">630 TK</div>
+    </div>
+
+    <div class="product">
+      <div class="product-info">
+        <h3>🪙 1630 eFootball Coins</h3>
+        <p>1630 Coin Package</p>
+        <a class="buy-btn"
+           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%201630%20eFootball%20Coins"
+           target="_blank">
+          Buy Now
+        </a>
+      </div>
+      <div class="price">1150 TK</div>
+    </div>
+
+    <div class="product">
+      <div class="product-info">
+        <h3>🪙 50 Coin + Luis Suárez</h3>
+        <p>Special Player Package</p>
+        <a class="buy-btn"
+           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%2050%20Coin%20%2B%20Luis%20Suarez"
+           target="_blank">
+          Buy Now
+        </a>
+      </div>
+      <div class="price">110 TK</div>
+    </div>
+
+    <div class="product">
+      <div class="product-info">
+        <h3>🪙 100 Coin + Iker Casillas</h3>
+        <p>Special Player Package</p>
+        <a class="buy-btn"
+           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20100%20Coin%20%2B%20Iker%20Casillas"
+           target="_blank">
+          Buy Now
+        </a>
+      </div>
+      <div class="price">300 TK</div>
+    </div>
+
+    <div class="notice">
+      ⚡ Fast Delivery<br>
+      🔒 100% Safe & Secure Purchase<br>
+      📞 WhatsApp: 01733185830
+    </div>
+
+  </div>
+
+  <div class="footer">
+    © 2026 UC AND eFootball COIN SHOP BD
+  </div>
+
+  <script>
+    function selectVersion(version, button) {
+      document.getElementById("version").innerText = version;
+
+      document.querySelectorAll(".version-btn").forEach(function(btn) {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
