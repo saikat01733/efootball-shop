@@ -3,31 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eFootball Coin Shop BD</title>
+    <title>E-Football Coin Shop BD</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --bg-color: #111214;
+            --card-bg: #1a1c1f;
+            --accent-red: #ff3e3e;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
         }
         body {
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 20px;
         }
         .container {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        h2 {
+        .header {
             text-align: center;
             margin-bottom: 20px;
-            color: #38bdf8;
+        }
+        .header h2 {
+            color: var(--accent-red);
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .step-number {
+            background-color: var(--accent-red);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 13px;
+            color: white;
+        }
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -35,215 +69,249 @@
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: 600;
-            font-size: 14px;
+            color: var(--text-muted);
+            font-size: 13px;
         }
         input, select {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #475569;
-            background: #0f172a;
-            color: #fff;
-            border-radius: 6px;
+            padding: 12px;
+            background: #25282c;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: white;
+            box-sizing: border-box;
             font-size: 14px;
         }
-        .packages-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            margin-bottom: 20px;
+        input:focus, select:focus {
+            border-color: var(--accent-red);
+            outline: none;
         }
-        .package-card {
-            border: 2px solid #475569;
+        .pkg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .pkg-card {
+            background: #25282c;
+            border: 2px solid #333;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .pkg-card:hover {
+            border-color: #555;
+        }
+        .pkg-card.active { 
+            border-color: var(--accent-red); 
+            background: rgba(255, 62, 62, 0.05);
+        }
+        .pkg-name { 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+        .pkg-price { 
+            color: var(--accent-red); 
+            font-weight: bold; 
+            margin-top: 8px; 
+            font-size: 16px;
+        }
+        
+        .pay-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        .pay-method { 
+            background: #25282c; 
+            padding: 15px; 
+            border-radius: 10px; 
+            text-align: center; 
+            border: 2px solid #333; 
+            cursor: pointer; 
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        .pay-method.active { 
+            border-color: var(--accent-red); 
+            background: rgba(255, 62, 62, 0.05);
+        }
+        
+        .payment-instructions {
+            background: #25282c;
             padding: 12px;
             border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: #0f172a;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .package-card.selected {
-            border-color: #22c55e;
-            background: #14532d;
-        }
-        .payment-methods {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .pay-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #475569;
-            background: #0f172a;
-            color: #fff;
-            border-radius: 6px;
-            cursor: pointer;
+            margin-top: 15px;
+            font-size: 13px;
+            color: #cbd5e1;
             text-align: center;
+        }
+        .payment-instructions span {
+            color: #38bdf8;
             font-weight: bold;
         }
-        .pay-btn.selected {
-            border-color: #3b82f6;
-            background: #1e3a8a;
-        }
-        .payment-info {
-            background: #334155;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 13px;
-            text-align: center;
-        }
+
         .buy-btn {
-            width: 100%;
-            background: #22c55e;
+            background: var(--accent-red);
             color: white;
             border: none;
-            padding: 12px;
-            font-size: 16px;
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
             font-weight: bold;
-            border-radius: 6px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s;
+            margin-top: 20px;
+            transition: background 0.2s;
         }
         .buy-btn:hover {
-            background: #16a34a;
+            background: #e03131;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>🎮 eFootball Coin Shop BD</h2>
-    
-    <form id="orderForm" onsubmit="sendToWhatsApp(event)">
-        <!-- Device Selection -->
+    <div class="header">
+        <h2>E-FOOTBALL COIN SHOP BD</h2>
+    </div>
+
+    <!-- Step 1: Account Info -->
+    <div class="section">
+        <div class="section-title">
+            <div class="step-number">1</div> Account Info
+        </div>
         <div class="form-group">
-            <label>Select Device:</label>
-            <select id="device" required>
-                <option value="">-- Select Option --</option>
+            <label>Select Device</label>
+            <select id="device">
                 <option value="Android">Android</option>
                 <option value="iOS">iOS</option>
             </select>
         </div>
-
-        <!-- Account Info -->
+        <div class="input-row">
+            <div class="form-group">
+                <label>Konami Mail</label>
+                <input type="text" id="gmail" placeholder="Enter Konami Mail">
+            </div>
+            <div class="form-group">
+                <label>Konami Password</label>
+                <input type="password" id="pass" placeholder="Enter Password">
+            </div>
+        </div>
         <div class="form-group">
-            <label>Konami Gmail:</label>
-            <input type="email" id="gmail" placeholder="example@gmail.com" required>
+            <label>WhatsApp Number</label>
+            <input type="text" id="whatsapp" placeholder="Enter your WhatsApp number">
         </div>
+    </div>
 
-        <div class="form-group">
-            <label>Password:</label>
-            <input type="text" id="password" placeholder="Konami Password" required>
+    <!-- Step 2: Select Package -->
+    <div class="section">
+        <div class="section-title">
+            <div class="step-number">2</div> Select Package
         </div>
-
-        <div class="form-group">
-            <label>WhatsApp Number:</label>
-            <input type="tel" id="userWhatsapp" placeholder="01XXXXXXXXX" required>
-        </div>
-
-        <!-- Packages -->
-        <label>Select Packages:</label>
-        <div class="packages-grid">
-            <div class="package-card" onclick="selectPackage(this, '260 Coin', 180)">
-                <span>🪙 260 Coin</span>
-                <span><b>180 TK</b></span>
+        <div class="pkg-grid" id="pkgGrid">
+            <div class="pkg-card" onclick="selectPkg(this, '260 Coin', 180)">
+                <div class="pkg-name">260 Coin</div>
+                <div class="pkg-price">৳180</div>
             </div>
-            <div class="package-card" onclick="selectPackage(this, '840 Coin', 630)">
-                <span>🪙 840 Coin</span>
-                <span><b>630 TK</b></span>
+            <div class="pkg-card" onclick="selectPkg(this, '840 Coin', 630)">
+                <div class="pkg-name">840 Coin</div>
+                <div class="pkg-price">৳630</div>
             </div>
-            <div class="package-card" onclick="selectPackage(this, '1630 Coin', 1150)">
-                <span>🪙 1630 Coin</span>
-                <span><b>1150 TK</b></span>
+            <div class="pkg-card" onclick="selectPkg(this, '1630 Coin', 1150)">
+                <div class="pkg-name">1630 Coin</div>
+                <div class="pkg-price">৳1150</div>
             </div>
-            <div class="package-card" onclick="selectPackage(this, '50 Coin + Luis Suárez', 110)">
-                <span>🪙 50 Coin + Luis Suárez</span>
-                <span><b>110 TK</b></span>
+            <div class="pkg-card" onclick="selectPkg(this, '50 Coin + Luis Suárez', 110)">
+                <div class="pkg-name">50 Coin + Luis Suárez</div>
+                <div class="pkg-price">৳110</div>
             </div>
-            <div class="package-card" onclick="selectPackage(this, '100 Coin + IKER CASILLAS', 300)">
-                <span>🪙 100 Coin + IKER CASILLAS</span>
-                <span><b>300 TK</b></span>
+            <div class="pkg-card" onclick="selectPkg(this, '100 Coin + IKER CASILLAS', 300)">
+                <div class="pkg-name">100 Coin + IKER CASILLAS</div>
+                <div class="pkg-price">৳300</div>
             </div>
         </div>
+    </div>
 
-        <!-- Payment Method -->
-        <label>Payment Method:</label>
-        <div class="payment-methods">
-            <div class="pay-btn" onclick="selectPayment('bKash')">bKash</div>
-            <div class="pay-btn" onclick="selectPayment('Nagad')">Nagad</div>
+    <!-- Step 3: Payment Method -->
+    <div class="section">
+        <div class="section-title">
+            <div class="step-number">3</div> Payment Method
+        </div>
+        <div class="pay-grid">
+            <div class="pay-method" onclick="selectPay(this, 'bKash')">bKash</div>
+            <div class="pay-method" onclick="selectPay(this, 'Nagad')">Nagad</div>
         </div>
 
-        <div id="paymentInstructions" class="payment-info" style="display:none;">
-            Please send money to <b style="color: #38bdf8;">01733185830</b> using <span id="selectedMethodName"></span> and enter the last 4 digits below.
+        <div id="payInstructionBox" class="payment-instructions" style="display: none;">
+            Please send money to <span id="payMethodName"></span> number: <span>01733185830</span>
         </div>
 
-        <div class="form-group" id="trxBox" style="display:none;">
-            <label>Sender Number / Last 4 Digit:</label>
-            <input type="text" id="trxId" placeholder="e.g. 1234">
+        <div class="form-group" style="margin-top: 15px;">
+            <label>Sender Number / Last 4 Digits</label>
+            <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
         </div>
-
-        <button type="submit" class="buy-btn">Buy Now 🚀</button>
-    </form>
+        
+        <button class="buy-btn" onclick="orderNow()">Buy Now</button>
+    </div>
 </div>
 
 <script>
-    let selectedPkgName = "";
-    let selectedPkgPrice = 0;
-    let selectedPayMethod = "";
+    let selectedPkg = "", selectedPrice = 0, selectedPay = "";
 
-    function selectPackage(element, name, price) {
-        document.querySelectorAll('.package-card').forEach(card => card.classList.remove('selected'));
-        element.classList.add('selected');
-        selectedPkgName = name;
-        selectedPkgPrice = price;
+    function selectPkg(el, name, price) {
+        document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        selectedPkg = name; 
+        selectedPrice = price;
     }
 
-    function selectPayment(method) {
-        document.querySelectorAll('.pay-btn').forEach(btn => btn.classList.remove('selected'));
-        event.currentTarget.classList.add('selected');
-        selectedPayMethod = method;
+    function selectPay(el, method) {
+        document.querySelectorAll('.pay-method').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        selectedPay = method;
 
-        document.getElementById('paymentInstructions').style.display = 'block';
-        document.getElementById('selectedMethodName').innerText = method;
-        document.getElementById('trxBox').style.display = 'block';
+        let instructionBox = document.getElementById('payInstructionBox');
+        let methodNameSpan = document.getElementById('payMethodName');
+        instructionBox.style.display = 'block';
+        methodNameSpan.innerText = method;
     }
 
-    function sendToWhatsApp(event) {
-        event.preventDefault();
+    function orderNow() {
+        let device = document.getElementById('device').value;
+        let gmail = document.getElementById('gmail').value;
+        let pass = document.getElementById('pass').value;
+        let whatsapp = document.getElementById('whatsapp').value;
+        let lastDigit = document.getElementById('lastDigit').value;
 
-        if (!selectedPkgName) {
+        if (!gmail || !pass || !whatsapp) {
+            alert("Doya korey account info er shob field puron korun!");
+            return;
+        }
+        if (!selectedPkg) {
             alert("Doya korey ekta package select korun!");
             return;
         }
-        if (!selectedPayMethod) {
+        if (!selectedPay) {
             alert("Doya korey payment method select korun!");
             return;
         }
+        if (!lastDigit) {
+            alert("Doya korey last 4 digit ba sender number din!");
+            return;
+        }
 
-        let device = document.getElementById('device').value;
-        let gmail = document.getElementById('gmail').value;
-        let password = document.getElementById('password').value;
-        let userWhatsapp = document.getElementById('userWhatsapp').value;
-        let trxId = document.getElementById('trxId').value;
+        let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
+                  `📱 Device: ${device}%0A` +
+                  `📧 Gmail: ${gmail}%0A` +
+                  `🔑 Password: ${pass}%0A` +
+                  `📞 WhatsApp: ${whatsapp}%0A%0A` +
+                  `📦 Package: ${selectedPkg}%0A` +
+                  `💰 Price: ${selectedPrice} TK%0A%0A` +
+                  `💳 Payment Method: ${selectedPay}%0A` +
+                  `🔢 Last 4 Digit: ${lastDigit}`;
 
-        let message = `*New Order Received - eFootball Coin Shop BD*%0A%0A` +
-                      `📱 *Device:* ${device}%0A` +
-                      `📧 *Gmail:* ${gmail}%0A` +
-                      `🔑 *Password:* ${password}%0A` +
-                      `📞 *User WhatsApp:* ${userWhatsapp}%0A%0A` +
-                      `📦 *Package:* ${selectedPkgName}%0A` +
-                      `💰 *Price:* ${selectedPkgPrice} TK%0A%0A` +
-                      `💳 *Payment Method:* ${selectedPayMethod}%0A` +
-                      `🔢 *Last 4 Digit / Sender:* ${trxId}`;
-
-        let adminWhatsApp = "8801733185830";
-        let url = `https://wa.me/${adminWhatsApp}?text=${message}`;
-
-        window.open(url, '_blank');
+        window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
     }
 </script>
 
