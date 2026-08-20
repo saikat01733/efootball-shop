@@ -3,40 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Football Coin Store</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Khela Store - eFootball Android</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+            background: #111;
+            color: #fff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .contact-top a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            background: #25d366;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .product-wrapper {
+            background: #fff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .product-img {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .product-img img {
+            width: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .product-details h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 22px;
+            color: #e44d26;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .description {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .options select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .order-btn {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover {
+            background-color: #1ebe5d;
+        }
+
+        /* Floating WhatsApp Icon */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>E-Football Coin Package</h1>
-        
-        <div class="package-list">
-            <div class="package-card">
-                <h3>260 Coin 🪙</h3>
-                <p class="price">BDT 180</p>
-                <button onclick="orderNow('260 Coin')">Buy Now</button>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">🎮 Khela Store</div>
+        <div class="contact-top">
+            <a href="https://wa.me/8801733185830" target="_blank"><i class="fab fa-whatsapp"></i> 01733185830</a>
+        </div>
+    </header>
+
+    <!-- Main Product Section -->
+    <main class="container">
+        <div class="product-wrapper">
+            <!-- Product Image -->
+            <div class="product-img">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="eFootball">
             </div>
 
-            <div class="package-card">
-                <h3>840 Coin 🪙</h3>
-                <p class="price">BDT 630</p>
-                <button onclick="orderNow('840 Coin')">Buy Now</button>
-            </div>
+            <!-- Product Details -->
+            <div class="product-details">
+                <h1>eFootball Android - Coins & Top Up</h1>
+                <p class="price">৳ ৪৫০.০০</p>
+                <p class="description">নিরাপদে এবং দ্রুত আপনার eFootball অ্যাকাউন্টে কয়েন টপ-আপ করে নিন। পেমেন্ট সম্পন্ন করে স্ক্রিনশট সহ আমাদের হোয়াটসঅ্যাপে যোগাযোগ করুন।</p>
+                
+                <!-- Package Selection -->
+                <div class="options">
+                    <label for="package">প্যাকেজ নির্বাচন করুন:</label>
+                    <select id="package">
+                        <option value="100 Coins - 450 BDT">১০০ কয়েন - ৪৫০ টাকা</option>
+                        <option value="300 Coins - 1200 BDT">৩০০ কয়েন - ১২০০ টাকা</option>
+                        <option value="500 Coins - 2000 BDT">৫০০ কয়েন - ২০০০ টাকা</option>
+                    </select>
+                </div>
 
-            <div class="package-card">
-                <h3>1630 Coin 🪙</h3>
-                <p class="price">BDT 1150</p>
-                <button onclick="orderNow('1630 Coin')">Buy Now</button>
+                <!-- Order Button -->
+                <button class="order-btn" onclick="orderOnWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> অর্ডার করতে WhatsApp করুন
+                </button>
             </div>
         </div>
-    </div>
+    </main>
 
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/8801733185830" class="floating-whatsapp" target="_blank"
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Script Section -->
     <script>
-        function orderNow(packageName) {
-            alert(packageName + " কেনার জন্য যোগাযোগ করুন!");
-            // এখানে আপনি আপনার হোয়াটসঅ্যাপ বা অর্ডার লিঙ্কে রিডাইরেক্ট করাতে পারেন
+        function orderOnWhatsApp() {
+            const selectElement = document.getElementById('package');
+            const selectedPackage = selectElement.value;
+            
+            const phoneNumber = "8801733185830";
+            const message = `Halo, Ami eFootball Android er jonno order korte chai.\nSelected Package: ${selectedPackage}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
-</html>
+</html
