@@ -3,214 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khela Store - eFootball Android</title>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>eFootball Coin Shop BD</title>
     <style>
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #0f172a;
+            color: #f8fafc;
+            padding: 20px;
         }
-
-        header {
-            background: #111;
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #38bdf8;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #475569;
+            background: #0f172a;
             color: #fff;
-            padding: 15px 30px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .package-card {
+            border: 2px solid #475569;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #0f172a;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
-        header .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00ff88;
+        .package-card.selected {
+            border-color: #22c55e;
+            background: #14532d;
         }
-
-        .contact-top a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            background: #25d366;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-weight: bold;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .product-wrapper {
-            background: #fff;
+        .payment-methods {
             display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .product-img {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .product-img img {
-            width: 100%;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-
-        .product-details {
-            flex: 1;
-            min-width: 280px;
-        }
-
-        .product-details h1 {
-            font-size: 26px;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-size: 22px;
-            color: #e44d26;
-            font-weight: bold;
+            gap: 10px;
             margin-bottom: 15px;
         }
-
-        .description {
-            font-size: 15px;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .options {
-            margin-bottom: 20px;
-        }
-
-        .options label {
-            display: block;
-            margin-bottom: 8px;
+        .pay-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #475569;
+            background: #0f172a;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
             font-weight: bold;
         }
-
-        .options select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+        .pay-btn.selected {
+            border-color: #3b82f6;
+            background: #1e3a8a;
         }
-
-        .order-btn {
-            background-color: #25d366;
+        .payment-info {
+            background: #334155;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+        }
+        .buy-btn {
+            width: 100%;
+            background: #22c55e;
             color: white;
             border: none;
-            width: 100%;
             padding: 12px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
+            font-size: 16px;
             font-weight: bold;
-            transition: 0.3s;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-
-        .order-btn:hover {
-            background-color: #1ebe5d;
-        }
-
-        /* Floating WhatsApp Icon */
-        .floating-whatsapp {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25d366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            z-index: 100;
-            text-decoration: none;
+        .buy-btn:hover {
+            background: #16a34a;
         }
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">🎮 Khela Store</div>
-        <div class="contact-top">
-            <a href="https://wa.me/8801733185830" target="_blank"><i class="fab fa-whatsapp"></i> 01733185830</a>
+<div class="container">
+    <h2>🎮 eFootball Coin Shop BD</h2>
+    
+    <form id="orderForm" onsubmit="sendToWhatsApp(event)">
+        <!-- Device Selection -->
+        <div class="form-group">
+            <label>Select Device:</label>
+            <select id="device" required>
+                <option value="">-- Select Option --</option>
+                <option value="Android">Android</option>
+                <option value="iOS">iOS</option>
+            </select>
         </div>
-    </header>
 
-    <!-- Main Product Section -->
-    <main class="container">
-        <div class="product-wrapper">
-            <!-- Product Image -->
-            <div class="product-img">
-                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60" alt="eFootball">
+        <!-- Account Info -->
+        <div class="form-group">
+            <label>Konami Gmail:</label>
+            <input type="email" id="gmail" placeholder="example@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="text" id="password" placeholder="Konami Password" required>
+        </div>
+
+        <div class="form-group">
+            <label>WhatsApp Number:</label>
+            <input type="tel" id="userWhatsapp" placeholder="01XXXXXXXXX" required>
+        </div>
+
+        <!-- Packages -->
+        <label>Select Packages:</label>
+        <div class="packages-grid">
+            <div class="package-card" onclick="selectPackage(this, '260 Coin', 180)">
+                <span>🪙 260 Coin</span>
+                <span><b>180 TK</b></span>
             </div>
-
-            <!-- Product Details -->
-            <div class="product-details">
-                <h1>eFootball Android - Coins & Top Up</h1>
-                <p class="price">৳ ৪৫০.০০</p>
-                <p class="description">নিরাপদে এবং দ্রুত আপনার eFootball অ্যাকাউন্টে কয়েন টপ-আপ করে নিন। পেমেন্ট সম্পন্ন করে স্ক্রিনশট সহ আমাদের হোয়াটসঅ্যাপে যোগাযোগ করুন।</p>
-                
-                <!-- Package Selection -->
-                <div class="options">
-                    <label for="package">প্যাকেজ নির্বাচন করুন:</label>
-                    <select id="package">
-                        <option value="100 Coins - 450 BDT">১০০ কয়েন - ৪৫০ টাকা</option>
-                        <option value="300 Coins - 1200 BDT">৩০০ কয়েন - ১২০০ টাকা</option>
-                        <option value="500 Coins - 2000 BDT">৫০০ কয়েন - ২০০০ টাকা</option>
-                    </select>
-                </div>
-
-                <!-- Order Button -->
-                <button class="order-btn" onclick="orderOnWhatsApp()">
-                    <i class="fab fa-whatsapp"></i> অর্ডার করতে WhatsApp করুন
-                </button>
+            <div class="package-card" onclick="selectPackage(this, '840 Coin', 630)">
+                <span>🪙 840 Coin</span>
+                <span><b>630 TK</b></span>
+            </div>
+            <div class="package-card" onclick="selectPackage(this, '1630 Coin', 1150)">
+                <span>🪙 1630 Coin</span>
+                <span><b>1150 TK</b></span>
+            </div>
+            <div class="package-card" onclick="selectPackage(this, '50 Coin + Luis Suárez', 110)">
+                <span>🪙 50 Coin + Luis Suárez</span>
+                <span><b>110 TK</b></span>
+            </div>
+            <div class="package-card" onclick="selectPackage(this, '100 Coin + IKER CASILLAS', 300)">
+                <span>🪙 100 Coin + IKER CASILLAS</span>
+                <span><b>300 TK</b></span>
             </div>
         </div>
-    </main>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/8801733185830" class="floating-whatsapp" target="_blank"
-        <i class="fab fa-whatsapp"></i>
-    </a>
+        <!-- Payment Method -->
+        <label>Payment Method:</label>
+        <div class="payment-methods">
+            <div class="pay-btn" onclick="selectPayment('bKash')">bKash</div>
+            <div class="pay-btn" onclick="selectPayment('Nagad')">Nagad</div>
+        </div>
 
-    <!-- Script Section -->
-    <script>
-        function orderOnWhatsApp() {
-            const selectElement = document.getElementById('package');
-            const selectedPackage = selectElement.value;
-            
-            const phoneNumber = "8801733185830";
-            const message = `Halo, Ami eFootball Android er jonno order korte chai.\nSelected Package: ${selectedPackage}`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-            
-            window.open(whatsappURL, '_blank');
+        <div id="paymentInstructions" class="payment-info" style="display:none;">
+            Please send money to <b style="color: #38bdf8;">01733185830</b> using <span id="selectedMethodName"></span> and enter the last 4 digits below.
+        </div>
+
+        <div class="form-group" id="trxBox" style="display:none;">
+            <label>Sender Number / Last 4 Digit:</label>
+            <input type="text" id="trxId" placeholder="e.g. 1234">
+        </div>
+
+        <button type="submit" class="buy-btn">Buy Now 🚀</button>
+    </form>
+</div>
+
+<script>
+    let selectedPkgName = "";
+    let selectedPkgPrice = 0;
+    let selectedPayMethod = "";
+
+    function selectPackage(element, name, price) {
+        document.querySelectorAll('.package-card').forEach(card => card.classList.remove('selected'));
+        element.classList.add('selected');
+        selectedPkgName = name;
+        selectedPkgPrice = price;
+    }
+
+    function selectPayment(method) {
+        document.querySelectorAll('.pay-btn').forEach(btn => btn.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+        selectedPayMethod = method;
+
+        document.getElementById('paymentInstructions').style.display = 'block';
+        document.getElementById('selectedMethodName').innerText = method;
+        document.getElementById('trxBox').style.display = 'block';
+    }
+
+    function sendToWhatsApp(event) {
+        event.preventDefault();
+
+        if (!selectedPkgName) {
+            alert("Doya korey ekta package select korun!");
+            return;
         }
-    </script>
+        if (!selectedPayMethod) {
+            alert("Doya korey payment method select korun!");
+            return;
+        }
+
+        let device = document.getElementById('device').value;
+        let gmail = document.getElementById('gmail').value;
+        let password = document.getElementById('password').value;
+        let userWhatsapp = document.getElementById('userWhatsapp').value;
+        let trxId = document.getElementById('trxId').value;
+
+        let message = `*New Order Received - eFootball Coin Shop BD*%0A%0A` +
+                      `📱 *Device:* ${device}%0A` +
+                      `📧 *Gmail:* ${gmail}%0A` +
+                      `🔑 *Password:* ${password}%0A` +
+                      `📞 *User WhatsApp:* ${userWhatsapp}%0A%0A` +
+                      `📦 *Package:* ${selectedPkgName}%0A` +
+                      `💰 *Price:* ${selectedPkgPrice} TK%0A%0A` +
+                      `💳 *Payment Method:* ${selectedPayMethod}%0A` +
+                      `🔢 *Last 4 Digit / Sender:* ${trxId}`;
+
+        let adminWhatsApp = "8801733185830";
+        let url = `https://wa.me/${adminWhatsApp}?text=${message}`;
+
+        window.open(url, '_blank');
+    }
+</script>
+
 </body>
-</html
+</html>
