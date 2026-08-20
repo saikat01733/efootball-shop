@@ -1,269 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UC AND eFootball COIN SHOP BD</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #080b12;
-      color: white;
-      min-height: 100vh;
-    }
-
-    .header {
-      text-align: center;
-      padding: 35px 15px 25px;
-      background: linear-gradient(145deg, #111827, #05070b);
-      border-bottom: 1px solid #252b38;
-    }
-
-    .header h1 {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
-    }
-
-    .header p {
-      color: #9ca3af;
-      font-size: 14px;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      padding: 20px 15px 40px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 18px;
-      margin: 10px 0 15px;
-      font-weight: bold;
-    }
-
-    .version-box {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-
-    .version-btn {
-      flex: 1;
-      padding: 15px 10px;
-      border: 1px solid #303746;
-      border-radius: 14px;
-      background: #111722;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .version-btn.active {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      border-color: transparent;
-      box-shadow: 0 5px 20px rgba(37, 99, 235, 0.25);
-    }
-
-    .selected-version {
-      text-align: center;
-      color: #a5b4fc;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-
-    .product {
-      background: linear-gradient(145deg, #151b27, #0d1119);
-      border: 1px solid #252c3a;
-      border-radius: 18px;
-      padding: 18px;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .product-info h3 {
-      font-size: 16px;
-      margin-bottom: 7px;
-    }
-
-    .product-info p {
-      color: #aab1bd;
-      font-size: 13px;
-    }
-
-    .price {
-      color: #4ade80;
-      font-weight: 800;
-      font-size: 17px;
-      white-space: nowrap;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 9px 14px;
-      border-radius: 10px;
-      background: #16a34a;
-      color: white;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-    }
-
-    .buy-btn:hover {
-      background: #15803d;
-    }
-
-    .notice {
-      margin-top: 25px;
-      padding: 16px;
-      text-align: center;
-      border-radius: 15px;
-      background: #111722;
-      border: 1px solid #252c3a;
-      color: #b8c0cc;
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 25px 10px;
-      color: #6b7280;
-      font-size: 12px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efootball Coin Shop BD</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
 </head>
+<body class="min-h-screen flex flex-col justify-between">
 
-<body>
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 border-b border-slate-800 py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold tracking-wide text-amber-400">
+                <i class="fa-solid fa-store mr-2"></i>Efootball Coin Shop BD
+            </h1>
+            <a href="https://wa.me/8801733185830?text=Hello%20Admin,%20I%20need%20help." target="_blank" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center transition">
+                <i class="fa-brands fa-whatsapp text-lg mr-1.5"></i> Support
+            </a>
+        </div>
+    </header>
 
-  <div class="header">
-    <h1>⚽ UC AND eFootball COIN SHOP BD</h1>
-    <p>Fast • Safe • Secure Purchase</p>
-  </div>
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full">
+        <!-- Banner / Intro -->
+        <div class="text-center mb-8">
+            <h2 class="text-2xl md:text-3xl font-extrabold mb-2 text-white">Trusted eFootball Coin & Player Store</h2>
+            <p class="text-slate-400 text-sm md:text-base">Select your device and choose your desired package below!</p>
+        </div>
 
-  <div class="container">
+        <!-- Platform Switcher Buttons (Android / iOS) -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="setPlatform('Android')" id="btn-android" class="platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-amber-400 bg-amber-400 text-slate-950 transition shadow-lg flex items-center gap-2">
+                <i class="fa-brands fa-android text-lg"></i> Android
+            </button>
+            <button onclick="setPlatform('iOS')" id="btn-ios" class="platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-slate-700 bg-slate-800 text-slate-300 transition shadow-lg flex items-center gap-2">
+                <i class="fa-brands fa-apple text-lg"></i> iOS
+            </button>
+        </div>
 
-    <div class="section-title">📱 SELECT VERSION</div>
+        <!-- Selected Platform Indicator -->
+        <div class="text-center mb-6">
+            <span class="text-xs uppercase tracking-wider text-slate-400 bg-slate-800 px-3 py-1 rounded-full border border-slate-700">
+                Current Platform: <span id="current-platform" class="text-amber-400 font-bold">Android</span>
+            </span>
+        </div>
 
-    <div class="version-box">
-      <button class="version-btn active" onclick="selectVersion('Android', this)">
-        🟢 Android
-      </button>
+        <!-- Products Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Product Card 1 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-amber-400/10 p-3 rounded-xl text-amber-400 text-xl font-bold">🪙</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">260 Coins</h3>
+                            <p class="text-xs text-slate-400">Instant Delivery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                    <span class="text-xl font-extrabold text-amber-400">180 TK</span>
+                    <button onclick="buyProduct('260 Coins', '180 TK')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i> Buy Now
+                    </button>
+                </div>
+            </div>
 
-      <button class="version-btn" onclick="selectVersion('iOS', this)">
-        🍎 iOS
-      </button>
-    </div>
+            <!-- Product Card 2 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-amber-400/10 p-3 rounded-xl text-amber-400 text-xl font-bold">🪙</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">840 Coins</h3>
+                            <p class="text-xs text-slate-400">Instant Delivery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                    <span class="text-xl font-extrabold text-amber-400">630 TK</span>
+                    <button onclick="buyProduct('840 Coins', '630 TK')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i> Buy Now
+                    </button>
+                </div>
+            </div>
 
-    <div class="selected-version">
-      Selected Version: <strong id="version">Android</strong>
-    </div>
+            <!-- Product Card 3 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-amber-400/10 p-3 rounded-xl text-amber-400 text-xl font-bold">🪙</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">1630 Coins</h3>
+                            <p class="text-xs text-slate-400">Instant Delivery</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                    <span class="text-xl font-extrabold text-amber-400">1150 TK</span>
+                    <button onclick="buyProduct('1630 Coins', '1150 TK')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i> Buy Now
+                    </button>
+                </div>
+            </div>
 
-    <div class="section-title">🪙 COIN LIST</div>
+            <!-- Product Card 4 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-amber-400/10 p-3 rounded-xl text-amber-400 text-xl font-bold">⚽</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">50 Coins + Luis Suárez</h3>
+                            <p class="text-xs text-slate-400">Special Pack</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                    <span class="text-xl font-extrabold text-amber-400">110 TK</span>
+                    <button onclick="buyProduct('50 Coins + Luis Suárez', '110 TK')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i> Buy Now
+                    </button>
+                </div>
+            </div>
 
-    <div class="product">
-      <div class="product-info">
-        <h3>🪙 260 eFootball Coins</h3>
-        <p>260 Coin Package</p>
-        <a class="buy-btn"
-           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20260%20eFootball%20Coins"
-           target="_blank">
-          Buy Now
-        </a>
-      </div>
-      <div class="price">180 TK</div>
-    </div>
+            <!-- Product Card 5 -->
+            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 flex flex-col justify-between shadow-md hover:border-amber-400 transition sm:col-span-2 max-w-md mx-auto w-full">
+                <div>
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="bg-amber-400/10 p-3 rounded-xl text-amber-400 text-xl font-bold">🧤</div>
+                        <div>
+                            <h3 class="font-bold text-lg text-white">100 Coins + Iker Casillas</h3>
+                            <p class="text-xs text-slate-400">Special Pack</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-4 pt-3 border-t border-slate-700">
+                    <span class="text-xl font-extrabold text-amber-400">300 TK</span>
+                    <button onclick="buyProduct('100 Coins + Iker Casillas', '300 TK')" class="bg-amber-400 hover:bg-amber-500 text-slate-950 font-bold px-4 py-2 rounded-xl text-sm transition flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp"></i> Buy Now
+                    </button>
+                </div>
+            </div>
 
-    <div class="product">
-      <div class="product-info">
-        <h3>🪙 840 eFootball Coins</h3>
-        <p>840 Coin Package</p>
-        <a class="buy-btn"
-           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20840%20eFootball%20Coins"
-           target="_blank">
-          Buy Now
-        </a>
-      </div>
-      <div class="price">630 TK</div>
-    </div>
+        </div>
+    </main>
 
-    <div class="product">
-      <div class="product-info">
-        <h3>🪙 1630 eFootball Coins</h3>
-        <p>1630 Coin Package</p>
-        <a class="buy-btn"
-           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%201630%20eFootball%20Coins"
-           target="_blank">
-          Buy Now
-        </a>
-      </div>
-      <div class="price">1150 TK</div>
-    </div>
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-center py-4 text-xs text-slate-500 mt-10">
+        <p>&copy; 2026 Efootball Coin Shop BD. All rights reserved.</p>
+    </footer>
 
-    <div class="product">
-      <div class="product-info">
-        <h3>🪙 50 Coin + Luis Suárez</h3>
-        <p>Special Player Package</p>
-        <a class="buy-btn"
-           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%2050%20Coin%20%2B%20Luis%20Suarez"
-           target="_blank">
-          Buy Now
-        </a>
-      </div>
-      <div class="price">110 TK</div>
-    </div>
+    <!-- JavaScript for WhatsApp Integration -->
+    <script>
+        let selectedPlatform = 'Android';
 
-    <div class="product">
-      <div class="product-info">
-        <h3>🪙 100 Coin + Iker Casillas</h3>
-        <p>Special Player Package</p>
-        <a class="buy-btn"
-           href="https://wa.me/8801733185830?text=Hello%20I%20want%20to%20buy%20100%20Coin%20%2B%20Iker%20Casillas"
-           target="_blank">
-          Buy Now
-        </a>
-      </div>
-      <div class="price">300 TK</div>
-    </div>
+        function setPlatform(platform) {
+            selectedPlatform = platform;
+            document.getElementById('current-platform').innerText = platform;
+            
+            const androidBtn = document.getElementById('btn-android');
+            const iosBtn = document.getElementById('btn-ios');
 
-    <div class="notice">
-      ⚡ Fast Delivery<br>
-      🔒 100% Safe & Secure Purchase<br>
-      📞 WhatsApp: 01733185830
-    </div>
+            if(platform === 'Android') {
+                androidBtn.className = "platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-amber-400 bg-amber-400 text-slate-950 transition shadow-lg flex items-center gap-2";
+                iosBtn.className = "platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-slate-700 bg-slate-800 text-slate-300 transition shadow-lg flex items-center gap-2";
+            } else {
+                iosBtn.className = "platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-amber-400 bg-amber-400 text-slate-950 transition shadow-lg flex items-center gap-2";
+                androidBtn.className = "platform-btn px-6 py-2.5 rounded-xl font-bold border-2 border-slate-700 bg-slate-800 text-slate-300 transition shadow-lg flex items-center gap-2";
+            }
+        }
 
-  </div>
-
-  <div class="footer">
-    © 2026 UC AND eFootball COIN SHOP BD
-  </div>
-
-  <script>
-    function selectVersion(version, button) {
-      document.getElementById("version").innerText = version;
-
-      document.querySelectorAll(".version-btn").forEach(function(btn) {
-        btn.classList.remove("active");
-      });
-
-      button.classList.add("active");
-    }
-  </script>
-
+        function buyProduct(productName, price) {
+            let phoneNumber = "8801733185830"; // Your WhatsApp Number
+            let message = `Hello Admin, I want to buy this package:\n\n*Platform:* ${selectedPlatform}\n*Package:* ${productName}\n*Price:* ${price}\n\nPlease process my order.`;
+            
+            let encodedMessage = encodeURIComponent(message);
+            let whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
 </body>
 </html>
