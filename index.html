@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Football Coin Shop BD</title>
+    <!-- Google Font: Bodoni Moda (Luxury Serif Font) -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #111214;
@@ -11,6 +14,7 @@
             --accent-red: #ff3e3e;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
+            --success-green: #22c55e;
         }
         body {
             background-color: var(--bg-color);
@@ -25,12 +29,17 @@
         }
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .header h2 {
-            color: var(--accent-red);
-            font-size: 24px;
-            letter-spacing: 1px;
+            font-family: 'Bodoni Moda', serif;
+            color: #ffffff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 0;
+            text-shadow: 0 2px 10px rgba(255, 62, 62, 0.3);
         }
         .section {
             background-color: var(--card-bg);
@@ -94,10 +103,13 @@
         .pkg-card {
             background: #25282c;
             border: 2px solid #333;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .pkg-card:hover {
             border-color: #555;
@@ -108,13 +120,18 @@
         }
         .pkg-name { 
             font-weight: bold; 
-            font-size: 14px;
+            font-size: 13px;
         }
         .pkg-price { 
             color: var(--accent-red); 
             font-weight: bold; 
-            margin-top: 8px; 
-            font-size: 16px;
+            margin-top: 6px; 
+            font-size: 15px;
+        }
+        .pkg-stock {
+            color: var(--success-green);
+            font-size: 11px;
+            margin-top: 4px;
         }
         
         .pay-grid { 
@@ -151,6 +168,19 @@
             font-weight: bold;
         }
 
+        .total-display-btn {
+            background: #334155;
+            color: white;
+            border: 1px solid #475569;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
         .buy-btn {
             background: var(--accent-red);
             color: white;
@@ -161,7 +191,7 @@
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 15px;
             transition: background 0.2s;
         }
         .buy-btn:hover {
@@ -173,7 +203,7 @@
 
 <div class="container">
     <div class="header">
-        <h2>E-FOOTBALL COIN SHOP BD</h2>
+        <h2>E-Football Coin Shop BD</h2>
     </div>
 
     <!-- Step 1: Account Info -->
@@ -207,28 +237,106 @@
     <!-- Step 2: Select Package -->
     <div class="section">
         <div class="section-title">
-            <div class="step-number">2</div> Select Package
+            <div class="step-number">2</div> Select Package (Multiple allowed)
         </div>
         <div class="pkg-grid" id="pkgGrid">
-            <div class="pkg-card" onclick="selectPkg(this, '260 Coin', 180)">
-                <div class="pkg-name">260 Coin</div>
-                <div class="pkg-price">৳180</div>
+            <div class="pkg-card" onclick="togglePackage(this, '130 Coin', 170)">
+                <div>
+                    <div class="pkg-name">130 Coin</div>
+                    <div class="pkg-price">৳170</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
             </div>
-            <div class="pkg-card" onclick="selectPkg(this, '840 Coin', 630)">
-                <div class="pkg-name">840 Coin</div>
-                <div class="pkg-price">৳630</div>
+            <div class="pkg-card" onclick="togglePackage(this, '260 Coin', 180)">
+                <div>
+                    <div class="pkg-name">260 Coin</div>
+                    <div class="pkg-price">৳180</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
             </div>
-            <div class="pkg-card" onclick="selectPkg(this, '1630 Coin', 1150)">
-                <div class="pkg-name">1630 Coin</div>
-                <div class="pkg-price">৳1150</div>
+            <div class="pkg-card" onclick="togglePackage(this, '300 Coin', 360)">
+                <div>
+                    <div class="pkg-name">300 Coin</div>
+                    <div class="pkg-price">৳360</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
             </div>
-            <div class="pkg-card" onclick="selectPkg(this, '50 Coin + Luis Suárez', 110)">
-                <div class="pkg-name">50 Coin + Luis Suárez</div>
-                <div class="pkg-price">৳110</div>
+            <div class="pkg-card" onclick="togglePackage(this, '550 Coin', 620)">
+                <div>
+                    <div class="pkg-name">550 Coin</div>
+                    <div class="pkg-price">৳620</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
             </div>
-            <div class="pkg-card" onclick="selectPkg(this, '100 Coin + IKER CASILLAS', 300)">
-                <div class="pkg-name">100 Coin + IKER CASILLAS</div>
-                <div class="pkg-price">৳300</div>
+            <div class="pkg-card" onclick="togglePackage(this, '750 Coin', 840)">
+                <div>
+                    <div class="pkg-name">750 Coin</div>
+                    <div class="pkg-price">৳840</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '840 Coin', 630)">
+                <div>
+                    <div class="pkg-name">840 Coin</div>
+                    <div class="pkg-price">৳630</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '1040 Coin', 1150)">
+                <div>
+                    <div class="pkg-name">1040 Coin</div>
+                    <div class="pkg-price">৳1150</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '1630 Coin', 1150)">
+                <div>
+                    <div class="pkg-name">1630 Coin</div>
+                    <div class="pkg-price">৳1150</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '2130 Coin', 2300)">
+                <div>
+                    <div class="pkg-name">2130 Coin</div>
+                    <div class="pkg-price">৳2300</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '3250 Coin', 3450)">
+                <div>
+                    <div class="pkg-name">3250 Coin</div>
+                    <div class="pkg-price">৳3450</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '5700 Coin', 5600)">
+                <div>
+                    <div class="pkg-name">5700 Coin</div>
+                    <div class="pkg-price">৳5600</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '12800 Coin', 12500)">
+                <div>
+                    <div class="pkg-name">12800 Coin</div>
+                    <div class="pkg-price">৳12500</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '50 Coin + Luis Suárez', 110)">
+                <div>
+                    <div class="pkg-name">50 Coin + Luis Suárez</div>
+                    <div class="pkg-price">৳110</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
+            </div>
+            <div class="pkg-card" onclick="togglePackage(this, '100 Coin + IKER CASILLAS', 300)">
+                <div>
+                    <div class="pkg-name">100 Coin + IKER CASILLAS</div>
+                    <div class="pkg-price">৳300</div>
+                </div>
+                <div class="pkg-stock">🟢 In Stock</div>
             </div>
         </div>
     </div>
@@ -251,19 +359,37 @@
             <label>Sender Number / Last 4 Digits</label>
             <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
         </div>
+
+        <!-- Total Price Display Button -->
+        <div class="total-display-btn" id="totalDisplay">
+            Total Price: ৳0
+        </div>
         
         <button class="buy-btn" onclick="orderNow()">Buy Now</button>
     </div>
 </div>
 
 <script>
-    let selectedPkg = "", selectedPrice = 0, selectedPay = "";
+    let selectedPackages = []; 
+    let selectedPay = "";
 
-    function selectPkg(el, name, price) {
-        document.querySelectorAll('.pkg-card').forEach(c => c.classList.remove('active'));
-        el.classList.add('active');
-        selectedPkg = name; 
-        selectedPrice = price;
+    function togglePackage(el, name, price) {
+        let index = selectedPackages.findIndex(pkg => pkg.name === name);
+        
+        if (index > -1) {
+            selectedPackages.splice(index, 1);
+            el.classList.remove('active');
+        } else {
+            selectedPackages.push({ name: name, price: price });
+            el.classList.add('active');
+        }
+
+        updateTotalPrice();
+    }
+
+    function updateTotalPrice() {
+        let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+        document.getElementById('totalDisplay').innerText = `Total Price: ৳${totalPrice}`;
     }
 
     function selectPay(el, method) {
@@ -288,8 +414,8 @@
             alert("Doya korey account info er shob field puron korun!");
             return;
         }
-        if (!selectedPkg) {
-            alert("Doya korey ekta package select korun!");
+        if (selectedPackages.length === 0) {
+            alert("Doya korey kamtoke ekta ba eadhik package select korun!");
             return;
         }
         if (!selectedPay) {
@@ -301,13 +427,16 @@
             return;
         }
 
+        let pkgNames = selectedPackages.map(p => p.name).join(', ');
+        let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+
         let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
                   `📱 Device: ${device}%0A` +
                   `📧 Gmail: ${gmail}%0A` +
                   `🔑 Password: ${pass}%0A` +
                   `📞 WhatsApp: ${whatsapp}%0A%0A` +
-                  `📦 Package: ${selectedPkg}%0A` +
-                  `💰 Price: ${selectedPrice} TK%0A%0A` +
+                  `📦 Package(s): ${pkgNames}%0A` +
+                  `💰 Total Price: ${totalPrice} TK%0A%0A` +
                   `💳 Payment Method: ${selectedPay}%0A` +
                   `🔢 Last 4 Digit: ${lastDigit}`;
 
