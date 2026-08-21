@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Football Coin Shop BD</title>
-    <!-- Google Font: Bodoni Moda (Luxury Serif Font) -->
+    <!-- Google Font: Bodoni Moda -->
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     
     <style>
@@ -162,10 +162,27 @@
             font-size: 13px;
             color: #cbd5e1;
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
         .payment-instructions span {
             color: #38bdf8;
             font-weight: bold;
+        }
+        .copy-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #2563eb;
         }
 
         .total-display-btn {
@@ -352,7 +369,8 @@
         </div>
 
         <div id="payInstructionBox" class="payment-instructions" style="display: none;">
-            Please send money to <span id="payMethodName"></span> number: <span>01733185830</span>
+            <div>Send Money to <span id="payMethodName"></span>: <span id="payNumber">01733185830</span></div>
+            <button class="copy-btn" onclick="copyNumber()">Copy</button>
         </div>
 
         <div class="form-group" style="margin-top: 15px;">
@@ -399,8 +417,19 @@
 
         let instructionBox = document.getElementById('payInstructionBox');
         let methodNameSpan = document.getElementById('payMethodName');
-        instructionBox.style.display = 'block';
+        instructionBox.style.display = 'flex';
         methodNameSpan.innerText = method;
+    }
+
+    function copyNumber() {
+        let numberText = document.getElementById('payNumber').innerText;
+        navigator.clipboard.writeText(numberText).then(() => {
+            let copyBtn = document.querySelector('.copy-btn');
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => {
+                copyBtn.innerText = "Copy";
+            }, 2000);
+        });
     }
 
     function orderNow() {
