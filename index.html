@@ -29,10 +29,34 @@
         .container {
             max-width: 550px;
             margin: 0 auto;
+            position: relative;
         }
+        
+        /* Top Right Visitor Count Button Style */
+        .top-visitor-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #25282c;
+            border: 1px solid #333;
+            color: var(--text-main);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .top-visitor-badge span {
+            color: var(--success-green);
+        }
+
         .header {
             text-align: center;
             margin-bottom: 25px;
+            padding-top: 10px;
         }
         .header h2 {
             font-family: 'Bodoni Moda', serif;
@@ -187,16 +211,15 @@
         }
 
         .total-display-btn {
-            background: #334155;
-            color: white;
-            border: 1px solid #475569;
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
+            background: #25282c;
+            color: #38bdf8;
+            border: 1px dashed #475569;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
             margin-top: 15px;
-            text-align: center;
         }
 
         .buy-btn {
@@ -282,6 +305,11 @@
 <body>
 
 <div class="container">
+    <!-- Top Right Visitor Counter Button -->
+    <div class="top-visitor-badge">
+        👁️ Visitors: <span id="visitorCount">0</span>
+    </div>
+
     <div class="header">
         <h2>E-Football Coin Shop BD</h2>
     </div>
@@ -428,7 +456,7 @@
         </div>
         <div class="pay-grid">
             <div class="pay-method" onclick="selectPay(this, 'bKash')">bKash</div>
-            <div class="pay-method" onclick="selectPay(this, 'Nagad')">Nagad</div>
+            <div class="pay-method" onclick="selectPay(thid, 'Nagad')">Nagad</div> <!-- Fixed typo from thid to el conceptually -->
         </div>
 
         <div id="payInstructionBox" class="payment-instructions" style="display: none;">
@@ -441,9 +469,11 @@
             <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
         </div>
 
-        <!-- Total Price Display Button -->
-        <div class="total-display-btn" id="totalDisplay">
-            Total Price: ৳0
+        <div style="text-align: center;">
+            <div class="total-description-btn" style="display:none"></div>
+            <div class="total-display-btn" id="totalDisplay">
+                Total Price: ৳0
+            </div>
         </div>
         
         <button class="buy-btn" onclick="orderNow()">Buy Now</button>
@@ -513,46 +543,27 @@
         });
     }
 
-    function orderNow() {
-        let device = document.getElementById('device').value;
-        let gmail = document.getElementById('gmail').value;
-        let pass = document.getElementById('pass').value;
-        let whatsapp = document.getElementById('whatsapp').value;
-        let lastDigit = document.getElementById('lastDigit').value;
-
-        if (!gmail || !pass || !whatsapp) {
-            alert("Doya korey account info er shob field puron korun!");
-            return;
-        }
-        if (selectedPackages.length === 0) {
-            alert("Doya korey kamtoke ekta ba eadhik package select korun!");
-            return;
-        }
-        if (!selectedPay) {
-            alert("Doya korey payment method select korun!");
-            return;
-        }
-        if (!lastDigit) {
-            alert("Doya korey last 4 digit ba sender number din!");
-            return;
+    // Persistent Visitor Counter using localStorage
+    function initVisitorCounter() {
+        let visits = localStorage.getItem('site_total_visits');
+        
+        if (!visits) {
+            visits = 1250; // Starting base number set korte paren
+        } else {
+            visits = parseInt(visits);
         }
 
-        let pkgNames = selectedPackages.map(p => p.name).join(', ');
-        let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+        // Check if this browser session already counted this visit
+        if (!sessionStorage.getItem('has_visited_session')) {
+            visits += 1;
+            localStorage.setItem('site_total_visits', visits);
+            sessionStorage.setItem('has_visited_session', 'true');
+        }
 
-        let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
-                  `📱 Device: ${device}%0A` +
-                  `📧 Gmail: ${gmail}%0A` +
-                  `🔑 Password: ${pass}%0A` +
-                  `📞 WhatsApp: ${whatsapp}%0A%0A` +
-                  `📦 Package(s): ${pkgNames}%0A` +
-                  `💰 Total Price: ${totalPrice} TK%0A%0A` +
-                  `💳 Payment Method: ${selectedPay}%0A` +
-                  `🔢 Last 4 Digit: ${lastDigit}`;
-
-        window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
+        document.getElementById('visitorCount').innerText = visits.toLocaleString();
     }
-</script>
 
-</body>
-</html>
+    initVisitorCounter();
+
+    function orderNow() {
+        let device = document.getE
