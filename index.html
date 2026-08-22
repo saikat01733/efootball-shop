@@ -27,7 +27,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            padding-bottom: 90px; /* Space for bottom dock */
+            padding-bottom: 90px;
         }
         .container {
             max-width: 550px;
@@ -48,7 +48,6 @@
             text-shadow: 0 2px 10px rgba(255, 62, 62, 0.3);
         }
 
-        /* Badge/Tag Styles */
         .badge-container {
             display: flex;
             justify-content: center;
@@ -429,7 +428,6 @@
             display: block;
         }
 
-        /* Orders & Account View Styling */
         .empty-orders {
             text-align: center;
             padding: 40px 20px;
@@ -479,7 +477,6 @@
 
     <!-- TAB 1: HOME VIEW -->
     <div id="tab-home" class="tab-content active-tab">
-        <!-- Step 1: Account Info -->
         <div class="section">
             <div class="section-title">
                 <div class="step-number">1</div> Account Info
@@ -507,7 +504,6 @@
             </div>
         </div>
 
-        <!-- Step 2: Select Package -->
         <div class="section">
             <div class="section-title">
                 <div class="step-number">2</div> Select Package (Multiple allowed)
@@ -614,7 +610,6 @@
             </div>
         </div>
 
-        <!-- Step 3: Payment Method -->
         <div class="section">
             <div class="section-title">
                 <div class="step-number">3</div> Payment Method
@@ -643,7 +638,6 @@
             <button class="buy-btn" onclick="orderNow()">Buy Now</button>
         </div>
 
-        <!-- Social Links Footer -->
         <div class="social-footer">
             <p>Connect With Us</p>
             <div class="social-buttons">
@@ -687,23 +681,34 @@
         </div>
     </div>
 
-    <!-- TAB 5: ACCOUNT VIEW (Welcome Post & Login) -->
+    <!-- TAB 5: ACCOUNT VIEW (Welcome Post & Firebase Login/Register) -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
             <div class="welcome-badge">স্বাগতম!</div>
             <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD-তে স্বাগতম</h3>
-            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;">
-                আমাদের মাধ্যমেই সবচেয়ে কম খরচে এবং নিরাপদে ই-ফুটবল কয়েন টপ-আপ করুন মাত্র ১-১০ মিনিটের মধ্যে। যেকোনো সহায়তায় আমাদের সাথে যোগাযোগ করুন।
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
+                আমাদের মাধ্যমেই সবচেয়ে কম খরচে এবং নিরাপদে ই-ফুটবল কয়েন টপ-আপ করুন। লগইন অথবা রেজিস্টার করুন।
             </p>
-            <div class="form-group" style="text-align: left;">
-                <label>Email / Phone</label>
-                <input type="text" placeholder="Enter your email or phone">
+
+            <div id="userProfileView" style="display: none;">
+                <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
+                <button class="buy-btn" style="background-color: #333; margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
             </div>
-            <div class="form-group" style="text-align: left;">
-                <label>Password</label>
-                <input type="password" placeholder="Enter password">
+
+            <div id="authFormView">
+                <div class="form-group" style="text-align: left;">
+                    <label>Email</label>
+                    <input type="email" id="authEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group" style="text-align: left;">
+                    <label>Password</label>
+                    <input type="password" id="authPassword" placeholder="Enter password">
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <button class="buy-btn" onclick="firebaseLogin()">Login</button>
+                    <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebaseRegister()">Register</button>
+                </div>
             </div>
-            <button class="buy-btn" onclick="alert('Login Successful!')">Login</button>
         </div>
     </div>
 
@@ -769,6 +774,87 @@
     </button>
 </div>
 
+<!-- Firebase SDK Imports (Modular CDN version) -->
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
+    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMsfKYn_40qPO5x3fpLeGVx6HF7fLQRpw",
+      authDomain: "efootball-e1020.firebaseapp.com",
+      projectId: "efootball-e1020",
+      storageBucket: "efootball-e1020.firebasestorage.app",
+      messagingSenderId: "530104805398",
+      appId: "1:530104805398:web:ebc41ab32dac006b13ad37",
+      measurementId: "G-BT8YJB0CF2"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+
+    // Make auth functions globally accessible
+    window.firebaseLogin = function() {
+        let email = document.getElementById('authEmail').value;
+        let password = document.getElementById('authPassword').value;
+        if(!email || !password) {
+            alert("দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!");
+            return;
+        }
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert("লগইন সফল হয়েছে!");
+        })
+        .catch((error) => {
+            alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+        });
+    }
+
+    window.firebaseRegister = function() {
+        let email = document.getElementById('authEmail').value;
+        let password = document.getElementById('authPassword').value;
+        if(!email || !password) {
+            alert("দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!");
+            return;
+        }
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            alert("রেজিস্ট্রেশন সফল হয়েছে!");
+        })
+        .catch((error) => {
+            alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message);
+        });
+    }
+
+    window.firebaseLogout = function() {
+        signOut(auth).then(() => {
+            alert("লগআউট হয়েছে!");
+        }).catch((error) => {
+            alert(error.message);
+        });
+    }
+
+    // Monitor Auth State
+    onAuthStateChanged(auth, (user) => {
+        let authFormView = document.getElementById('authFormView');
+        let userProfileView = document.getElementById('userProfileView');
+        let loggedInUserEmail = document.getElementById('loggedInUserEmail');
+        let authDesc = document.getElementById('authDesc');
+
+        if (user) {
+            authFormView.style.display = 'none';
+            userProfileView.style.display = 'block';
+            loggedInUserEmail.innerText = "Logged in as: " + user.email;
+            authDesc.innerText = "আপনার অ্যাকাউন্ট প্যানেলে স্বাগতম!";
+        } else {
+            authFormView.style.display = 'block';
+            userProfileView.style.display = 'none';
+            authDesc.innerText = "আমাদের মাধ্যমেই সবচেয়ে কম খরচে এবং নিরাপদে ই-ফুটবল কয়েন টপ-আপ করুন। লগইন অথবা রেজিস্টার করুন।";
+        }
+    });
+</script>
+
 <script>
     let selectedPackages = []; 
     let selectedPay = "";
@@ -825,7 +911,6 @@
         }
     }
 
-    // Switch between bottom dock tabs
     function switchTab(btn, tabId) {
         document.querySelectorAll('.dock-item').forEach(item => item.classList.remove('active'));
         btn.classList.add('active');
@@ -862,7 +947,6 @@
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
 
-        // Add order to ordersList array
         let newOrder = {
             id: Math.floor(100000 + Math.random() * 900000),
             packages: pkgNames,
