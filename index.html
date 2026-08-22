@@ -682,9 +682,16 @@
                 <button class="copy-btn" onclick="copyNumber()">Copy</button>
             </div>
 
+            <!-- Payment Proof Section (Last 4 digits OR Screenshot) -->
             <div class="form-group" style="margin-top: 15px;">
-                <label>Sender Number / Last 4 Digits</label>
-                <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
+                <label>Sender Number Last 4 Digits <span style="color: var(--accent-red);">অথবা</span> রসিদের স্ক্রিনশট দিন</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <input type="text" id="lastDigit" placeholder="Enter last 4 digits (যেমন: 5830)" style="flex: 1;">
+                </div>
+                <div style="margin-top: 8px;">
+                    <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 3px;">রসিদের স্ক্রিনশট সিলেক্ট করুন (গ্যালারি থেকে):</label>
+                    <input type="file" id="receiptScreenshot" accept="image/*" style="font-size: 13px; padding: 8px;">
+                </div>
             </div>
 
             <div style="text-align: center;">
@@ -988,17 +995,17 @@
         .catch((error) => { alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
 
-    // 7. Phone Forgot Password (Sends reset link via backing fake email system)
+    // 7. Phone Forgot Password
     window.forgotPhonePassword = function() {
         let phone = document.getElementById('authPhone').value;
         if(!phone) {
-            alert("দয়া করে প্রথমে উপরে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            alert("দয়া করে প্রথমে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
             return;
         }
         let fauxEmail = phone + "@phone.shopbd.com";
         sendPasswordResetEmail(auth, fauxEmail)
         .then(() => { 
-            alert("পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।"); 
+            alert("পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে।"); 
         })
         .catch((error) => { 
             alert("এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!"); 
@@ -1116,7 +1123,8 @@
         let gmail = document.getElementById('gmail').value;
         let pass = document.getElementById('pass').value;
         let whatsapp = document.getElementById('whatsapp').value;
-        let lastDigit = document.getElementById('lastDigit').value;
+        let lastDigit = document.getElementById('lastDigit').value.trim();
+        let receiptFile = document.getElementById('receiptScreenshot').files[0];
 
         if (!gmail || !pass || !whatsapp) {
             alert("দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!");
@@ -1130,19 +1138,24 @@
             alert("দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!");
             return;
         }
-        if (!lastDigit) {
-            alert("দয়া করে লাস্ট ৪ ডিজিট বা সেন্ডার নম্বর দিন!");
+        // Validation: Last 4 digit OR Screenshot must be provided
+        if (!lastDigit && !receiptFile) {
+            alert("দয়া করে সেন্ডার নম্বরের শেষ ৪ ডিজিট অথবা পেমেন্ট রসিদের স্ক্রিনশট দিন!");
             return;
         }
 
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
 
+        // Payment proof description info for order history & WhatsApp
+        let proofInfo = lastDigit ? `Last 4 Digits: ${lastDigit}` : `Screenshot Attached: ${receiptFile.name}`;
+
         let newOrder = {
             id: Math.floor(100000 + Math.random() * 900000),
             packages: pkgNames,
             price: totalPrice,
             payment: selectedPay,
+            proof: proofInfo,
             date: new Date().toLocaleDateString()
         };
         ordersList.unshift(newOrder);
@@ -1156,7 +1169,7 @@
                   `📦 Package(s): ${pkgNames}%0A` +
                   `💰 Total Price: ${totalPrice} TK%0A%0A` +
                   `💳 Payment Method: ${selectedPay}%0A` +
-                  `🔢 Last 4 Digit: ${lastDigit}`;
+                  `🧾 Payment Proof: ${encodeURIComponent(proofInfo)}`;
 
         window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
     }
@@ -1176,7 +1189,8 @@
                         <span style="color: var(--success-green);">৳${ord.price}</span>
                     </div>
                     <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 3px;">Package: ${ord.packages}</div>
-                    <div style="color: var(--text-muted); font-size: 12px;">Payment: ${ord.payment} | Date: ${ord.date}</div>
+                    <div style="color: var(--text-muted); font-size: 12px; margin-bottom: 3px;">Payment: ${ord.payment} (${ord.proof})</div>
+                    <div style="color: var(--text-muted); font-size: 11px;">Date: ${ord.date}</div>
                 </div>
             `;
         });
