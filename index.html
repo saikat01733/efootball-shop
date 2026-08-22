@@ -739,7 +739,7 @@
         </div>
     </div>
 
-    <!-- TAB 5: ACCOUNT VIEW (Google, Phone, Email/Password Login & Forgot Password) -->
+    <!-- TAB 5: ACCOUNT VIEW (Google, Phone Number & Password Login) -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
             <div class="welcome-badge">স্বাগতম!</div>
@@ -756,7 +756,7 @@
 
             <!-- Login / Register Forms Container -->
             <div id="authFormView">
-                <!-- Google Sign In Button -->
+                <!-- Google Sign In Button (Shows device gmail selector popup) -->
                 <button class="google-btn" onclick="firebaseGoogleLogin()">
                     <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                     Continue with Google
@@ -789,23 +789,20 @@
                     </div>
                 </div>
 
-                <!-- Phone Number Section -->
+                <!-- Phone Number & Password Section (No OTP) -->
                 <div id="phoneAuthSection" style="display: none; text-align: left;">
                     <div class="form-group">
-                        <label>Phone Number (+880...)</label>
-                        <input type="text" id="authPhone" placeholder="+8801700000000">
+                        <label>Phone Number</label>
+                        <input type="text" id="authPhone" placeholder="01700000000">
                     </div>
-                    <button class="buy-btn" id="sendOtpBtn" onclick="firebaseSendOtp()">Send OTP</button>
-
-                    <div id="otpVerifyBox" style="display: none; margin-top: 15px;">
-                        <div class="form-group">
-                            <label>Enter 6-digit OTP</label>
-                            <input type="text" id="authOtp" placeholder="123456">
-                        </div>
-                        <button class="buy-btn" onclick="firebaseVerifyOtp()">Verify OTP</button>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="authPhonePassword" placeholder="Enter password">
                     </div>
-                    <!-- Recaptcha Container for Phone Auth -->
-                    <div id="recaptcha-container" style="margin-top: 10px;"></div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="buy-btn" onclick="firebasePhoneLogin()">Login</button>
+                        <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebasePhoneRegister()">Register</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -885,9 +882,7 @@
         onAuthStateChanged,
         GoogleAuthProvider,
         signInWithPopup,
-        sendPasswordResetEmail,
-        RecaptchaVerifier,
-        signInWithPhoneNumber
+        sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
@@ -942,7 +937,7 @@
         });
     }
 
-    // 3. Google Sign-In
+    // 3. Google Sign-In (Opens Device Gmail accounts list popup)
     window.firebaseGoogleLogin = function() {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
@@ -970,44 +965,44 @@
         });
     }
 
-    // 5. Phone Number Login (OTP Setup)
-    window.setupRecaptcha = function() {
-        if (!window.recaptchaVerifier) {
-            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-                'size': 'invisible'
-            });
-        }
-    }
-
-    window.firebaseSendOtp = function() {
-        setupRecaptcha();
-        let phoneNumber = document.getElementById('authPhone').value;
-        if(!phoneNumber) {
-            alert("দয়া করে সঠিক ফোন নম্বর দিন (যেমন: +88017XXXXXXXX)");
+    // 5. Phone Number & Password Login (Using faux email format for Firebase Auth backend)
+    window.firebasePhoneLogin = function() {
+        let phone = document.getElementById('authPhone').value;
+        let password = document.getElementById('authPhonePassword').value;
+        if(!phone || !password) {
+            alert("দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!");
             return;
         }
-        let appVerifier = window.recaptchaVerifier;
-        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-        .then((confirmationResult) => {
-            window.confirmationResult = confirmationResult;
-            alert("আপনার নম্বরে একটি ওটিপি (OTP) কোড পাঠানো হয়েছে!");
-            document.getElementById('otpVerifyBox').style.display = 'block';
-            document.getElementById('sendOtpBtn').style.display = 'none';
-        }).catch((error) => {
-            alert("OTP পাঠানো যায়নি: " + error.message);
+        // Firebase requires an email format, so we map phone numbers to a unique domain format
+        let fauxEmail = phone + "@phone.shopbd.com";
+        signInWithEmailAndPassword(auth, fauxEmail, password)
+        .then(() => {
+            alert("ফোন নম্বর দিয়ে লগইন সফল হয়েছে!");
+        })
+        .catch((error) => {
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                alert("ভুল পাসওয়ার্ড!");
+            } else {
+                alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+            }
         });
     }
 
-    window.firebaseVerifyOtp = function() {
-        let code = document.getElementById('authOtp').value;
-        if(!code) {
-            alert("দয়া করে ওটিপি কোডটি লিখুন!");
+    // 6. Phone Number & Password Register
+    window.firebasePhoneRegister = function() {
+        let phone = document.getElementById('authPhone').value;
+        let password = document.getElementById('authPhonePassword').value;
+        if(!phone || !password) {
+            alert("দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!");
             return;
         }
-        window.confirmationResult.confirm(code).then((result) => {
-            alert("ফোন নম্বর ভেরিফিকেশন এবং লগইন সফল হয়েছে!");
-        }).catch((error) => {
-            alert("ভুল ওটিপি কোড: " + error.message);
+        let fauxEmail = phone + "@phone.shopbd.com";
+        createUserWithEmailAndPassword(auth, fauxEmail, password)
+        .then(() => {
+            alert("ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!");
+        })
+        .catch((error) => {
+            alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message);
         });
     }
 
@@ -1030,7 +1025,8 @@
         if (user) {
             authFormView.style.display = 'none';
             userProfileView.style.display = 'block';
-            loggedInUserEmail.innerText = "Logged in as: " + (user.email || user.phoneNumber);
+            let identifier = user.email.includes("@phone.shopbd.com") ? user.email.split("@")[0] : user.email;
+            loggedInUserEmail.innerText = "Logged in as: " + identifier;
             authDesc.innerText = "আপনার অ্যাকাউন্ট প্যানেলে স্বাগতম!";
         } else {
             authFormView.style.display = 'block';
