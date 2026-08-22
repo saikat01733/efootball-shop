@@ -739,7 +739,7 @@
         </div>
     </div>
 
-    <!-- TAB 5: ACCOUNT VIEW (Google, Phone Number & Password Login) -->
+    <!-- TAB 5: ACCOUNT VIEW -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
             <div class="welcome-badge">স্বাগতম!</div>
@@ -756,7 +756,7 @@
 
             <!-- Login / Register Forms Container -->
             <div id="authFormView">
-                <!-- Google Sign In Button (Shows device gmail selector popup) -->
+                <!-- Google Sign In Button -->
                 <button class="google-btn" onclick="firebaseGoogleLogin()">
                     <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                     Continue with Google
@@ -764,7 +764,7 @@
 
                 <div class="divider">অথবা</div>
 
-                <!-- Auth Mode Switcher (Email vs Phone) -->
+                <!-- Auth Mode Switcher -->
                 <div class="auth-toggle-tabs">
                     <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
                     <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
@@ -789,7 +789,7 @@
                     </div>
                 </div>
 
-                <!-- Phone Number & Password Section (No OTP) -->
+                <!-- Phone Number & Password Section -->
                 <div id="phoneAuthSection" style="display: none; text-align: left;">
                     <div class="form-group">
                         <label>Phone Number</label>
@@ -798,6 +798,9 @@
                     <div class="form-group">
                         <label>Password</label>
                         <input type="password" id="authPhonePassword" placeholder="Enter password">
+                    </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPhonePassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
                     </div>
                     <div style="display: flex; gap: 10px;">
                         <button class="buy-btn" onclick="firebasePhoneLogin()">Login</button>
@@ -870,7 +873,7 @@
     </button>
 </div>
 
-<!-- Firebase SDK Imports (Modular CDN version) -->
+<!-- Firebase SDK Imports -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
@@ -899,7 +902,7 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
 
-    // 1. Email / Password Login
+    // 1. Email Login
     window.firebaseLogin = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -908,9 +911,7 @@
             return;
         }
         signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            alert("লগইন সফল হয়েছে!");
-        })
+        .then(() => { alert("লগইন সফল হয়েছে!"); })
         .catch((error) => {
             if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                 alert("ভুল পাসওয়ার্ড! পাসওয়ার্ড রিসেট করতে চাইলে 'Forgot Password?' এ ক্লিক করুন।");
@@ -920,7 +921,7 @@
         });
     }
 
-    // 2. Email / Password Register
+    // 2. Email Register
     window.firebaseRegister = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -929,27 +930,19 @@
             return;
         }
         createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-            alert("রেজিস্ট্রেশন সফল হয়েছে!");
-        })
-        .catch((error) => {
-            alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message);
-        });
+        .then(() => { alert("রেজিস্ট্রেশন সফল হয়েছে!"); })
+        .catch((error) => { alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
 
-    // 3. Google Sign-In (Opens Device Gmail accounts list popup)
+    // 3. Google Login
     window.firebaseGoogleLogin = function() {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
-        .then(() => {
-            alert("Google দিয়ে সফলভাবে লগইন হয়েছে!");
-        })
-        .catch((error) => {
-            alert("লগইন ব্যর্থ হয়েছে: " + error.message);
-        });
+        .then(() => { alert("Google দিয়ে সফলভাবে লগইন হয়েছে!"); })
+        .catch((error) => { alert("লগইন ব্যর্থ হয়েছে: " + error.message); });
     }
 
-    // 4. Forgot Password
+    // 4. Email Forgot Password
     window.forgotPassword = function() {
         let email = document.getElementById('authEmail').value;
         if(!email) {
@@ -957,15 +950,11 @@
             return;
         }
         sendPasswordResetEmail(auth, email)
-        .then(() => {
-            alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স বা স্প্যাম ফোল্ডার চেক করুন।");
-        })
-        .catch((error) => {
-            alert("ত্রুটি: " + error.message);
-        });
+        .then(() => { alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।"); })
+        .catch((error) => { alert("ত্রুটি: " + error.message); });
     }
 
-    // 5. Phone Number & Password Login (Using faux email format for Firebase Auth backend)
+    // 5. Phone Login
     window.firebasePhoneLogin = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
@@ -973,12 +962,9 @@
             alert("দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!");
             return;
         }
-        // Firebase requires an email format, so we map phone numbers to a unique domain format
         let fauxEmail = phone + "@phone.shopbd.com";
         signInWithEmailAndPassword(auth, fauxEmail, password)
-        .then(() => {
-            alert("ফোন নম্বর দিয়ে লগইন সফল হয়েছে!");
-        })
+        .then(() => { alert("ফোন নম্বর দিয়ে লগইন সফল হয়েছে!"); })
         .catch((error) => {
             if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
                 alert("ভুল পাসওয়ার্ড!");
@@ -988,7 +974,7 @@
         });
     }
 
-    // 6. Phone Number & Password Register
+    // 6. Phone Register
     window.firebasePhoneRegister = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
@@ -998,24 +984,33 @@
         }
         let fauxEmail = phone + "@phone.shopbd.com";
         createUserWithEmailAndPassword(auth, fauxEmail, password)
-        .then(() => {
-            alert("ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!");
+        .then(() => { alert("ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!"); })
+        .catch((error) => { alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
+    }
+
+    // 7. Phone Forgot Password (Sends reset link via backing fake email system)
+    window.forgotPhonePassword = function() {
+        let phone = document.getElementById('authPhone').value;
+        if(!phone) {
+            alert("দয়া করে প্রথমে উপরে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            return;
+        }
+        let fauxEmail = phone + "@phone.shopbd.com";
+        sendPasswordResetEmail(auth, fauxEmail)
+        .then(() => { 
+            alert("পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।"); 
         })
-        .catch((error) => {
-            alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message);
+        .catch((error) => { 
+            alert("এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!"); 
         });
     }
 
     // Logout
     window.firebaseLogout = function() {
-        signOut(auth).then(() => {
-            alert("লগআউট হয়েছে!");
-        }).catch((error) => {
-            alert(error.message);
-        });
+        signOut(auth).then(() => { alert("লগআউট হয়েছে!"); }).catch((error) => { alert(error.message); });
     }
 
-    // Monitor Auth State
+    // Auth State
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
@@ -1093,9 +1088,7 @@
         navigator.clipboard.writeText(numberText).then(() => {
             let copyBtn = document.querySelector('.copy-btn');
             copyBtn.innerText = "Copied!";
-            setTimeout(() => {
-                copyBtn.innerText = "Copy";
-            }, 2000);
+            setTimeout(() => { copyBtn.innerText = "Copy"; }, 2000);
         });
     }
 
@@ -1106,9 +1099,7 @@
 
     window.onclick = function(event) {
         let modal = document.getElementById('contactModal');
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
+        if (event.target === modal) { modal.style.display = 'none'; }
     }
 
     function switchTab(btn, tabId) {
