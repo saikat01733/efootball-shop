@@ -16,7 +16,9 @@
             --text-muted: #a0a0a0;
             --success-green: #22c55e;
             --whatsapp-green: #25d366;
-            --telegram-blue: #24a1de;
+            --telegram-blue: #0088cc;
+            --gmail-red: #ea4335;
+            --phone-color: #38bdf8;
             --fb-blue: #1877f2;
         }
         body {
@@ -216,7 +218,6 @@
             background: #e03131;
         }
 
-        /* Footer Social Links */
         .social-footer {
             margin-top: 30px;
             text-align: center;
@@ -251,200 +252,119 @@
         .fb-btn { background-color: var(--fb-blue); }
         .messenger-btn { background-color: #0084ff; }
 
-        /* Support Float Button & Modal Styles */
-        .support-float {
+        /* Floating Contact Us Button & Popup Modal */
+        .contact-float-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #1a1c1f;
-            border: 1px solid #333;
+            z-index: 1000;
+        }
+        .contact-float-btn {
+            background-color: var(--accent-red);
             color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
+            padding: 12px 20px;
+            border-radius: 30px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            z-index: 1000;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.4);
             cursor: pointer;
-            transition: transform 0.2s;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            transition: transform 0.2s, background 0.2s;
+            border: none;
         }
-        .support-float:hover {
+        .contact-float-btn:hover {
             transform: scale(1.05);
+            background-color: #e03131;
         }
-        .support-float svg {
-            width: 26px;
-            height: 26px;
-            fill: #a0a0a0;
+        .contact-float-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: white;
         }
 
-        /* Modal Background */
-        .support-modal-overlay {
+        /* Modal Overlay */
+        .contact-modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            display: flex;
-            align-items: flex-end;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
             justify-content: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        .support-modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Modal Box */
-        .support-modal {
-            background: #16181b;
-            width: 100%;
-            max-width: 500px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-            padding: 20px;
+            align-items: center;
+            padding: 15px;
             box-sizing: border-box;
-            max-height: 85vh;
-            overflow-y: auto;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-            border-top: 1px solid #2a2d32;
         }
-        .support-modal-overlay.active .support-modal {
-            transform: translateY(0);
+        .contact-modal-content {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            animation: modalSlide 0.3s ease;
+            position: relative;
         }
-
+        @keyframes modalSlide {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            border-bottom: 1px solid #2a2d32;
+            padding-bottom: 10px;
         }
-        .modal-title-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .modal-icon-box {
-            background: rgba(255, 62, 62, 0.1);
-            padding: 8px;
-            border-radius: 10px;
-            color: var(--accent-red);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-icon-box svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--accent-red);
-        }
-        .modal-title h3 {
+        .modal-header h3 {
             margin: 0;
             font-size: 18px;
-            color: white;
+            color: var(--text-main);
         }
-        .modal-title p {
-            margin: 3px 0 0 0;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .modal-close {
+        .close-modal {
             background: none;
             border: none;
             color: var(--text-muted);
             font-size: 22px;
             cursor: pointer;
         }
-
-        .modal-tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .contact-options {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            margin-bottom: 20px;
         }
-        .modal-tab {
-            background: #212429;
-            border: 1px solid #2e3239;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
+        .contact-option-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .modal-tab.active {
-            background: var(--accent-red);
-            border-color: var(--accent-red);
-        }
-
-        .support-card {
-            background: #212429;
-            border: 1px solid #2e3239;
-            border-radius: 14px;
-            padding: 15px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 15px;
+            border-radius: 10px;
             text-decoration: none;
             color: white;
-            transition: background 0.2s;
+            font-weight: 600;
+            font-size: 14px;
+            transition: opacity 0.2s;
         }
-        .support-card:hover {
-            background: #292d35;
+        .contact-option-item:hover {
+            opacity: 0.9;
         }
-        .support-card-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .support-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .support-logo.whatsapp { background: rgba(37, 211, 102, 0.15); color: var(--whatsapp-green); }
-        .support-logo.telegram { background: rgba(36, 161, 222, 0.15); color: var(--telegram-blue); }
-        .support-logo.phone { background: rgba(234, 179, 8, 0.15); color: #eab308; }
-        .support-logo.email { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
-        .support-logo.live { background: rgba(255, 62, 62, 0.15); color: var(--accent-red); }
-
-        .support-logo svg {
+        .opt-whatsapp { background-color: var(--whatsapp-green); }
+        .opt-telegram { background-color: var(--telegram-blue); }
+        .opt-gmail { background-color: var(--gmail-red); }
+        .opt-phone { background-color: #0284c7; }
+        
+        .contact-option-item svg {
             width: 22px;
             height: 22px;
-            fill: currentColor;
-        }
-        .support-info h4 {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 600;
-        }
-        .support-info p {
-            margin: 3px 0 0 0;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-        .support-arrow {
-            color: var(--text-muted);
-        }
-        .support-arrow svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
+            fill: white;
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -622,4 +542,156 @@
     <!-- Social Links Footer -->
     <div class="social-footer">
         <p>Connect With Us</p>
-        <div class="social-butto
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/share/166H5PHoS4W/" target="_blank" class="social-btn fb-btn">
+                <span>Facebook Page</span>
+            </a>
+            <a href="https://m.me/j/AbY3MFES5LAMvV_Z/?send_source=gc%3Acopy_invite_link_t" target="_blank" class="social-btn messenger-btn">
+                <span>Messenger Group</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Contact Us Button & Modal -->
+<div class="contact-float-container">
+    <button class="contact-float-btn" onclick="toggleContactModal()">
+        <svg viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-4.79 2.44c-.32.16-.7.11-.97-.13l-3.3-3.08-3.08 3.3c-.27.24-.65.29-.97.13L3.53 17.38c-.32-.17-.53-.5-.53-.88v-3.79c0-.28.11-.53.29-.72l4.8-4.8c.38-.38 1.02-.38 1.4 0l1.24 1.24 1.24-1.24c.38-.38 1.02-.38 1.4 0l4.8 4.8c.18.19.29.44.29.72v3.79zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        Contact Us
+    </button>
+</div>
+
+<!-- Contact Modal Popup -->
+<div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+        <div class="modal-header">
+            <h3>Need Support? Contact Us</h3>
+            <button class="close-modal" onclick="toggleContactModal()">&times;</button>
+        </div>
+        <div class="contact-options">
+            <a href="https://wa.me/8801733185830?text=I%20need%20support!" target="_blank" class="contact-option-item opt-whatsapp">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                <span>WhatsApp: 01733185830</span>
+            </a>
+            <a href="https://t.me/+8801733185830" target="_blank" class="contact-option-item opt-telegram">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-2.01 1.28-5.69 3.77-.54.37-1.03.55-1.47.54-.48-.01-1.4-.27-2.08-.49-.84-.27-1.51-.42-1.45-.89.03-.25.38-.51 1.06-.78 4.15-1.81 6.91-3.01 8.28-3.6 3.94-1.68 4.76-1.97 5.29-1.98.12 0 .39.03.56.17.14.12.18.28.2.4-.01.07.01.35-.03.67z"/></svg>
+                <span>Telegram: 01733185830</span>
+            </a>
+            <a href="mailto:saikatahmmad701@gmail.com" class="contact-option-item opt-gmail">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>Gmail Support</span>
+            </a>
+            <a href="tel:01733185830" class="contact-option-item opt-phone">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span>Phone: 01733185830</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedPackages = []; 
+    let selectedPay = "";
+
+    function togglePackage(el, name, price) {
+        let index = selectedPackages.findIndex(pkg => pkg.name === name);
+        
+        if (index > -1) {
+            selectedPackages.splice(index, 1);
+            el.classList.remove('active');
+        } else {
+            selectedPackages.push({ name: name, price: price });
+            el.classList.add('active');
+        }
+
+        updateTotalPrice();
+    }
+
+    function updateTotalPrice() {
+        let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+        document.getElementById('totalDisplay').innerText = `Total Price: ৳${totalPrice}`;
+    }
+
+    function selectPay(el, method) {
+        document.querySelectorAll('.pay-method').forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+        selectedPay = method;
+
+        let instructionBox = document.getElementById('payInstructionBox');
+        let methodNameSpan = document.getElementById('payMethodName');
+        instructionBox.style.display = 'flex';
+        methodNameSpan.innerText = method;
+    }
+
+    function copyNumber() {
+        let numberText = document.getElementById('payNumber').innerText;
+        navigator.clipboard.writeText(numberText).then(() => {
+            let copyBtn = document.querySelector('.copy-btn');
+            copyBtn.innerText = "Copied!";
+            setTimeout(() => {
+                copyBtn.innerText = "Copy";
+            }, 2000);
+        });
+    }
+
+    // Toggle Contact Modal Popup
+    function toggleContactModal() {
+        let modal = document.getElementById('contactModal');
+        if (modal.style.display === 'flex') {
+            modal.style.display = 'none';
+        } else {
+            modal.style.display = 'flex';
+        }
+    }
+
+    // Close modal when clicking outside of it
+    window.onclick = function(event) {
+        let modal = document.getElementById('contactModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    function orderNow() {
+        let device = document.getElementById('device').value;
+        let gmail = document.getElementById('gmail').value;
+        let pass = document.getElementById('pass').value;
+        let whatsapp = document.getElementById('whatsapp').value;
+        let lastDigit = document.getElementById('lastDigit').value;
+
+        if (!gmail || !pass || !whatsapp) {
+            alert("দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!");
+            return;
+        }
+        if (selectedPackages.length === 0) {
+            alert("দয়া করে কমপক্ষে একটি বা অধিক প্যাকেজ সিলেক্ট করুন!");
+            return;
+        }
+        if (!selectedPay) {
+            alert("দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!");
+            return;
+        }
+        if (!lastDigit) {
+            alert("দয়া করে লাস্ট ৪ ডিজিট বা সেন্ডার নম্বর দিন!");
+            return;
+        }
+
+        let pkgNames = selectedPackages.map(p => p.name).join(', ');
+        let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+
+        let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
+                  `📱 Device: ${device}%0A` +
+                  `📧 Gmail: ${gmail}%0A` +
+                  `🔑 Password: ${pass}%0A` +
+                  `📞 WhatsApp: ${whatsapp}%0A%0A` +
+                  `📦 Package(s): ${pkgNames}%0A` +
+                  `💰 Total Price: ${totalPrice} TK%0A%0A` +
+                  `💳 Payment Method: ${selectedPay}%0A` +
+                  `🔢 Last 4 Digit: ${lastDigit}`;
+
+        window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
