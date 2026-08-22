@@ -731,9 +731,9 @@
     <!-- TAB 3: ORDERS VIEW -->
     <div id="tab-orders" class="tab-content">
         <div class="section">
-            <div class="section-title">My Orders</div>
+            <div class="section-title">My Orders History</div>
             <div id="ordersListContainer">
-                <div class="empty-orders">কোনো অর্ডার করা হয়নি!</div>
+                <div class="empty-orders">লগইন করুন অথবা অর্ডার হিস্ট্রি দেখতে অর্ডার করুন!</div>
             </div>
         </div>
     </div>
@@ -880,7 +880,7 @@
     </button>
 </div>
 
-<!-- Firebase SDK Imports -->
+<!-- Firebase SDK Imports (Auth & Firestore Database) -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
@@ -894,6 +894,16 @@
         signInWithPopup,
         sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+        getFirestore, 
+        collection, 
+        addDoc, 
+        query, 
+        where, 
+        orderBy, 
+        getDocs, 
+        serverTimestamp 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDMsfKYn_40qPO5x3fpLeGVx6HF7fLQRpw",
@@ -908,6 +918,17 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Globals to share with regular script
+    window.db = db;
+    window.auth = auth;
+    window.collection = collection;
+    window.addDoc = addDoc;
+    window.query = query;
+    window.where = where;
+    window.getDocs = getDocs;
+    window.serverTimestamp = serverTimestamp;
 
     // 1. Email Login
     window.firebaseLogin = function() {
@@ -1017,7 +1038,7 @@
         signOut(auth).then(() => { alert("লগআউট হয়েছে!"); }).catch((error) => { alert(error.message); });
     }
 
-    // Auth State
+    // Auth State Changed & Fetch Orders
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
@@ -1030,18 +1051,58 @@
             let identifier = user.email.includes("@phone.shopbd.com") ? user.email.split("@")[0] : user.email;
             loggedInUserEmail.innerText = "Logged in as: " + identifier;
             authDesc.innerText = "আপনার অ্যাকাউন্ট প্যানেলে স্বাগতম!";
+            
+            // Fetch user orders from Firestore
+            window.loadUserOrders(user.uid);
         } else {
             authFormView.style.display = 'block';
             userProfileView.style.display = 'none';
             authDesc.innerText = "নিরাপদে লগইন অথবা রেজিস্টার করুন।";
+            
+            // Clear orders container if logged out
+            document.getElementById('ordersListContainer').innerHTML = `<div class="empty-orders">অর্ডার হিস্ট্রি দেখতে প্রথমে লগইন করুন!</div>`;
         }
     });
+
+    // Load orders function
+    window.loadUserOrders = async function(uid) {
+        let container = document.getElementById('ordersListContainer');
+        container.innerHTML = `<div class="empty-orders">লোড হচ্ছে...</div>`;
+        try {
+            const q = query(collection(db, "orders"), where("userId", "==", uid));
+            const querySnapshot = await getDocs(q);
+            
+            if (querySnapshot.empty) {
+                container.innerHTML = `<div class="empty-orders">কোনো অর্ডার করা হয়নি!</div>`;
+                return;
+            }
+
+            let html = '';
+            querySnapshot.forEach((doc) => {
+                let ord = doc.data();
+                html += `
+                    <div class="order-card-item">
+                        <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; margin-bottom: 5px;">
+                            <span>Order #${ord.orderId}</span>
+                            <span style="color: var(--success-green);">৳${ord.price}</span>
+                        </div>
+                        <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 3px;">Package: ${ord.packages}</div>
+                        <div style="color: var(--text-muted); font-size: 12px; margin-bottom: 3px;">Payment: ${ord.payment} (${ord.proof})</div>
+                        <div style="color: var(--text-muted); font-size: 11px;">Date: ${ord.date}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        } catch (err) {
+            console.error(err);
+            container.innerHTML = `<div class="empty-orders">অর্ডার লোড করতে সমস্যা হয়েছে।</div>`;
+        }
+    }
 </script>
 
 <script>
     let selectedPackages = []; 
     let selectedPay = "";
-    let ordersList = [];
 
     function switchAuthMode(mode) {
         let emailBtn = document.getElementById('emailTabBtn');
@@ -1119,6 +1180,13 @@
     }
 
     async function orderNow() {
+        let currentUser = window.auth.currentUser;
+        if (!currentUser) {
+            alert("অর্ডার করতে হলে প্রথমে অ্যাকাউন্টে লগইন করতে হবে! দয়া করে 'Account' ট্যাবে গিয়ে লগইন করুন।");
+            switchTab(document.querySelectorAll('.dock-item')[4], 'tab-account');
+            return;
+        }
+
         let device = document.getElementById('device').value;
         let gmail = document.getElementById('gmail').value;
         let pass = document.getElementById('pass').value;
@@ -1151,6 +1219,8 @@
         if (lastDigit) {
             proofInfo = `Last 4 Digits: ${lastDigit}`;
         } else if (receiptFile) {
+            proofInfo = `Screenshot Attached (${receiptFile.name}) - Please send screenshot in WhatsApp chat.`;
+            
             try {
                 let formData = new FormData();
                 formData.append("reqtype", "fileupload");
@@ -1164,11 +1234,9 @@
                 
                 if (resultUrl && resultUrl.startsWith("http")) {
                     proofInfo = `Screenshot URL: ${resultUrl.trim()}`;
-                } else {
-                    proofInfo = `Screenshot Attached: ${receiptFile.name}`;
                 }
             } catch (err) {
-                proofInfo = `Screenshot Attached: ${receiptFile.name}`;
+                console.log("Image upload bypass due to CORS/Network.");
             }
         }
 
@@ -1177,17 +1245,26 @@
 
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
+        let orderIdNum = Math.floor(100000 + Math.random() * 900000);
 
         let newOrder = {
-            id: Math.floor(100000 + Math.random() * 900000),
+            userId: currentUser.uid,
+            orderId: orderIdNum,
             packages: pkgNames,
             price: totalPrice,
             payment: selectedPay,
             proof: proofInfo,
             date: new Date().toLocaleDateString()
         };
-        ordersList.unshift(newOrder);
-        renderOrders();
+
+        // Save to Firebase Firestore Database so it persists permanently
+        try {
+            await window.addDoc(window.collection(window.db, "orders"), newOrder);
+            // Reload user orders list
+            window.loadUserOrders(currentUser.uid);
+        } catch (e) {
+            console.error("Error saving order: ", e);
+        }
 
         let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
                   `📱 Device: ${device}%0A` +
@@ -1200,29 +1277,6 @@
                   `🧾 Payment Proof: ${encodeURIComponent(proofInfo)}`;
 
         window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
-    }
-
-    function renderOrders() {
-        let container = document.getElementById('ordersListContainer');
-        if (ordersList.length === 0) {
-            container.innerHTML = `<div class="empty-orders">কোনো অর্ডার করা হয়নি!</div>`;
-            return;
-        }
-        let html = '';
-        ordersList.forEach(ord => {
-            html += `
-                <div class="order-card-item">
-                    <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 14px; margin-bottom: 5px;">
-                        <span>Order #${ord.id}</span>
-                        <span style="color: var(--success-green);">৳${ord.price}</span>
-                    </div>
-                    <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 3px;">Package: ${ord.packages}</div>
-                    <div style="color: var(--text-muted); font-size: 12px; margin-bottom: 3px;">Payment: ${ord.payment} (${ord.proof})</div>
-                    <div style="color: var(--text-muted); font-size: 11px;">Date: ${ord.date}</div>
-                </div>
-            `;
-        });
-        container.innerHTML = html;
     }
 </script>
 
