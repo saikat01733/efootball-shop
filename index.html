@@ -1,38 +1,227 @@
-<!-- Support Contact Widget -->
-<div class="support-widget-container">
-  <!-- Popup Options Menu (Initially Hidden) -->
-  <div id="supportPopup" class="support-popup">
-    <div class="support-header">
-      <h4>Contact Us</h4>
-      <span id="closePopup" class="close-btn">&times;</span>
-    </div>
-    <div class="support-options">
-      <!-- WhatsApp Option -->
-      <a href="https://wa.me/8801733185830?text=Hello,%20I%20need%20support." target="_blank" class="support-item whatsapp">
-        <i class="fab fa-whatsapp"></i>
-        <span>WhatsApp</span>
-      </a>
-      
-      <!-- Telegram Option -->
-      <a href="https://t.me/+8801733185830" target="_blank" class="support-item telegram">
-        <i class="fab fa-telegram-plane"></i>
-        <span>Telegram</span>
-      </a>
-      
-      <!-- Gmail Option -->
-      <a href="mailto:saikatahmmad701@gmail.com?subject=Support%20Inquiry" class="support-item email">
-        <i class="fas fa-envelope"></i>
-        <span>Gmail</span>
-      </a>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>eFootball Support Web App</title>
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* Basic Page Styling (Optional) */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f7f6;
+    }
+
+    /* Support Floating Widget Styles */
+    .support-widget-container {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 9999;
+    }
+
+    /* Main Floating Action Button */
+    .support-fab {
+      width: 60px;
+      height: 60px;
+      background-color: #25d366; /* WhatsApp Green */
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 30px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .support-fab:hover {
+      transform: scale(1.1);
+      background-color: #20ba5a;
+    }
+
+    /* If you want to use a custom photo instead of icon, style it here */
+    .support-fab img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    /* Popup Box Style */
+    .support-popup {
+      position: absolute;
+      bottom: 75px;
+      right: 0;
+      width: 260px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      display: none; /* Default hidden */
+      flex-direction: column;
+      overflow: hidden;
+      animation: fadeInUp 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .support-header {
+      background: #075e54;
+      color: white;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .support-header h4 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .close-btn {
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .support-options {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .support-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      text-decoration: none;
+      color: #333;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+      font-weight: 500;
+    }
+
+    .support-item:hover {
+      background: #f0f2f5;
+    }
+
+    .support-item.whatsapp i { color: #25d366; font-size: 20px; }
+    .support-item.telegram i { color: #0088cc; font-size: 20px; }
+    .support-item.email i { color: #ea4335; font-size: 20px; }
+  </style>
+</head>
+<body>
+
+  <!-- Your website body content goes here -->
+  <div style="padding: 40px; text-align: center;">
+    <h1>Welcome to eFootball Web App</h1>
+    <p>Need help? Click the floating support button on the bottom right corner.</p>
   </div>
 
-  <!-- Main Floating Button (WhatsApp Logo / Custom Icon) -->
-  <button id="supportToggleBtn" class="support-fab" aria-label="Support">
-    <!-- Tomar custom image/logo dile ekhane <img> tag use korte paro -->
-    <i class="fab fa-whatsapp"></i>
-  </button>
-</div>
+  <!-- Support Contact Widget -->
+  <div class="support-widget-container">
+    <!-- Popup Options Menu -->
+    <div id="supportPopup" class="support-popup">
+      <div class="support-header">
+        <h4>Contact Us</h4>
+        <span id="closePopup" class="close-btn">&times;</span>
+      </div>
+      <div class="support-options">
+        <!-- WhatsApp Option -->
+        <a href="https://wa.me/8801733185830?text=Hello,%20I%20need%20support." target="_blank" class="support-item whatsapp">
+          <i class="fab fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+        
+        <!-- Telegram Option -->
+        <a href="https://t.me/+8801733185830" target="_blank" class="support-item telegram">
+          <i class="fab fa-telegram-plane"></i>
+          <span>Telegram</span>
+        </a>
+        
+        <!-- Gmail Option -->
+        <a href="mailto:saikatahmmad701@gmail.com?subject=Support%20Inquiry" class="support-item email">
+          <i class="fas fa-envelope"></i>
+          <span>Gmail</span>
+        </a>
+      </div>
+    </div>
 
-<!-- FontAwesome for Icons (If not already included in your header) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Floating Button -->
+    <button id="supportToggleBtn" class="support-fab" aria-label="Support">
+      <!-- Jodi icon er bodole nijer photo use korte chao, tahole nicher <i> tag ta kete diye <img> tag use korbe -->
+      <i class="fab fa-whatsapp"></i>
+      <!-- Example Photo tag (Uncomment kore link boshiye nio): -->
+      <!-- <img src="YOUR_PHOTO_URL_HERE" alt="Support"> -->
+    </button>
+  </div>
+
+  <!-- Firebase SDKs & App Scripts -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDMsfKYn_40qPO5x3fpLeGVx6HF7fLQRpw",
+      authDomain: "efootball-e1020.firebaseapp.com",
+      projectId: "efootball-e1020",
+      storageBucket: "efootball-e1020.firebasestorage.app",
+      messagingSenderId: "530104805398",
+      appId: "1:530104805398:web:ebc41ab32dac006b13ad37",
+      measurementId: "G-BT8YJB0CF2"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
+
+  <!-- Floating Widget Toggle JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("supportToggleBtn");
+      const popup = document.getElementById("supportPopup");
+      const closeBtn = document.getElementById("closePopup");
+
+      // Toggle Popup visibility
+      toggleBtn.addEventListener("click", function () {
+        if (popup.style.display === "flex") {
+          popup.style.display = "none";
+        } else {
+          popup.style.display = "flex";
+        }
+      });
+
+      // Close Popup
+      closeBtn.addEventListener("click", function () {
+        popup.style.display = "none";
+      });
+
+      // Close when clicking outside
+      window.addEventListener("click", function (event) {
+        if (!event.target.closest('.support-widget-container')) {
+          popup.style.display = "none";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
