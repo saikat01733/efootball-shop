@@ -238,12 +238,12 @@
             color: white;
             border: none;
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border-radius: 10px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: background 0.2s;
         }
         .buy-btn:hover {
@@ -455,6 +455,64 @@
             font-weight: bold;
             display: inline-block;
             margin-bottom: 15px;
+        }
+        .google-btn {
+            background: white;
+            color: #333;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .google-btn img {
+            width: 18px;
+            height: 18px;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #333;
+        }
+        .divider::before { margin-right: .5em; }
+        .divider::after { margin-left: .5em; }
+        
+        .auth-toggle-tabs {
+            display: flex;
+            background: #25282c;
+            border-radius: 8px;
+            padding: 4px;
+            margin-bottom: 15px;
+        }
+        .auth-tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+        .auth-tab-btn.active {
+            background: var(--accent-red);
+            color: white;
         }
     </style>
 </head>
@@ -681,32 +739,73 @@
         </div>
     </div>
 
-    <!-- TAB 5: ACCOUNT VIEW (Welcome Post & Firebase Login/Register) -->
+    <!-- TAB 5: ACCOUNT VIEW (Google, Phone, Email/Password Login & Forgot Password) -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
             <div class="welcome-badge">স্বাগতম!</div>
-            <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD-তে স্বাগতম</h3>
+            <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
             <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
-                আমাদের মাধ্যমেই সবচেয়ে কম খরচে এবং নিরাপদে ই-ফুটবল কয়েন টপ-আপ করুন। লগইন অথবা রেজিস্টার করুন।
+                নিরাপদে লগইন অথবা রেজিস্টার করুন।
             </p>
 
+            <!-- User Logged In View -->
             <div id="userProfileView" style="display: none;">
                 <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
                 <button class="buy-btn" style="background-color: #333; margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
             </div>
 
+            <!-- Login / Register Forms Container -->
             <div id="authFormView">
-                <div class="form-group" style="text-align: left;">
-                    <label>Email</label>
-                    <input type="email" id="authEmail" placeholder="Enter your email">
+                <!-- Google Sign In Button -->
+                <button class="google-btn" onclick="firebaseGoogleLogin()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    Continue with Google
+                </button>
+
+                <div class="divider">অথবা</div>
+
+                <!-- Auth Mode Switcher (Email vs Phone) -->
+                <div class="auth-toggle-tabs">
+                    <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
+                    <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
                 </div>
-                <div class="form-group" style="text-align: left;">
-                    <label>Password</label>
-                    <input type="password" id="authPassword" placeholder="Enter password">
+
+                <!-- Email/Password Section -->
+                <div id="emailAuthSection">
+                    <div class="form-group" style="text-align: left;">
+                        <label>Email</label>
+                        <input type="email" id="authEmail" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Password</label>
+                        <input type="password" id="authPassword" placeholder="Enter password">
+                    </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="buy-btn" onclick="firebaseLogin()">Login</button>
+                        <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebaseRegister()">Register</button>
+                    </div>
                 </div>
-                <div style="display: flex; gap: 10px;">
-                    <button class="buy-btn" onclick="firebaseLogin()">Login</button>
-                    <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebaseRegister()">Register</button>
+
+                <!-- Phone Number Section -->
+                <div id="phoneAuthSection" style="display: none; text-align: left;">
+                    <div class="form-group">
+                        <label>Phone Number (+880...)</label>
+                        <input type="text" id="authPhone" placeholder="+8801700000000">
+                    </div>
+                    <button class="buy-btn" id="sendOtpBtn" onclick="firebaseSendOtp()">Send OTP</button>
+
+                    <div id="otpVerifyBox" style="display: none; margin-top: 15px;">
+                        <div class="form-group">
+                            <label>Enter 6-digit OTP</label>
+                            <input type="text" id="authOtp" placeholder="123456">
+                        </div>
+                        <button class="buy-btn" onclick="firebaseVerifyOtp()">Verify OTP</button>
+                    </div>
+                    <!-- Recaptcha Container for Phone Auth -->
+                    <div id="recaptcha-container" style="margin-top: 10px;"></div>
                 </div>
             </div>
         </div>
@@ -778,7 +877,18 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-    import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { 
+        getAuth, 
+        signInWithEmailAndPassword, 
+        createUserWithEmailAndPassword, 
+        signOut, 
+        onAuthStateChanged,
+        GoogleAuthProvider,
+        signInWithPopup,
+        sendPasswordResetEmail,
+        RecaptchaVerifier,
+        signInWithPhoneNumber
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDMsfKYn_40qPO5x3fpLeGVx6HF7fLQRpw",
@@ -794,7 +904,7 @@
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
 
-    // Make auth functions globally accessible
+    // 1. Email / Password Login
     window.firebaseLogin = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -803,14 +913,19 @@
             return;
         }
         signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
             alert("লগইন সফল হয়েছে!");
         })
         .catch((error) => {
-            alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                alert("ভুল পাসওয়ার্ড! পাসওয়ার্ড রিসেট করতে চাইলে 'Forgot Password?' এ ক্লিক করুন।");
+            } else {
+                alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+            }
         });
     }
 
+    // 2. Email / Password Register
     window.firebaseRegister = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -819,7 +934,7 @@
             return;
         }
         createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        .then(() => {
             alert("রেজিস্ট্রেশন সফল হয়েছে!");
         })
         .catch((error) => {
@@ -827,6 +942,76 @@
         });
     }
 
+    // 3. Google Sign-In
+    window.firebaseGoogleLogin = function() {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then(() => {
+            alert("Google দিয়ে সফলভাবে লগইন হয়েছে!");
+        })
+        .catch((error) => {
+            alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+        });
+    }
+
+    // 4. Forgot Password
+    window.forgotPassword = function() {
+        let email = document.getElementById('authEmail').value;
+        if(!email) {
+            alert("দয়া করে প্রথমে উপরে আপনার ইমেইল ঘরটিতে ইমেইল লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স বা স্প্যাম ফোল্ডার চেক করুন।");
+        })
+        .catch((error) => {
+            alert("ত্রুটি: " + error.message);
+        });
+    }
+
+    // 5. Phone Number Login (OTP Setup)
+    window.setupRecaptcha = function() {
+        if (!window.recaptchaVerifier) {
+            window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+                'size': 'invisible'
+            });
+        }
+    }
+
+    window.firebaseSendOtp = function() {
+        setupRecaptcha();
+        let phoneNumber = document.getElementById('authPhone').value;
+        if(!phoneNumber) {
+            alert("দয়া করে সঠিক ফোন নম্বর দিন (যেমন: +88017XXXXXXXX)");
+            return;
+        }
+        let appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+        .then((confirmationResult) => {
+            window.confirmationResult = confirmationResult;
+            alert("আপনার নম্বরে একটি ওটিপি (OTP) কোড পাঠানো হয়েছে!");
+            document.getElementById('otpVerifyBox').style.display = 'block';
+            document.getElementById('sendOtpBtn').style.display = 'none';
+        }).catch((error) => {
+            alert("OTP পাঠানো যায়নি: " + error.message);
+        });
+    }
+
+    window.firebaseVerifyOtp = function() {
+        let code = document.getElementById('authOtp').value;
+        if(!code) {
+            alert("দয়া করে ওটিপি কোডটি লিখুন!");
+            return;
+        }
+        window.confirmationResult.confirm(code).then((result) => {
+            alert("ফোন নম্বর ভেরিফিকেশন এবং লগইন সফল হয়েছে!");
+        }).catch((error) => {
+            alert("ভুল ওটিপি কোড: " + error.message);
+        });
+    }
+
+    // Logout
     window.firebaseLogout = function() {
         signOut(auth).then(() => {
             alert("লগআউট হয়েছে!");
@@ -845,12 +1030,12 @@
         if (user) {
             authFormView.style.display = 'none';
             userProfileView.style.display = 'block';
-            loggedInUserEmail.innerText = "Logged in as: " + user.email;
+            loggedInUserEmail.innerText = "Logged in as: " + (user.email || user.phoneNumber);
             authDesc.innerText = "আপনার অ্যাকাউন্ট প্যানেলে স্বাগতম!";
         } else {
             authFormView.style.display = 'block';
             userProfileView.style.display = 'none';
-            authDesc.innerText = "আমাদের মাধ্যমেই সবচেয়ে কম খরচে এবং নিরাপদে ই-ফুটবল কয়েন টপ-আপ করুন। লগইন অথবা রেজিস্টার করুন।";
+            authDesc.innerText = "নিরাপদে লগইন অথবা রেজিস্টার করুন।";
         }
     });
 </script>
@@ -859,6 +1044,25 @@
     let selectedPackages = []; 
     let selectedPay = "";
     let ordersList = [];
+
+    function switchAuthMode(mode) {
+        let emailBtn = document.getElementById('emailTabBtn');
+        let phoneBtn = document.getElementById('phoneTabBtn');
+        let emailSec = document.getElementById('emailAuthSection');
+        let phoneSec = document.getElementById('phoneAuthSection');
+
+        if(mode === 'email') {
+            emailBtn.classList.add('active');
+            phoneBtn.classList.remove('active');
+            emailSec.style.display = 'block';
+            phoneSec.style.display = 'none';
+        } else {
+            phoneBtn.classList.add('active');
+            emailBtn.classList.remove('active');
+            phoneSec.style.display = 'block';
+            emailSec.style.display = 'none';
+        }
+    }
 
     function togglePackage(el, name, price) {
         let index = selectedPackages.findIndex(pkg => pkg.name === name);
