@@ -1153,18 +1153,19 @@
         } else if (receiptFile) {
             try {
                 let formData = new FormData();
-                formData.append("image", receiptFile);
+                formData.append("reqtype", "fileupload");
+                formData.append("fileToUpload", receiptFile);
                 
-                let response = await fetch("https://api.imgbb.com/1/upload?key=6d207e023158f955684f884a86f2b09a", {
+                let response = await fetch("https://catbox.moe/user/api.php", {
                     method: "POST",
                     body: formData
                 });
-                let result = await response.json();
+                let resultUrl = await response.text();
                 
-                if (result.success) {
-                    proofInfo = `Screenshot URL: ${result.data.url}`;
+                if (resultUrl && resultUrl.startsWith("http")) {
+                    proofInfo = `Screenshot URL: ${resultUrl.trim()}`;
                 } else {
-                    proofInfo = `Screenshot Attached: ${receiptFile.name} (Upload Failed)`;
+                    proofInfo = `Screenshot Attached: ${receiptFile.name}`;
                 }
             } catch (err) {
                 proofInfo = `Screenshot Attached: ${receiptFile.name}`;
@@ -1208,10 +1209,6 @@
             return;
         }
         let html = '';
-        ordersList.ordersList?.forEach(ord => { // Safe check
-            // fallback loop
-        });
-        
         ordersList.forEach(ord => {
             html += `
                 <div class="order-card-item">
