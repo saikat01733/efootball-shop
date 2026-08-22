@@ -47,6 +47,39 @@
             margin: 0;
             text-shadow: 0 2px 10px rgba(255, 62, 62, 0.3);
         }
+
+        /* Badge/Tag Styles (Screenshot match) */
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .badge-safety {
+            background-color: rgba(255, 62, 62, 0.1);
+            border: 1px solid rgba(255, 62, 62, 0.4);
+            color: var(--accent-red);
+        }
+        .badge-time {
+            background-color: rgba(160, 160, 160, 0.1);
+            border: 1px solid rgba(160, 160, 160, 0.3);
+            color: var(--text-muted);
+        }
+        .badge-item svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
         .section {
             background-color: var(--card-bg);
             border-radius: 15px;
@@ -252,7 +285,7 @@
         .fb-btn { background-color: var(--fb-blue); }
         .messenger-btn { background-color: #0084ff; }
 
-        /* Floating Contact Us Button & Popup Modal */
+        /* Floating Contact Us Button & Modal */
         .contact-float-container {
             position: fixed;
             bottom: 20px;
@@ -373,6 +406,17 @@
 <div class="container">
     <div class="header">
         <h2>E-Football Coin Shop BD</h2>
+        <!-- Added Safety Guarantee & 1-10 Minutes Badges -->
+        <div class="badge-container">
+            <div class="badge-item badge-safety">
+                <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                Safety Guarantee
+            </div>
+            <div class="badge-item badge-time">
+                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                1-10 Minutes
+            </div>
+        </div>
     </div>
 
     <!-- Step 1: Account Info -->
