@@ -555,6 +555,25 @@
         window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
     }
 </script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.x.x/firebase-analytics.js";
 
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDMsfKYn_40qPO5x3fpLeGVx6HF7fLQRpw",
+    authDomain: "efootball-e1020.firebaseapp.com",
+    projectId: "efootball-e1020",
+    storageBucket: "efootball-e1020.firebasestorage.app",
+    messagingSenderId: "530104805398",
+    appId: "1:530104805398:web:ebc41ab32dac006b13ad37",
+    measurementId: "G-BT8YJB0CF2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </body>
 </html>
