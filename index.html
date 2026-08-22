@@ -1192,7 +1192,8 @@
         let pass = document.getElementById('pass').value;
         let whatsapp = document.getElementById('whatsapp').value;
         let lastDigit = document.getElementById('lastDigit').value.trim();
-        let receiptFile = document.getElementById('receiptScreenshot').files[0];
+        let receiptInput = document.getElementById('receiptScreenshot');
+        let receiptFile = receiptInput && receiptInput.files ? receiptInput.files[0] : null;
 
         if (!gmail || !pass || !whatsapp) {
             alert("দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!");
@@ -1212,6 +1213,7 @@
         }
 
         let buyBtn = document.querySelector('.buy-btn');
+        let originalBtnText = buyBtn.innerText;
         buyBtn.innerText = "Processing...";
         buyBtn.disabled = true;
 
@@ -1240,7 +1242,7 @@
             }
         }
 
-        buyBtn.innerText = "Buy Now";
+        buyBtn.innerText = originalBtnText;
         buyBtn.disabled = false;
 
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
