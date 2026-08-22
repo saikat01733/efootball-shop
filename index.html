@@ -1118,7 +1118,7 @@
         window.scrollTo(0, 0);
     }
 
-    function orderNow() {
+    async function orderNow() {
         let device = document.getElementById('device').value;
         let gmail = document.getElementById('gmail').value;
         let pass = document.getElementById('pass').value;
@@ -1138,17 +1138,44 @@
             alert("দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!");
             return;
         }
-        // Validation: Last 4 digit OR Screenshot must be provided
         if (!lastDigit && !receiptFile) {
             alert("দয়া করে সেন্ডার নম্বরের শেষ ৪ ডিজিট অথবা পেমেন্ট রসিদের স্ক্রিনশট দিন!");
             return;
         }
 
+        let buyBtn = document.querySelector('.buy-btn');
+        buyBtn.innerText = "Processing...";
+        buyBtn.disabled = true;
+
+        let proofInfo = "";
+        if (lastDigit) {
+            proofInfo = `Last 4 Digits: ${lastDigit}`;
+        } else if (receiptFile) {
+            try {
+                let formData = new FormData();
+                formData.append("image", receiptFile);
+                
+                let response = await fetch("https://api.imgbb.com/1/upload?key=6d207e023158f955684f884a86f2b09a", {
+                    method: "POST",
+                    body: formData
+                });
+                let result = await response.json();
+                
+                if (result.success) {
+                    proofInfo = `Screenshot URL: ${result.data.url}`;
+                } else {
+                    proofInfo = `Screenshot Attached: ${receiptFile.name} (Upload Failed)`;
+                }
+            } catch (err) {
+                proofInfo = `Screenshot Attached: ${receiptFile.name}`;
+            }
+        }
+
+        buyBtn.innerText = "Buy Now";
+        buyBtn.disabled = false;
+
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
-
-        // Payment proof description info for order history & WhatsApp
-        let proofInfo = lastDigit ? `Last 4 Digits: ${lastDigit}` : `Screenshot Attached: ${receiptFile.name}`;
 
         let newOrder = {
             id: Math.floor(100000 + Math.random() * 900000),
@@ -1181,6 +1208,10 @@
             return;
         }
         let html = '';
+        ordersList.ordersList?.forEach(ord => { // Safe check
+            // fallback loop
+        });
+        
         ordersList.forEach(ord => {
             html += `
                 <div class="order-card-item">
