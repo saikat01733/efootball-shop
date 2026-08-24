@@ -231,7 +231,7 @@
             background: #1e2024;
         }
 
-        /* Standard Section Card Styles (For Order Page) */
+        /* Standard Section Card Styles */
         .section {
             background-color: var(--card-bg);
             border-radius: 15px;
@@ -388,7 +388,7 @@
             margin-top: 10px;
         }
 
-        /* Reference Footer Style */
+        /* Footer Style */
         .custom-footer {
             text-align: center;
             margin-top: 40px;
@@ -449,7 +449,6 @@
         }
         .footer-soc-icon svg { width: 16px; height: 16px; fill: currentColor; }
         
-        /* Payment Logos Badges Footer */
         .footer-payments-badges {
             display: flex;
             justify-content: center;
@@ -480,7 +479,7 @@
             margin-top: 10px;
         }
 
-        /* Modal Popups for Footer Links */
+        /* Modals & Floating Buttons */
         .info-modal {
             display: none;
             position: fixed;
@@ -503,7 +502,6 @@
             overflow-y: auto;
         }
 
-        /* Floating Contact Button */
         .contact-float-container {
             position: fixed;
             bottom: 75px;
@@ -548,9 +546,13 @@
 
         .tab-content { display: none; }
         .tab-content.active-tab { display: block; }
-        .account-box { background: var(--card-bg); border-radius: 15px; padding: 25px; text-align: center; }
-        .welcome-badge { background: rgba(255, 62, 62, 0.1); color: var(--accent-red); padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
-        .google-btn { background: white; color: #333; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; width: 100%; padding: 12px; border-radius: 10px; cursor: pointer; margin-bottom: 15px; font-size: 14px; }
+        
+        /* Original Account & Auth Styles */
+        .auth-container { background: var(--card-bg); border-radius: 15px; padding: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .auth-tabs { display: flex; background: #25282c; border-radius: 8px; padding: 4px; margin-bottom: 20px; }
+        .auth-tab-btn { flex: 1; background: none; border: none; padding: 10px; color: var(--text-muted); font-weight: bold; border-radius: 6px; cursor: pointer; font-size: 13px; }
+        .auth-tab-btn.active { background: var(--accent-red); color: white; }
+        .google-btn { background: white; color: #333; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; border: none; width: 100%; padding: 12px; border-radius: 8px; cursor: pointer; margin-bottom: 15px; font-size: 14px; }
         .google-btn img { width: 18px; height: 18px; }
         .divider { display: flex; align-items: center; text-align: center; color: var(--text-muted); margin: 15px 0; font-size: 12px; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #333; }
@@ -564,7 +566,7 @@
     <!-- TOP HEADER -->
     <div class="top-navbar">
         <a href="#" class="brand-logo" onclick="switchTab('home', document.querySelectorAll('.dock-item')[0])">
-            <span>⚡</span> E-Football <b>Shop</b>
+            <span>⚡</span> E-Football <b>Coin</b>
         </a>
         <div class="top-nav-actions">
             <button class="search-icon-btn" onclick="toggleSearchBox()">
@@ -618,15 +620,15 @@
         <div class="games-grid">
             <a href="#" class="game-card" onclick="switchTab('orderpage', document.querySelectorAll('.dock-item')[0])">
                 <div class="game-img-box">
-                    <div class="game-badge">15 options</div>
+                    <div class="game-badge">12 options</div>
                 </div>
-                <div class="game-title-box">E-FOOTBALL COIN</div>
+                <div class="game-title-box">EFOOTBALL COIN</div>
             </a>
         </div>
 
-        <!-- Custom Footer as per Reference 2 -->
+        <!-- Custom Footer -->
         <div class="custom-footer">
-            <div class="footer-logo">⚡ E-Football <span>Shop BD</span></div>
+            <div class="footer-logo">⚡ E-Football <span>Coin</span></div>
             <div class="footer-subtitle">Top Up & Play On</div>
 
             <div class="footer-links-row">
@@ -651,11 +653,11 @@
                 <div class="pay-badge-box">Upay</div>
             </div>
 
-            <div class="copyright-text">© 2026 E-Football Shop BD. All rights reserved.</div>
+            <div class="copyright-text">© 2026 E-Football Coin. All rights reserved.</div>
         </div>
     </div>
 
-    <!-- TAB 2: ORDER PAGE (Formerly First Page) -->
+    <!-- TAB 2: ORDER PAGE -->
     <div id="tab-orderpage" class="tab-content">
         <div style="margin-bottom: 15px;">
             <button onclick="switchTab('home', document.querySelectorAll('.dock-item')[0])" style="background:#25282c; border:none; color:white; padding:8px 12px; border-radius:6px; cursor:pointer;">← Back to Home</button>
@@ -800,18 +802,59 @@
         </div>
     </div>
 
-    <!-- TAB 6: ACCOUNT / LOGIN VIEW -->
+    <!-- TAB 6: ACCOUNT / LOGIN VIEW (Original Form Format) -->
     <div id="tab-account" class="tab-content">
-        <div class="account-box">
-            <div class="welcome-badge">স্বাগতম!</div>
-            <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
-            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;">
-                নিরাপদে লগইন অথবা রেজিস্টার করুন।
-            </p>
-            <button class="google-btn" onclick="alert('Google Sign-In ready.')">
+        <div class="auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email</button>
+                <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone</button>
+            </div>
+
+            <button class="google-btn" onclick="firebaseGoogleLogin()">
                 <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                 Continue with Google
             </button>
+
+            <div class="divider">OR</div>
+
+            <!-- Email Form Section -->
+            <div id="emailAuthSection">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="authEmail" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="authPass" placeholder="Enter your password">
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="firebaseLogin()" style="margin-top:0;">Login</button>
+                    <button class="buy-btn" onclick="firebaseRegister()" style="background:#333; margin-top:0;">Register</button>
+                </div>
+                <div style="text-align: right; margin-top: 10px;">
+                    <a href="#" onclick="forgotPassword()" style="color: var(--text-muted); font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                </div>
+            </div>
+
+            <!-- Phone Form Section -->
+            <div id="phoneAuthSection" style="display: none;">
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="authPhone" placeholder="Enter your phone number">
+                </div>
+                <div class="form-group">
+                    <label>OTP / Password</label>
+                    <input type="password" id="authPhonePass" placeholder="Enter OTP or Password">
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="buy-btn" onclick="firebasePhoneLogin()" style="margin-top:0;">Login</button>
+                    <button class="buy-btn" onclick="firebasePhoneRegister()" style="background:#333; margin-top:0;">Register</button>
+                </div>
+                <div style="text-align: right; margin-top: 10px;">
+                    <a href="#" onclick="forgotPhonePassword()" style="color: var(--text-muted); font-size: 12px; text-decoration: none;">Resend OTP?</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -970,6 +1013,25 @@
         window.scrollTo(0, 0);
     }
 
+    function switchAuthMode(mode) {
+        const emailTab = document.getElementById('emailTabBtn');
+        const phoneTab = document.getElementById('phoneTabBtn');
+        const emailSec = document.getElementById('emailAuthSection');
+        const phoneSec = document.getElementById('phoneAuthSection');
+
+        if (mode === 'email') {
+            emailTab.classList.add('active');
+            phoneTab.classList.remove('active');
+            emailSec.style.display = 'block';
+            phoneSec.style.display = 'none';
+        } else {
+            phoneTab.classList.add('active');
+            emailTab.classList.remove('active');
+            phoneSec.style.display = 'block';
+            emailSec.style.display = 'none';
+        }
+    }
+
     function orderNow() {
         const device = document.getElementById('device').value;
         const gmail = document.getElementById('gmail').value;
@@ -1000,6 +1062,15 @@
         const encodedMessage = encodeURIComponent(message);
         window.open(`https://wa.me/8801733185830?text=${encodedMessage}`, '_blank');
     }
+
+    // Auth Placeholders
+    function firebaseGoogleLogin() { alert('Google Sign-In integration ready.'); }
+    function firebaseLogin() { alert('Email Login functionality.'); }
+    function firebaseRegister() { alert('Email Register functionality.'); }
+    function firebasePhoneLogin() { alert('Phone Login functionality.'); }
+    function firebasePhoneRegister() { alert('Phone Register functionality.'); }
+    function forgotPassword() { alert('Password reset link sent to email.'); }
+    function forgotPhonePassword() { alert('OTP verification sent to phone.'); }
 </script>
 
 </body>
