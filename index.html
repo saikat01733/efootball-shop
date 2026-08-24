@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Football Coin Shop BD - Buy Cheap eFootball Coins in Bangladesh</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Buy cheap eFootball coins in Bangladesh at E-Football Coin Shop BD. Fast, safe, and instant delivery via bKash and Nagad. Order your coins today!">
-    <meta name="keywords" content="eFootball coin shop BD, buy eFootball coins, eFootball mobile coins Bangladesh, bKash eFootball coins, cheap konami coins">
-    <meta name="author" content="E-Football Coin Shop BD">
+    <!-- SEO Optimized Title & Description -->
+    <title>E-Football Coin Shop BD | Trusted eFootball Coin Top Up in Bangladesh</title>
+    <meta name="description" content="Get instant eFootball coins in Bangladesh at the best price! Safe, fast, and 100% trusted Konami ID top-up service via bKash and Nagad within 1-10 minutes.">
+    <meta name="keywords" content="eFootball coin shop BD, eFootball coin top up Bangladesh, buy eFootball coins bKash, Konami ID coin top up, cheap eFootball coins BD">
     
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="E-Football Coin Shop BD - Buy Cheap eFootball Coins">
-    <meta property="og:description" content="Fast, safe, and instant delivery of eFootball coins via bKash and Nagad in Bangladesh.">
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="E-Football Coin Shop BD - Trusted Coin Top Up">
+    <meta property="og:description" content="Safe and fast eFootball mobile coin top-up service in Bangladesh with bKash and Nagad payment support.">
     <meta property="og:type" content="website">
 
     <!-- Google Font: Bodoni Moda -->
@@ -544,6 +543,12 @@
         </div>
     </div>
 
+    <!-- Welcome Notice Banner -->
+    <div style="background: linear-gradient(135deg, rgba(255, 62, 62, 0.15), rgba(56, 189, 248, 0.1)); border: 1px solid rgba(255, 62, 62, 0.3); border-radius: 12px; padding: 15px; margin-bottom: 20px; text-align: center;">
+        <h3 style="margin: 0 0 5px 0; color: #ffffff; font-size: 16px;">🎮 E-Football Coin Shop BD-তে স্বাগতম!</h3>
+        <p style="margin: 0; color: #a0a0a0; font-size: 13px;">সবচেয়ে কম মূল্যে এবং নিরাপদে ১-১০ মিনিটের মধ্যে কনামি আইডি (Konami ID) কয়েন টপ-আপ করুন।</p>
+    </div>
+
     <!-- TAB 1: HOME VIEW -->
     <div id="tab-home" class="tab-content active-tab">
         <div class="section">
@@ -641,7 +646,217 @@
                     </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
+                <div class="pkg-card" onclick="togglePackage(this, '3250 Coin', 3450)">
+                    <div>
+                        <div class="pkg-name">3250 Coin</div>
+                        <div class="pkg-price">৳3450</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '5700 Coin', 5600)">
+                    <div>
+                        <div class="pkg-name">5700 Coin</div>
+                        <div class="pkg-price">৳5600</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '12800 Coin', 12500)">
+                    <div>
+                        <div class="pkg-name">12800 Coin</div>
+                        <div class="pkg-price">৳12500</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '50 Coin + Luis Suárez', 110)">
+                    <div>
+                        <div class="pkg-name">50 Coin + Luis Suárez</div>
+                        <div class="pkg-price">৳110</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '100 Coin + IKER CASILLAS', 300)">
+                    <div>
+                        <div class="pkg-name">100 Coin + IKER CASILLAS</div>
+                        <div class="pkg-price">৳300</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
             </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <div class="step-number">3</div> Payment Method
+            </div>
+            <div class="pay-grid">
+                <div class="pay-method" onclick="selectPay(this, 'bKash')">bKash</div>
+                <div class="pay-method" onclick="selectPay(this, 'Nagad')">Nagad</div>
+            </div>
+
+            <div id="payInstructionBox" class="payment-instructions" style="display: none;">
+                <div>Send Money to <span id="payMethodName"></span>: <span id="payNumber">01733185830</span></div>
+                <button class="copy-btn" onclick="copyNumber()">Copy</button>
+            </div>
+
+            <div class="form-group" style="margin-top: 15px;">
+                <label>Sender Number / Last 4 Digits</label>
+                <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
+            </div>
+
+            <div style="text-align: center;">
+                <div class="total-display-btn" id="totalDisplay">
+                    Total Price: ৳0
+                </div>
+            </div>
+            
+            <button class="buy-btn" onclick="orderNow()">Buy Now</button>
+        </div>
+
+        <div class="social-footer">
+            <p>Connect With Us</p>
+            <div class="social-buttons">
+                <a href="https://www.facebook.com/share/166H5PHoS4W/" target="_blank" class="social-btn fb-btn">
+                    <span>Facebook Page</span>
+                </a>
+                <a href="https://m.me/j/AbY3MFES5LAMvV_Z/?send_source=gc%3Acopy_invite_link_t" target="_blank" class="social-btn messenger-btn">
+                    <span>Messenger Group</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: WALLET VIEW -->
+    <div id="tab-wallet" class="tab-content">
+        <div class="section">
+            <div class="section-title">My Wallet</div>
+            <div style="text-align: center; padding: 20px 0;">
+                <p style="color: var(--text-muted); margin: 0;">Available Balance</p>
+                <h1 style="color: var(--success-green); font-size: 36px; margin: 10px 0;">৳0.00</h1>
+                <button class="buy-btn" style="margin-top: 15px;" onclick="alert('Wallet top-up feature coming soon!')">Add Funds</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: ORDERS VIEW -->
+    <div id="tab-orders" class="tab-content">
+        <div class="section">
+            <div class="section-title">My Orders</div>
+            <div id="ordersListContainer">
+                <div class="empty-orders">কোনো অর্ডার করা হয়নি!</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 4: CODES VIEW -->
+    <div id="tab-codes" class="tab-content">
+        <div class="section">
+            <div class="section-title">Redeem Codes & Offers</div>
+            <div class="empty-orders">বর্তমানে কোনো কুপন বা রিডিম কোড নেই।</div>
+        </div>
+    </div>
+
+    <!-- TAB 5: ACCOUNT VIEW -->
+    <div id="tab-account" class="tab-content">
+        <div class="account-box">
+            <div class="welcome-badge">স্বাগতম!</div>
+            <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
+            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
+                নিরাপদে লগইন অথবা রেজিস্টার করুন।
+            </p>
+
+            <!-- User Logged In View -->
+            <div id="userProfileView" style="display: none;">
+                <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
+                <button class="buy-btn" style="background-color: #333; margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
+            </div>
+
+            <!-- Login / Register Forms Container -->
+            <div id="authFormView">
+                <!-- Google Sign In Button -->
+                <button class="google-btn" onclick="firebaseGoogleLogin()">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    Continue with Google
+                </button>
+
+                <div class="divider">অথবা</div>
+
+                <!-- Auth Mode Switcher -->
+                <div class="auth-toggle-tabs">
+                    <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
+                    <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
+                </div>
+
+                <!-- Email/Password Section -->
+                <div id="emailAuthSection">
+                    <div class="form-group" style="text-align: left;">
+                        <label>Email</label>
+                        <input type="email" id="authEmail" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group" style="text-align: left;">
+                        <label>Password</label>
+                        <input type="password" id="authPassword" placeholder="Enter password">
+                    </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="buy-btn" onclick="firebaseLogin()">Login</button>
+                        <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebaseRegister()">Register</button>
+                    </div>
+                </div>
+
+                <!-- Phone Number & Password Section -->
+                <div id="phoneAuthSection" style="display: none; text-align: left;">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="text" id="authPhone" placeholder="01700000000">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="authPhonePassword" placeholder="Enter password">
+                    </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPhonePassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="buy-btn" onclick="firebasePhoneLogin()">Login</button>
+                        <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebasePhoneRegister()">Register</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Floating Contact Us Button -->
+<div class="contact-float-container">
+    <button class="contact-float-btn" onclick="toggleContactModal()">
+        <svg viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-4.79 2.44c-.32.16-.7.11-.97-.13l-3.3-3.08-3.08 3.3c-.27.24-.65.29-.97.13L3.53 17.38c-.32-.17-.53-.5-.53-.88v-3.79c0-.28.11-.53.29-.72l4.8-4.8c.38-.38 1.02-.38 1.4 0l1.24 1.24 1.24-1.24c.38-.38 1.02-.38 1.4 0l4.8 4.8c.18.19.29.44.29.72v3.79zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+        Contact Us
+    </button>
+</div>
+
+<!-- Contact Modal Popup -->
+<div class="contact-modal" id="contactModal">
+    <div class="contact-modal-content">
+        <div class="modal-header">
+            <h3>Need Support? Contact Us</h3>
+            <button class="close-modal" onclick="toggleContactModal()">&times;</button>
+        </div>
+        <div class="contact-options">
+            <a href="https://wa.me/8801733185830?text=I%20need%20support!" target="_blank" class="contact-option-item opt-whatsapp">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                <span>WhatsApp: 01733185830</span>
+            </a>
+            <a href="https://t.me/+8801733185830" target="_blank" class="contact-option-item opt-telegram">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-2.01 1.28-5.69 3.77-.54.37-1.03.55-1.47.54-.48-.01-1.4-.27-2.08-.49-.84-.27-1.51-.42-1.45-.89.03-.25.38-.51 1.06-.78 4.15-1.81 6.91-3.01 8.28-3.6 3.94-1.68 4.76-1.97 5.29-1.98.12 0 .39.03.56.17.14.12.18.28.2.4-.01.07.01.35-.03.67z"/></svg>
+                <span>Telegram: 01733185830</span>
+            </a>
+            <a href="mailto:saikatahmmad701@gmail.com" class="contact-option-item opt-gmail">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>Email Support</span>
+            </a>
         </div>
     </div>
 </div>
