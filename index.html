@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khela Store - Top Up & Play On</title>
+    <title>Efootball coin - Top Up & Play On</title>
     <!-- Google Font: Bodoni Moda -->
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     
@@ -27,6 +27,12 @@
             max-width: 550px;
             margin: 0 auto;
         }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
         .header {
             display: flex;
             justify-content: space-between;
@@ -46,9 +52,9 @@
         .header h2 {
             font-family: 'Bodoni Moda', serif;
             color: #ffffff;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             margin: 0;
         }
         .header-actions {
@@ -73,7 +79,7 @@
             color: var(--accent-red);
         }
 
-        /* Hero Telegram Banner */
+        /* Hero Messenger Banner */
         .hero-banner {
             background: #1a1c1f;
             border-radius: 15px;
@@ -85,7 +91,7 @@
         }
         .hero-banner h3 {
             color: #ffffff;
-            font-size: 20px;
+            font-size: 18px;
             margin: 0 0 5px 0;
             font-weight: 800;
         }
@@ -166,7 +172,7 @@
         }
         .game-info h4 {
             margin: 0 0 4px 0;
-            font-size: 14px;
+            font-size: 13px;
             color: white;
         }
         .game-info span {
@@ -174,7 +180,41 @@
             font-size: 11px;
         }
 
-        /* Footer Section (Second Screenshot Design) */
+        /* 2nd Page Styles */
+        .back-btn {
+            background: #1a1c1f;
+            border: 1px solid #2a2d32;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .coin-packages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .package-card {
+            background: var(--card-bg);
+            border: 1px solid #2a2d32;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .package-card:hover {
+            border-color: var(--accent-red);
+        }
+
+        /* Footer Section */
         .site-footer {
             text-align: center;
             border-top: 1px solid #222;
@@ -193,9 +233,6 @@
             text-decoration: none;
             font-size: 14px;
             transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: white;
         }
         .social-icons {
             display: flex;
@@ -310,94 +347,133 @@
 <body>
 
 <div class="container">
-    <!-- Header Section -->
-    <div class="header">
-        <div class="logo-area">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            <h2>Khela Store</h2>
-        </div>
-        <div class="header-actions">
-            <button class="search-icon-btn">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </button>
-            <button class="login-top-btn">লগইন</button>
-        </div>
-    </div>
-
-    <!-- Hero Telegram Banner -->
-    <div class="hero-banner">
-        <a href="https://t.me/+8801733185830" target="_blank" style="text-decoration: none; color: inherit;">
-            <div style="font-size: 24px; margin-bottom: 8px;">⚡</div>
-            <h3>JOIN OUR TELEGRAM CHANNEL</h3>
-            <p>Get Exclusive Offers & Updates • Instant Deals • Giveaway Alerts</p>
-        </a>
-        <div class="slider-dots">
-            <div class="dot"></div>
-            <div class="dot active"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
-
-    <!-- Games Top Up Title -->
-    <div class="games-title">GAMES TOP-UP</div>
-
-    <!-- Game Cards Grid -->
-    <div class="game-card-grid">
-        <div class="game-card">
-            <div class="game-banner-img">PUBG Image</div>
-            <div class="game-info">
-                <h4>PUBG MOBILE</h4>
-                <span>3 options</span>
+    
+    <!-- PAGE 1: HOME PAGE -->
+    <div id="homePage" class="page active">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="logo-area">
+                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <h2>Efootball coin</h2>
+            </div>
+            <div class="header-actions">
+                <button class="search-icon-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </button>
+                <button class="login-top-btn">লগইন</button>
             </div>
         </div>
-        <div class="game-card">
-            <div class="game-banner-img">MLBB Image</div>
-            <div class="game-info">
-                <h4>MOBILE LEGENDS</h4>
-                <span>10 options</span>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-banner-img">Free Fire Image</div>
-            <div class="game-info">
-                <h4>FREE FIRE TOPUP</h4>
-                <span>5 options</span>
-            </div>
-        </div>
-        <div class="game-card">
-            <div class="game-banner-img">Valorant Image</div>
-            <div class="game-info">
-                <h4>VALORANT</h4>
-                <span>1 options</span>
-            </div>
-        </div>
-    </div>
 
-    <!-- Footer Section (Matched with your second image) -->
-    <footer class="site-footer">
-        <div class="footer-links">
-            <a href="#">About Us</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Privacy Policy</a>
-        </div>
-        <div class="social-icons">
-            <a href="#" class="social-circle">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        <!-- Hero Messenger Banner -->
+        <div class="hero-banner">
+            <a href="https://m.me/" target="_blank" style="text-decoration: none; color: inherit;">
+                <div style="font-size: 24px; margin-bottom: 8px;">💬</div>
+                <h3>JOIN OUR MESSENGER GROUP</h3>
+                <p>Get Exclusive Offers & Updates • Instant Deals • Community Chat</p>
             </a>
-            <a href="#" class="social-circle">
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.02-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.65-2.89 7.98-3.46 3.8-1.63 4.59-1.92 5.1-1.92.11 0 .37.03.54.17.14.12.18.28.2.4-.01.07.01.22-.03.35z"/></svg>
-            </a>
+            <div class="slider-dots">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
         </div>
-        <div class="payment-badges">
-            <div class="pay-badge" style="color: #e2136e;">bKash</div>
-            <div class="pay-badge" style="color: #f7931a;">নগদ</div>
-            <div class="pay-badge" style="color: #8c328c;">Rocket</div>
-            <div class="pay-badge" style="color: #0076ce;">উপায়</div>
+
+        <div class="games-title">GAMES TOP-UP</div>
+
+        <!-- Game Cards Grid -->
+        <div class="game-card-grid">
+            <!-- Efootball Coin Card (Clicks to 2nd Page) -->
+            <div class="game-card" onclick="switchPage('coinPage')">
+                <div class="game-banner-img" style="background: linear-gradient(135deg, #1f2937, #111827); color: #ff3e3e; font-weight: bold;">EFOOTBALL</div>
+                <div class="game-info">
+                    <h4>Efootball Coin</h4>
+                    <span>Multiple options</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-banner-img">PUBG Image</div>
+                <div class="game-info">
+                    <h4>PUBG MOBILE</h4>
+                    <span>3 options</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-banner-img">MLBB Image</div>
+                <div class="game-info">
+                    <h4>MOBILE LEGENDS</h4>
+                    <span>10 options</span>
+                </div>
+            </div>
+            <div class="game-card">
+                <div class="game-banner-img">Free Fire Image</div>
+                <div class="game-info">
+                    <h4>FREE FIRE TOPUP</h4>
+                    <span>5 options</span>
+                </div>
+            </div>
         </div>
-        <div class="secure-text">Secure payments via KhPay</div>
-        <div class="copyright">© 2026 Khela Store. All rights reserved.</div>
-    </footer>
+
+        <!-- Footer Section -->
+        <footer class="site-footer">
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" class="social-circle">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                </a>
+                <a href="#" class="social-circle">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.02-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.24.37-.49 1.02-.75 3.99-1.74 6.65-2.89 7.98-3.46 3.8-1.63 4.59-1.92 5.1-1.92.11 0 .37.03.54.17.14.12.18.28.2.4-.01.07.01.22-.03.35z"/></svg>
+                </a>
+            </div>
+            <div class="payment-badges">
+                <div class="pay-badge" style="color: #e2136e;">bKash</div>
+                <div class="pay-badge" style="color: #f7931a;">নগদ</div>
+                <div class="pay-badge" style="color: #8c328c;">Rocket</div>
+                <div class="pay-badge" style="color: #0076ce;">উপায়</div>
+            </div>
+            <div class="secure-text">Secure payments via KhPay</div>
+            <div class="copyright">© 2026 Efootball coin. All rights reserved.</div>
+        </footer>
+    </div>
+
+    <!-- PAGE 2: EFOOTBALL COIN DETAILS PAGE -->
+    <div id="coinPage" class="page">
+        <button class="back-btn" onclick="switchPage('homePage')">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Back to Home
+        </button>
+
+        <div class="games-title">EFOOTBALL COIN PACKAGES</div>
+        
+        <div class="coin-packages">
+            <div class="package-card">
+                <div>
+                    <h4 style="margin:0 0 5px 0;">100 Coins</h4>
+                    <span style="color: var(--text-muted); font-size: 12px;">Instant Delivery</span>
+                </div>
+                <div style="color: var(--accent-red); font-weight: bold;">৳ ১২০</div>
+            </div>
+            <div class="package-card">
+                <div>
+                    <h4 style="margin:0 0 5px 0;">310 Coins</h4>
+                    <span style="color: var(--text-muted); font-size: 12px;">Instant Delivery</span>
+                </div>
+                <div style="color: var(--accent-red); font-weight: bold;">৳ ৩৫০</div>
+            </div>
+            <div class="package-card">
+                <div>
+                    <h4 style="margin:0 0 5px 0;">520 Coins</h4>
+                    <span style="color: var(--text-muted); font-size: 12px;">Instant Delivery</span>
+                </div>
+                <div style="color: var(--accent-red); font-weight: bold;">৳ ৫৫০</div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Floating Support Button -->
@@ -407,7 +483,7 @@
 
 <!-- Bottom Navigation Bar -->
 <div class="bottom-dock">
-    <button class="dock-item active">
+    <button class="dock-item active" onclick="switchPage('homePage')">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
         Home
     </button>
@@ -428,6 +504,17 @@
         Account
     </button>
 </div>
+
+<!-- Simple JavaScript for Page Switching -->
+<script>
+    function switchPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+</script>
 
 </body>
 </html>
