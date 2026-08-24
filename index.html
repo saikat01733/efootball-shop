@@ -34,7 +34,7 @@
             max-width: 550px;
             margin: 0 auto;
         }
-        /* Top Bar like Reference */
+        /* Top Bar */
         .top-navbar {
             display: flex;
             justify-content: space-between;
@@ -48,8 +48,8 @@
             gap: 8px;
         }
         .brand-logo-area svg {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             fill: var(--accent-red);
         }
         .brand-logo-area h2 {
@@ -173,7 +173,7 @@
             border-radius: 2px;
         }
 
-        /* Games Top-Up Product Grid (Reference 7229 style) */
+        /* Games Top-Up Product Grid */
         .games-topup-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -202,12 +202,6 @@
             align-items: center;
             justify-content: center;
             border-bottom: 1px solid #222;
-        }
-        .game-card-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.7;
         }
         .game-card-badge {
             position: absolute;
@@ -426,7 +420,7 @@
             background: #e03131;
         }
 
-        /* Footer Section (Reference 7231 style) */
+        /* Footer Section */
         .site-footer {
             margin-top: 35px;
             text-align: center;
@@ -571,10 +565,7 @@
         .contact-modal {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.7);
             z-index: 1100;
             justify-content: center;
@@ -637,9 +628,7 @@
         /* Bottom Dock Navigation Bar Styles */
         .bottom-dock {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            bottom: 0; left: 0; width: 100%;
             background-color: #16181b;
             border-top: 1px solid #222;
             display: flex;
@@ -766,10 +755,11 @@
 </head>
 <body>
 <div class="container">
-    <!-- Top Bar with Web Name, Search & Login -->
+    <!-- Top Bar with Updated Gamer Logo, Search & Login -->
     <div class="top-navbar">
         <div class="brand-logo-area">
-            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <!-- Updated Game Controller / Diamond Logo -->
+            <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
             <h2>Efootball coin</h2>
         </div>
         <div class="top-actions">
@@ -837,7 +827,7 @@
         <div class="games-topup-grid">
             <div class="game-card-item" onclick="scrollToOrderForm()">
                 <div class="game-card-banner">
-                    <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--accent-red);"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                    <svg viewBox="0 0 24 24" style="width: 45px; height: 45px; fill: var(--accent-red);"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                     <div class="game-card-badge">14 options</div>
                 </div>
                 <div class="game-card-title">EFOOTBALL COIN</div>
@@ -855,6 +845,7 @@
             </div>
         </div>
 
+        <!-- Main Form Page Section (Navigates here on Efootball coin click) -->
         <div class="section" id="orderFormSection">
             <div class="section-title">
                 <div class="step-number">1</div> Account Info
@@ -881,6 +872,7 @@
                 <input type="text" id="whatsapp" placeholder="Enter your WhatsApp number">
             </div>
         </div>
+        
         <div class="section">
             <div class="section-title">
                 <div class="step-number">2</div> Select Package (Multiple allowed)
@@ -986,6 +978,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="section">
             <div class="section-title">
                 <div class="step-number">3</div> Payment Method
@@ -1011,10 +1004,10 @@
             <button class="buy-btn" onclick="orderNow()">Buy Now</button>
         </div>
 
-        <!-- Footer Section Matching Reference 7231 -->
+        <!-- Footer Section -->
         <div class="site-footer">
             <div class="footer-brand">
-                <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3-3c-.83 0-1.5-.67-1.5-1.5S17.67 9 18.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
                 Efootball coin
             </div>
             <div class="footer-tagline">Top Up & Play On</div>
@@ -1077,25 +1070,20 @@
             <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
                 নিরাপদে লগইন অথবা রেজিস্টার করুন।
             </p>
-            <!-- User Logged In View -->
             <div id="userProfileView" style="display: none;">
                 <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
                 <button class="buy-btn" style="background-color: #333; margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
             </div>
-            <!-- Login / Register Forms Container -->
             <div id="authFormView">
-                <!-- Google Sign In Button -->
                 <button class="google-btn" onclick="firebaseGoogleLogin()">
                     <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                     Continue with Google
                 </button>
                 <div class="divider">অথবা</div>
-                <!-- Auth Mode Switcher -->
                 <div class="auth-toggle-tabs">
                     <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
                     <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
                 </div>
-                <!-- Email/Password Section -->
                 <div id="emailAuthSection">
                     <div class="form-group" style="text-align: left;">
                         <label>Email</label>
@@ -1113,7 +1101,6 @@
                         <button class="buy-btn" style="background-color: #3b82f6;" onclick="firebaseRegister()">Register</button>
                     </div>
                 </div>
-                <!-- Phone Number & Password Section -->
                 <div id="phoneAuthSection" style="display: none; text-align: left;">
                     <div class="form-group">
                         <label>Phone Number</label>
@@ -1171,7 +1158,7 @@
     </div>
 </div>
 
-<!-- Info Modals (About Us, Terms, Privacy) -->
+<!-- Info Modals -->
 <div class="info-modal" id="infoModal">
     <div class="info-modal-content">
         <div class="info-modal-header">
@@ -1279,7 +1266,7 @@
             return;
         }
         sendPasswordResetEmail(auth, email)
-        .then(() => { alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।"); })
+        .then(() => { alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে।"); })
         .catch((error) => { alert("ত্রুটি: " + error.message); });
     }
 
@@ -1439,7 +1426,6 @@
         formSec.scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Modal Infos (About, Terms, Privacy)
     function openInfoModal(type) {
         let modal = document.getElementById('infoModal');
         let titleEl = document.getElementById('infoModalTitle');
