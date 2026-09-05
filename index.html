@@ -90,7 +90,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .section {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(25px) saturate(180%);
@@ -256,7 +255,6 @@
             color: #38bdf8;
             font-weight: bold;
         }
-
         /* সকল বাটনের প্রিমিয়াম লিকুইড গ্লাস স্টাইল */
         .copy-btn {
             background: rgba(59, 130, 246, 0.4);
@@ -276,7 +274,6 @@
             border-color: rgba(59, 130, 246, 0.8);
             transform: translateY(-2px);
         }
-
         .total-display-btn {
             background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
@@ -289,7 +286,6 @@
             font-size: 14px;
             margin-top: 15px;
         }
-
         .buy-btn {
             background: rgba(255, 62, 62, 0.35);
             backdrop-filter: blur(20px) saturate(180%);
@@ -312,7 +308,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(255, 62, 62, 0.5);
         }
-
         .social-footer {
             margin-top: 30px;
             text-align: center;
@@ -635,7 +630,6 @@
             color: white;
             box-shadow: 0 4px 12px rgba(255, 62, 62, 0.35);
         }
-
         /* লিকুইড টাচ বাটন রিপল অ্যানিমেশন ক্লাস */
         .liquid-ripple {
             position: absolute;
@@ -650,6 +644,87 @@
                 transform: scale(4);
                 opacity: 0;
             }
+        }
+
+        /* ------------------------------------------------ */
+        /* কাস্টম গ্লাস লিকুইড অ্যালার্ট পপআপ ডিজাইন (Added) */
+        /* ------------------------------------------------ */
+        .glass-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            z-index: 99999;
+        }
+        .glass-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .glass-box {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        inset 0 0 20px rgba(255, 255, 255, 0.05);
+            padding: 25px 20px;
+            width: 85%;
+            max-width: 320px;
+            border-radius: 20px;
+            text-align: center;
+            color: #ffffff;
+            transform: scale(0.7) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-overlay.active .glass-box {
+            transform: scale(1) translateY(0);
+        }
+        .glass-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            word-break: break-all;
+        }
+        .glass-message {
+            font-size: 16px;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .glass-btn {
+            background: rgba(255, 62, 62, 0.4);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 62, 62, 0.6);
+            color: #ffffff;
+            padding: 10px 30px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.3);
+            width: 100%;
+        }
+        .glass-btn:hover {
+            background: rgba(255, 62, 62, 0.6);
+            transform: scale(1.02);
+        }
+        .glass-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -668,7 +743,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 1: HOME VIEW -->
     <div id="tab-home" class="tab-content active-tab">
         <div class="section">
@@ -838,7 +912,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 2: WALLET VIEW -->
     <div id="tab-wallet" class="tab-content">
         <div class="section">
@@ -846,11 +919,10 @@
             <div style="text-align: center; padding: 20px 0;">
                 <p style="color: var(--text-muted); margin: 0;">Available Balance</p>
                 <h1 style="color: var(--success-green); font-size: 36px; margin: 10px 0;">৳0.00</h1>
-                <button class="buy-btn" style="margin-top: 15px;" onclick="alert('Wallet top-up feature coming soon!')">Add Funds</button>
+                <button class="buy-btn" style="margin-top: 15px;" onclick="showGlassAlert('Wallet', 'Wallet top-up feature coming soon!')">Add Funds</button>
             </div>
         </div>
     </div>
-
     <!-- TAB 3: ORDERS VIEW -->
     <div id="tab-orders" class="tab-content">
         <div class="section">
@@ -860,7 +932,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 4: CODES VIEW -->
     <div id="tab-codes" class="tab-content">
         <div class="section">
@@ -868,7 +939,6 @@
             <div class="empty-orders">বর্তমানে কোনো কুপন বা রিডিম কোড নেই।</div>
         </div>
     </div>
-
     <!-- TAB 5: ACCOUNT VIEW -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
@@ -996,6 +1066,15 @@
     </button>
 </div>
 
+<!-- Custom Glass Alert HTML Structure (Added) -->
+<div class="glass-overlay" id="glassOverlay">
+    <div class="glass-box">
+        <div class="glass-title" id="glassTitle">site.com says</div>
+        <div class="glass-message" id="glassMessage">এখানে মেসেজ থাকবে</div>
+        <button class="glass-btn" onclick="hideGlassAlert()">OK</button>
+    </div>
+</div>
+
 <!-- Firebase SDK Imports -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -1024,107 +1103,98 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
-
     window.firebaseLogin = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
         if(!email || !password) {
-            alert("দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!");
+            showGlassAlert('eFootball Shop', 'দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!');
             return;
         }
         signInWithEmailAndPassword(auth, email, password)
-        .then(() => { alert("লগইন সফল হয়েছে!"); })
+        .then(() => { showGlassAlert('eFootball Shop', 'লগইন সফল হয়েছে!'); })
         .catch((error) => {
             if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                alert("ভুল পাসওয়ার্ড! পাসওয়ার্ড রিসেট করতে চাইলে 'Forgot Password?' এ ক্লিক করুন।");
+                showGlassAlert('eFootball Shop', "ভুল পাসওয়ার্ড! পাসওয়ার্ড রিসেট করতে চাইলে 'Forgot Password?' এ ক্লিক করুন।");
             } else {
-                alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+                showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message);
             }
         });
     }
-
     window.firebaseRegister = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
         if(!email || !password) {
-            alert("দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!");
+            showGlassAlert('eFootball Shop', 'দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!');
             return;
         }
         createUserWithEmailAndPassword(auth, email, password)
-        .then(() => { alert("রেজিস্ট্রেশন সফল হয়েছে!"); })
-        .catch((error) => { alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'রেজিস্ট্রেশন সফল হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.firebaseGoogleLogin = function() {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
-        .then(() => { alert("Google দিয়ে সফলভাবে লগইন হয়েছে!"); })
-        .catch((error) => { alert("লগইন ব্যর্থ হয়েছে: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'Google দিয়ে সফলভাবে লগইন হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.forgotPassword = function() {
         let email = document.getElementById('authEmail').value;
         if(!email) {
-            alert("দয়া করে প্রথমে আপনার ইমেইল ঘরটিতে ইমেইল লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            showGlassAlert('eFootball Shop', "দয়া করে প্রথমে আপনার ইমেইল ঘরটিতে ইমেইল লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
             return;
         }
         sendPasswordResetEmail(auth, email)
-        .then(() => { alert("পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।"); })
-        .catch((error) => { alert("ত্রুটি: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "ত্রুটি: " + error.message); });
     }
-
     window.firebasePhoneLogin = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
         if(!phone || !password) {
-            alert("দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!");
+            showGlassAlert('eFootball Shop', 'দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!');
             return;
         }
         let fauxEmail = phone + "@phone.shopbd.com";
         signInWithEmailAndPassword(auth, fauxEmail, password)
-        .then(() => { alert("ফোন নম্বর দিয়ে লগইন সফল হয়েছে!"); })
+        .then(() => { showGlassAlert('eFootball Shop', 'ফোন নম্বর দিয়ে লগইন সফল হয়েছে!'); })
         .catch((error) => {
             if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
-                alert("ভুল পাসওয়ার্ড!");
+                showGlassAlert('eFootball Shop', 'ভুল পাসওয়ার্ড!');
             } else {
-                alert("লগইন ব্যর্থ হয়েছে: " + error.message);
+                showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message);
             }
         });
     }
-
     window.firebasePhoneRegister = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
         if(!phone || !password) {
-            alert("দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!");
+            showGlassAlert('eFootball Shop', 'দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!');
             return;
         }
         let fauxEmail = phone + "@phone.shopbd.com";
         createUserWithEmailAndPassword(auth, fauxEmail, password)
-        .then(() => { alert("ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!"); })
-        .catch((error) => { alert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.forgotPhonePassword = function() {
         let phone = document.getElementById('authPhone').value;
         if(!phone) {
-            alert("দয়া করে প্রথমে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            showGlassAlert('eFootball Shop', "দয়া করে প্রথমে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
             return;
         }
         let fauxEmail = phone + "@phone.shopbd.com";
         sendPasswordResetEmail(auth, fauxEmail)
         .then(() => { 
-            alert("পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।"); 
+            showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।'); 
         })
         .catch((error) => { 
-            alert("এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!"); 
+            showGlassAlert('eFootball Shop', 'এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!'); 
         });
     }
-
     window.firebaseLogout = function() {
-        signOut(auth).then(() => { alert("লগআউট হয়েছে!"); }).catch((error) => { alert(error.message); });
+        signOut(auth).then(() => { showGlassAlert('eFootball Shop', 'লগআউট হয়েছে!'); }).catch((error) => { showGlassAlert('eFootball Shop', error.message); });
     }
-
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
@@ -1151,6 +1221,19 @@
     let ordersList = JSON.parse(localStorage.getItem('savedOrders')) || [];
     renderOrders();
 
+    // --------------------------------------------------------------------
+    // গ্লাস অ্যালার্ট কন্ট্রোল ফাংশন (Added)
+    // --------------------------------------------------------------------
+    function showGlassAlert(title, message) {
+        document.getElementById('glassTitle').innerText = title + ' says';
+        document.getElementById('glassMessage').innerText = message;
+        document.getElementById('glassOverlay').classList.add('active');
+    }
+
+    function hideGlassAlert() {
+        document.getElementById('glassOverlay').classList.remove('active');
+    }
+
     function switchAuthMode(mode) {
         let emailBtn = document.getElementById('emailTabBtn');
         let phoneBtn = document.getElementById('phoneTabBtn');
@@ -1168,7 +1251,6 @@
             emailSec.style.display = 'none';
         }
     }
-
     function togglePackage(el, name, price) {
         let index = selectedPackages.findIndex(pkg => pkg.name === name);
         if (index > -1) {
@@ -1180,12 +1262,10 @@
         }
         updateTotalPrice();
     }
-
     function updateTotalPrice() {
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
         document.getElementById('totalDisplay').innerText = `Total Price: ৳${totalPrice}`;
     }
-
     function selectPay(el, method) {
         document.querySelectorAll('.pay-method').forEach(c => c.classList.remove('active'));
         el.classList.add('active');
@@ -1195,7 +1275,6 @@
         instructionBox.style.display = 'flex';
         methodNameSpan.innerText = method;
     }
-
     function copyNumber() {
         let numberText = document.getElementById('payNumber').innerText;
         navigator.clipboard.writeText(numberText).then(() => {
@@ -1204,17 +1283,14 @@
             setTimeout(() => { copyBtn.innerText = "Copy"; }, 2000);
         });
     }
-
     function toggleContactModal() {
         let modal = document.getElementById('contactModal');
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
-
     window.onclick = function(event) {
         let modal = document.getElementById('contactModal');
         if (event.target === modal) { modal.style.display = 'none'; }
     }
-
     function switchTab(btn, tabId) {
         document.querySelectorAll('.dock-item').forEach(item => item.classList.remove('active'));
         btn.classList.add('active');
@@ -1222,29 +1298,31 @@
         document.getElementById(tabId).classList.add('active-tab');
         window.scrollTo(0, 0);
     }
-
     function orderNow() {
         let device = document.getElementById('device').value;
         let gmail = document.getElementById('gmail').value;
         let pass = document.getElementById('pass').value;
         let whatsapp = document.getElementById('whatsapp').value;
         let lastDigit = document.getElementById('lastDigit').value;
+        
+        // এখানে ডিফল্ট অ্যালার্ট পরিবর্তন করে গ্লাস অ্যালার্ট যুক্ত করা হয়েছে
         if (!gmail || !pass || !whatsapp) {
-            alert("দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!");
+            showGlassAlert('E-Football Shop', 'দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!');
             return;
         }
         if (selectedPackages.length === 0) {
-            alert("দয়া করে কমপক্ষে একটি বা অধিক প্যাকেজ সিলেক্ট করুন!");
+            showGlassAlert('E-Football Shop', 'দয়া করে কমপক্ষে একটি বা অধিক প্যাকেজ সিলেক্ট করুন!');
             return;
         }
         if (!selectedPay) {
-            alert("দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!");
+            showGlassAlert('E-Football Shop', 'দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!');
             return;
         }
         if (!lastDigit) {
-            alert("দয়া করে লাস্ট ৪ ডিজিট বা সেন্ডার নম্বর দিন!");
+            showGlassAlert('E-Football Shop', 'দয়া করে লাস্ট ৪ ডিজিট বা সেন্ডার নম্বর দিন!');
             return;
         }
+        
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
         let newOrder = {
@@ -1269,7 +1347,6 @@
                   `🔢 Last 4 Digit: ${lastDigit}`;
         window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
     }
-
     function renderOrders() {
         let container = document.getElementById('ordersListContainer');
         if (ordersList.length === 0) {
@@ -1291,7 +1368,6 @@
         });
         container.innerHTML = html;
     }
-
     // ইউনিভার্সাল লিকুইড টাচ রিম্পল ইফেক্ট সব বাটন এবং কার্ডের জন্য
     document.querySelectorAll('button, .pkg-card, .pay-method, .dock-item, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn').forEach(elem => {
         elem.addEventListener('click', function(e) {
