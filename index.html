@@ -9,8 +9,7 @@
     
     <style>
         :root {
-            --bg-color: #111214;
-            --card-bg: rgba(26, 28, 31, 0.75);
+            --bg-color: #0b0c10;
             --accent-red: #ff3e3e;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
@@ -18,11 +17,14 @@
             --whatsapp-green: #25d366;
             --telegram-blue: #0088cc;
             --gmail-red: #ea4335;
-            --phone-color: #38bdf8;
             --fb-blue: #1877f2;
         }
         body {
             background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 62, 62, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 136, 204, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -61,19 +63,20 @@
             border-radius: 30px;
             font-size: 13px;
             font-weight: 600;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
         .badge-safety {
-            background-color: rgba(255, 62, 62, 0.15);
-            border: 1px solid rgba(255, 62, 62, 0.4);
+            background-color: rgba(255, 62, 62, 0.12);
+            border: 1px solid rgba(255, 62, 62, 0.35);
             color: var(--accent-red);
         }
         .badge-time {
-            background-color: rgba(160, 160, 160, 0.15);
-            border: 1px solid rgba(160, 160, 160, 0.3);
+            background-color: rgba(160, 160, 160, 0.1);
+            border: 1px solid rgba(160, 160, 160, 0.25);
             color: var(--text-muted);
         }
         .badge-item svg {
@@ -81,15 +84,17 @@
             height: 16px;
             fill: currentColor;
         }
+        /* লিকুইড গ্লাস ইফেক্ট সেকশন */
         .section {
-            background: rgba(26, 28, 31, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), 
+                        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
         .section-title {
             display: flex;
@@ -128,9 +133,9 @@
         input, select {
             width: 100%;
             padding: 12px;
-            background: rgba(37, 40, 44, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             color: white;
@@ -140,8 +145,8 @@
         }
         input:focus, select:focus {
             border-color: var(--accent-red);
-            background: rgba(37, 40, 44, 0.9);
-            box-shadow: 0 0 15px rgba(255, 62, 62, 0.25);
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 20px rgba(255, 62, 62, 0.3), inset 0 0 5px rgba(255, 62, 62, 0.2);
             outline: none;
         }
         .pkg-grid {
@@ -150,9 +155,9 @@
             gap: 10px;
         }
         .pkg-card {
-            background: rgba(37, 40, 44, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 14px;
             border-radius: 14px;
@@ -163,19 +168,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
         }
         .pkg-card:hover {
-            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.25);
             transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 62, 62, 0.2);
         }
         .pkg-card:active {
             transform: scale(0.96);
         }
         .pkg-card.active { 
             border-color: var(--accent-red); 
-            background: rgba(255, 62, 62, 0.12);
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.25);
+            background: rgba(255, 62, 62, 0.15);
+            box-shadow: 0 0 25px rgba(255, 62, 62, 0.35), inset 0 0 10px rgba(255, 62, 62, 0.2);
         }
         .pkg-name { 
             font-weight: bold; 
@@ -199,9 +206,9 @@
             gap: 15px; 
         }
         .pay-method { 
-            background: rgba(37, 40, 44, 0.55);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             padding: 15px; 
             border-radius: 14px; 
             text-align: center; 
@@ -211,23 +218,26 @@
             position: relative;
             overflow: hidden;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
         }
         .pay-method:hover {
+            background: rgba(255, 255, 255, 0.07);
             transform: translateY(-3px);
             border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 62, 62, 0.2);
         }
         .pay-method:active {
             transform: scale(0.96);
         }
         .pay-method.active { 
             border-color: var(--accent-red); 
-            background: rgba(255, 62, 62, 0.12);
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.25);
+            background: rgba(255, 62, 62, 0.15);
+            box-shadow: 0 0 25px rgba(255, 62, 62, 0.35), inset 0 0 10px rgba(255, 62, 62, 0.2);
         }
         
         .payment-instructions {
-            background: rgba(37, 40, 44, 0.6);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(15px);
             padding: 12px;
             border-radius: 12px;
             margin-top: 15px;
@@ -236,7 +246,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         .payment-instructions span {
             color: #38bdf8;
@@ -266,7 +276,7 @@
             transform: translateY(-2px);
         }
         .total-display-btn {
-            background: rgba(37, 40, 44, 0.6);
+            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             color: #38bdf8;
             border: 1px dashed rgba(71, 85, 105, 0.8);
@@ -368,8 +378,8 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1100;
             justify-content: center;
             align-items: center;
@@ -377,15 +387,15 @@
             box-sizing: border-box;
         }
         .contact-modal-content {
-            background: rgba(26, 28, 31, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             width: 100%;
             max-width: 380px;
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
             position: relative;
             animation: modalScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
@@ -440,27 +450,27 @@
         .contact-option-item:active {
             transform: scale(0.96);
         }
-        .opt-whatsapp { background: linear-gradient(135deg, var(--whatsapp-green), #1ebe57); }
-        .opt-telegram { background: linear-gradient(135deg, var(--telegram-blue), #0077b5); }
-        .opt-gmail { background: linear-gradient(135deg, var(--gmail-red), #d93829); }
+        .opt-whatsapp { background: linear-gradient(135deg, #25d366, #1ebe57); }
+        .opt-telegram { background: linear-gradient(135deg, #0088cc, #0077b5); }
+        .opt-gmail { background: linear-gradient(135deg, #ea4335, #d93829); }
         .opt-phone { background: linear-gradient(135deg, #0284c7, #026aa2); }
         .contact-option-item svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
         
-        /* Bottom Dock Navigation Bar Styles */
+        /* Bottom Dock Navigation Bar Styles (Liquid Glass Dock) */
         .bottom-dock {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: rgba(22, 24, 27, 0.75);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
             z-index: 999;
-            box-shadow: 0 -6px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
         }
         .dock-item {
             background: none;
@@ -500,23 +510,23 @@
             color: var(--text-muted);
         }
         .order-card-item {
-            background: rgba(37, 40, 44, 0.6);
+            background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(10px);
             padding: 15px;
             border-radius: 12px;
             margin-bottom: 12px;
             border-left: 4px solid var(--accent-red);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
         }
         .account-box {
-            background: rgba(26, 28, 31, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
         .welcome-badge {
             background: rgba(255, 62, 62, 0.15);
@@ -569,7 +579,7 @@
         
         .auth-toggle-tabs {
             display: flex;
-            background: rgba(37, 40, 44, 0.6);
+            background: rgba(0, 0, 0, 0.25);
             backdrop-filter: blur(10px);
             border-radius: 10px;
             padding: 4px;
