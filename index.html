@@ -85,6 +85,7 @@
             fill: currentColor;
         }
         
+        /* ইউনিফাইড লিকুইড গ্লাস বেস ক্লাস */
         .section, .pkg-card, .pay-method, .contact-modal-content, .bottom-dock, .account-box, .buy-btn, .copy-btn, .google-btn, .social-btn, .contact-float-btn, input, select {
             position: relative;
             overflow: hidden;
@@ -154,6 +155,7 @@
             outline: none;
         }
         
+        /* Liquid Glass Device Selector Styles */
         .device-selector-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -182,6 +184,9 @@
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 62, 62, 0.2);
         }
+        .device-card:active {
+            transform: scale(0.96);
+        }
         .device-card.active {
             border-color: var(--accent-red);
             background: rgba(255, 62, 62, 0.15);
@@ -199,6 +204,11 @@
             width: 100%;
             height: 100%;
             fill: currentColor;
+            transition: transform 0.3s ease;
+        }
+        .device-card:hover .device-icon svg,
+        .device-card.active .device-icon svg {
+            transform: scale(1.1);
         }
         .device-info {
             display: flex;
@@ -219,6 +229,7 @@
             gap: 10px;
         }
         
+        /* লিকুইড গ্লাস কার্ড ও বাটন ডিজাইন */
         .pkg-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(25px) saturate(180%);
@@ -238,6 +249,9 @@
             border-color: rgba(255, 255, 255, 0.25);
             transform: translateY(-4px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 62, 62, 0.2);
+        }
+        .pkg-card:active {
+            transform: scale(0.96);
         }
         .pkg-card.active { 
             border-color: var(--accent-red); 
@@ -276,11 +290,16 @@
             cursor: pointer; 
             font-weight: bold;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
         }
         .pay-method:hover {
             background: rgba(255, 255, 255, 0.07);
             transform: translateY(-3px);
             border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 62, 62, 0.2);
+        }
+        .pay-method:active {
+            transform: scale(0.96);
         }
         .pay-method.active { 
             border-color: var(--accent-red); 
@@ -305,16 +324,43 @@
             color: #38bdf8;
             font-weight: bold;
         }
+        /* সকল বাটনের প্রিমিয়াম লিকুইড গ্লাস স্টাইল */
         .copy-btn {
             background: rgba(59, 130, 246, 0.4);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
             color: white;
             border: 1px solid rgba(59, 130, 246, 0.4);
             padding: 6px 12px;
             font-size: 12px;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .copy-btn:hover {
+            background: rgba(59, 130, 246, 0.6);
+            border-color: rgba(59, 130, 246, 0.8);
+            transform: translateY(-2px);
+        }
+        .invoice-btn {
+            background: rgba(34, 197, 94, 0.4);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            color: white;
+            border: 1px solid rgba(34, 197, 94, 0.5);
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3), inset 0 0 0 1px rgba(255,255,255,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .invoice-btn:hover {
+            background: rgba(34, 197, 94, 0.6);
+            border-color: rgba(34, 197, 94, 0.8);
+            transform: translateY(-2px);
         }
         .total-display-btn {
             background: rgba(0, 0, 0, 0.3);
@@ -330,7 +376,8 @@
         }
         .buy-btn {
             background: rgba(255, 62, 62, 0.35);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             color: white;
             border: 1px solid rgba(255, 62, 62, 0.5);
             width: 100%;
@@ -340,13 +387,14 @@
             font-size: 15px;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 6px 20px rgba(255, 62, 62, 0.3);
-            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(255, 62, 62, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .buy-btn:hover {
             background: rgba(255, 62, 62, 0.55);
             border-color: rgba(255, 62, 62, 0.8);
             transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 62, 62, 0.5);
         }
         .social-footer {
             margin-top: 30px;
@@ -375,11 +423,19 @@
             font-weight: 600;
             font-size: 13px;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .social-btn:hover { 
+            transform: translateY(-2px); 
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         
+        /* Floating Contact Us Button */
         .contact-float-container {
             position: fixed;
             bottom: 80px;
@@ -388,20 +444,26 @@
         }
         .contact-float-btn {
             background: rgba(255, 62, 62, 0.4);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             color: white;
             padding: 12px 20px;
             border-radius: 30px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 6px 20px rgba(255, 62, 62, 0.4);
+            box-shadow: 0 6px 20px rgba(255, 62, 62, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
             font-size: 13px;
             border: 1px solid rgba(255, 62, 62, 0.6);
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-float-btn:hover {
+            background: rgba(255, 62, 62, 0.6);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 62, 62, 0.6);
         }
         .contact-float-btn svg {
             width: 18px;
@@ -409,6 +471,7 @@
             fill: white;
         }
         
+        /* Modal Overlay */
         .contact-modal {
             display: none;
             position: fixed;
@@ -418,6 +481,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1100;
             justify-content: center;
             align-items: center;
@@ -426,14 +490,20 @@
         }
         .contact-modal-content {
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.15);
             width: 100%;
             max-width: 380px;
             border-radius: 20px;
             padding: 20px;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
             position: relative;
+            animation: modalScaleIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modalScaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         .modal-header {
             display: flex;
@@ -450,6 +520,7 @@
         }
         .close-modal {
             background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-muted);
             width: 32px;
@@ -460,7 +531,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.2s;
         }
+        .close-modal:hover { color: white; background: rgba(255, 255, 255, 0.15); }
         .contact-options {
             display: flex;
             flex-direction: column;
@@ -477,23 +550,34 @@
             font-weight: 600;
             font-size: 14px;
             background: rgba(255, 255, 255, 0.06);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-option-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         .contact-option-item svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
         
+        /* Bottom Dock Navigation Bar Styles (Liquid Glass Dock) */
         .bottom-dock {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.04);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-around;
             padding: 10px 0;
             z-index: 999;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08);
         }
         .dock-item {
             background: none;
@@ -514,15 +598,23 @@
             height: 22px;
             fill: currentColor;
             margin-bottom: 3px;
+            transition: transform 0.3s ease;
         }
         .dock-item.active, .dock-item:hover {
             color: var(--accent-red);
             background: rgba(255, 255, 255, 0.05);
         }
+        .dock-item.active svg {
+            transform: translateY(-3px);
+        }
         
-        .tab-content { display: none; }
-        .tab-content.active-tab { display: block; }
-        
+        /* Tab Content Views */
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active-tab {
+            display: block;
+        }
         .empty-orders {
             text-align: center;
             padding: 40px 20px;
@@ -536,82 +628,16 @@
             margin-bottom: 12px;
             border-left: 4px solid var(--accent-red);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
-        .invoice-btn {
-            background: rgba(56, 189, 248, 0.2);
-            border: 1px solid rgba(56, 189, 248, 0.4);
-            color: #38bdf8;
-            padding: 8px 12px;
-            font-size: 12px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .invoice-btn:hover {
-            background: rgba(56, 189, 248, 0.4);
-        }
-        
-        /* Invoice Modal Specific Styles */
-        .invoice-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(10px);
-            z-index: 1200;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-        .invoice-box {
-            background: rgba(20, 20, 30, 0.85);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            color: #fff;
-        }
-        .invoice-header {
-            text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 12px;
-            margin-bottom: 15px;
-        }
-        .invoice-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            margin-bottom: 8px;
-            border-bottom: 1px dashed rgba(255,255,255,0.05);
-            padding-bottom: 6px;
-        }
-        .invoice-row span:first-child {
-            color: var(--text-muted);
-        }
-        .invoice-row span:last-child {
-            font-weight: 600;
-            color: #fff;
-            text-align: right;
-        }
-
         .account-box {
             background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 25px;
             text-align: center;
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
         .welcome-badge {
             background: rgba(255, 62, 62, 0.15);
@@ -626,6 +652,7 @@
         }
         .google-btn {
             background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
             color: #333;
             font-weight: bold;
             display: flex;
@@ -639,6 +666,13 @@
             cursor: pointer;
             margin-bottom: 15px;
             font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .google-btn:hover { background: #ffffff; transform: translateY(-2px); }
+        .google-btn img {
+            width: 18px;
+            height: 18px;
         }
         .divider {
             display: flex;
@@ -659,6 +693,7 @@
         .auth-toggle-tabs {
             display: flex;
             background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
             border-radius: 10px;
             padding: 4px;
             margin-bottom: 15px;
@@ -674,13 +709,31 @@
             font-weight: bold;
             cursor: pointer;
             border-radius: 8px;
+            transition: all 0.3s ease;
         }
         .auth-tab-btn.active {
             background: rgba(255, 62, 62, 0.4);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 62, 62, 0.6);
             color: white;
+            box-shadow: 0 4px 12px rgba(255, 62, 62, 0.35);
         }
-        
+        /* লিকুইড টাচ বাটন রিপল অ্যানিমেশন ক্লাস */
+        .liquid-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: liquidEffect 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+        @keyframes liquidEffect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        /* কাস্টম গ্লাস লিকুইড অ্যালার্ট পপআপ ডিজাইন */
         .glass-overlay {
             position: fixed;
             top: 0;
@@ -689,6 +742,7 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -703,29 +757,42 @@
         }
         .glass-box {
             background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 
+                        inset 0 0 20px rgba(255, 255, 255, 0.05);
             padding: 25px 20px;
             width: 85%;
             max-width: 320px;
             border-radius: 20px;
             text-align: center;
             color: #ffffff;
+            transform: scale(0.7) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-overlay.active .glass-box {
+            transform: scale(1) translateY(0);
         }
         .glass-title {
             font-size: 14px;
             font-weight: 600;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 10px;
+            word-break: break-all;
         }
         .glass-message {
             font-size: 16px;
             font-weight: 500;
+            color: #ffffff;
             margin-bottom: 20px;
             line-height: 1.5;
         }
         .glass-btn {
             background: rgba(255, 62, 62, 0.4);
+            backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 62, 62, 0.6);
             color: #ffffff;
             padding: 10px 30px;
@@ -733,7 +800,16 @@
             font-weight: 600;
             border-radius: 12px;
             cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(255, 62, 62, 0.3);
             width: 100%;
+        }
+        .glass-btn:hover {
+            background: rgba(255, 62, 62, 0.6);
+            transform: scale(1.02);
+        }
+        .glass-btn:active {
+            transform: scale(0.98);
         }
     </style>
 </head>
@@ -752,7 +828,6 @@
             </div>
         </div>
     </div>
-    
     <!-- TAB 1: HOME VIEW -->
     <div id="tab-home" class="tab-content active-tab">
         <div class="section">
@@ -762,6 +837,7 @@
             <div class="form-group">
                 <label>Select Device</label>
                 <input type="hidden" id="device" value="Android">
+                
                 <div class="device-selector-container">
                     <div class="device-card active" onclick="selectDevice(this, 'Android')">
                         <div class="device-icon" style="color: #3ddc84;">
@@ -804,51 +880,101 @@
             </div>
             <div class="pkg-grid" id="pkgGrid">
                 <div class="pkg-card" onclick="togglePackage(this, '130 Coin', 170)">
-                    <div><div class="pkg-name">130 Coin</div><div class="pkg-price">৳170</div></div>
+                    <div>
+                        <div class="pkg-name">130 Coin</div>
+                        <div class="pkg-price">৳170</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '260 Coin', 180)">
-                    <div><div class="pkg-name">260 Coin</div><div class="pkg-price">৳180</div></div>
+                    <div>
+                        <div class="pkg-name">260 Coin</div>
+                        <div class="pkg-price">৳180</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '300 Coin', 360)">
-                    <div><div class="pkg-name">300 Coin</div><div class="pkg-price">৳360</div></div>
+                    <div>
+                        <div class="pkg-name">300 Coin</div>
+                        <div class="pkg-price">৳360</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '550 Coin', 620)">
-                    <div><div class="pkg-name">550 Coin</div><div class="pkg-price">৳620</div></div>
+                    <div>
+                        <div class="pkg-name">550 Coin</div>
+                        <div class="pkg-price">৳620</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '750 Coin', 840)">
-                    <div><div class="pkg-name">750 Coin</div><div class="pkg-price">৳840</div></div>
+                    <div>
+                        <div class="pkg-name">750 Coin</div>
+                        <div class="pkg-price">৳840</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '840 Coin', 630)">
-                    <div><div class="pkg-name">840 Coin</div><div class="pkg-price">৳630</div></div>
+                    <div>
+                        <div class="pkg-name">840 Coin</div>
+                        <div class="pkg-price">৳630</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '1040 Coin', 1150)">
-                    <div><div class="pkg-name">1040 Coin</div><div class="pkg-price">৳1150</div></div>
+                    <div>
+                        <div class="pkg-name">1040 Coin</div>
+                        <div class="pkg-price">৳1150</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '1630 Coin', 1150)">
-                    <div><div class="pkg-name">1630 Coin</div><div class="pkg-price">৳1150</div></div>
+                    <div>
+                        <div class="pkg-name">1630 Coin</div>
+                        <div class="pkg-price">৳1150</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '2130 Coin', 2300)">
-                    <div><div class="pkg-name">2130 Coin</div><div class="pkg-price">৳2300</div></div>
+                    <div>
+                        <div class="pkg-name">2130 Coin</div>
+                        <div class="pkg-price">৳2300</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '3250 Coin', 3450)">
-                    <div><div class="pkg-name">3250 Coin</div><div class="pkg-price">৳3450</div></div>
+                    <div>
+                        <div class="pkg-name">3250 Coin</div>
+                        <div class="pkg-price">৳3450</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '5700 Coin', 5600)">
-                    <div><div class="pkg-name">5700 Coin</div><div class="pkg-price">৳5600</div></div>
+                    <div>
+                        <div class="pkg-name">5700 Coin</div>
+                        <div class="pkg-price">৳5600</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '12800 Coin', 12500)">
-                    <div><div class="pkg-name">12800 Coin</div><div class="pkg-price">৳12500</div></div>
+                    <div>
+                        <div class="pkg-name">12800 Coin</div>
+                        <div class="pkg-price">৳12500</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '50 Coin + Luis Suárez', 110)">
+                    <div>
+                        <div class="pkg-name">50 Coin + Luis Suárez</div>
+                        <div class="pkg-price">৳110</div>
+                    </div>
+                    <div class="pkg-stock">🟢 In Stock</div>
+                </div>
+                <div class="pkg-card" onclick="togglePackage(this, '100 Coin + IKER CASILLAS', 300)">
+                    <div>
+                        <div class="pkg-name">100 Coin + IKER CASILLAS</div>
+                        <div class="pkg-price">৳300</div>
+                    </div>
                     <div class="pkg-stock">🟢 In Stock</div>
                 </div>
             </div>
@@ -870,19 +996,25 @@
                 <input type="text" id="lastDigit" placeholder="Enter last 4 digits of your send money number">
             </div>
             <div style="text-align: center;">
-                <div class="total-display-btn" id="totalDisplay">Total Price: ৳0</div>
+                <div class="total-display-btn" id="totalDisplay">
+                    Total Price: ৳0
+                </div>
             </div>
+            
             <button class="buy-btn" onclick="orderNow()">Buy Now</button>
         </div>
         <div class="social-footer">
             <p>Connect With Us</p>
             <div class="social-buttons">
-                <a href="https://www.facebook.com/share/166H5PHoS4W/" target="_blank" class="social-btn">Facebook Page</a>
-                <a href="https://m.me/j/AbY3MFES5LAMvV_Z/?send_source=gc%3Acopy_invite_link_t" target="_blank" class="social-btn">Messenger Group</a>
+                <a href="https://www.facebook.com/share/166H5PHoS4W/" target="_blank" class="social-btn fb-btn">
+                    <span>Facebook Page</span>
+                </a>
+                <a href="https://m.me/j/AbY3MFES5LAMvV_Z/?send_source=gc%3Acopy_invite_link_t" target="_blank" class="social-btn messenger-btn">
+                    <span>Messenger Group</span>
+                </a>
             </div>
         </div>
     </div>
-    
     <!-- TAB 2: WALLET VIEW -->
     <div id="tab-wallet" class="tab-content">
         <div class="section">
@@ -894,7 +1026,6 @@
             </div>
         </div>
     </div>
-    
     <!-- TAB 3: ORDERS VIEW -->
     <div id="tab-orders" class="tab-content">
         <div class="section">
@@ -904,7 +1035,6 @@
             </div>
         </div>
     </div>
-    
     <!-- TAB 4: CODES VIEW -->
     <div id="tab-codes" class="tab-content">
         <div class="section">
@@ -912,7 +1042,6 @@
             <div class="empty-orders">বর্তমানে কোনো কুপন বা রিডিম কোড নেই।</div>
         </div>
     </div>
-    
     <!-- TAB 5: ACCOUNT VIEW -->
     <div id="tab-account" class="tab-content">
         <div class="account-box">
@@ -927,7 +1056,7 @@
             </div>
             <div id="authFormView">
                 <button class="google-btn" onclick="firebaseGoogleLogin()">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" style="width:18px;height:18px;">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                     Continue with Google
                 </button>
                 <div class="divider">অথবা</div>
@@ -944,9 +1073,12 @@
                         <label>Password</label>
                         <input type="password" id="authPassword" placeholder="Enter password">
                     </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                    </div>
                     <div style="display: flex; gap: 10px;">
                         <button class="buy-btn" onclick="firebaseLogin()">Login</button>
-                        <button class="buy-btn" style="background-color: rgba(59, 130, 246, 0.4);" onclick="firebaseRegister()">Register</button>
+                        <button class="buy-btn" style="background-color: rgba(59, 130, 246, 0.4); border-color: rgba(59, 130, 246, 0.6);" onclick="firebaseRegister()">Register</button>
                     </div>
                 </div>
                 <div id="phoneAuthSection" style="display: none; text-align: left;">
@@ -958,25 +1090,24 @@
                         <label>Password</label>
                         <input type="password" id="authPhonePassword" placeholder="Enter password">
                     </div>
+                    <div style="text-align: right; margin-bottom: 10px;">
+                        <a href="#" onclick="forgotPhonePassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                    </div>
                     <div style="display: flex; gap: 10px;">
                         <button class="buy-btn" onclick="firebasePhoneLogin()">Login</button>
-                        <button class="buy-btn" style="background-color: rgba(59, 130, 246, 0.4);" onclick="firebasePhoneRegister()">Register</button>
+                        <button class="buy-btn" style="background-color: rgba(59, 130, 246, 0.4); border-color: rgba(59, 130, 246, 0.6);" onclick="firebasePhoneRegister()">Register</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Floating Contact Us Button -->
 <div class="contact-float-container">
     <button class="contact-float-btn" onclick="toggleContactModal()">
         <svg viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-4.79 2.44c-.32.16-.7.11-.97-.13l-3.3-3.08-3.08 3.3c-.27.24-.65.29-.97.13L3.53 17.38c-.32-.17-.53-.5-.53-.88v-3.79c0-.28.11-.53.29-.72l4.8-4.8c.38-.38 1.02-.38 1.4 0l1.24 1.24 1.24-1.24c.38-.38 1.02-.38 1.4 0l4.8 4.8c.18.19.29.44.29.72v3.79zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
         Contact Us
     </button>
 </div>
-
-<!-- Contact Modal Popup -->
 <div class="contact-modal" id="contactModal">
     <div class="contact-modal-content">
         <div class="modal-header">
@@ -984,35 +1115,25 @@
             <button class="close-modal" onclick="toggleContactModal()">&times;</button>
         </div>
         <div class="contact-options">
-            <a href="https://wa.me/8801733185830?text=I%20need%20support!" target="_blank" class="contact-option-item">
+            <a href="https://wa.me/8801733185830?text=I%20need%20support!" target="_blank" class="contact-option-item opt-whatsapp">
+                <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                 <span>WhatsApp: 01733185830</span>
             </a>
-            <a href="https://t.me/+8801733185830" target="_blank" class="contact-option-item">
+            <a href="https://t.me/+8801733185830" target="_blank" class="contact-option-item opt-telegram">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-2.01 1.28-5.69 3.77-.54.37-1.03.55-1.47.54-.48-.01-1.4-.27-2.08-.49-.84-.27-1.51-.42-1.45-.89.03-.25.38-.51 1.06-.78 4.15-1.81 6.91-3.01 8.28-3.6 3.94-1.68 4.76-1.97 5.29-1.98.12 0 .39.03.56.17.14.12.18.28.2.4-.01.07.01.35-.03.67z"/></svg>
                 <span>Telegram: 01733185830</span>
             </a>
-            <a href="mailto:saikatahmmad701@gmail.com" class="contact-option-item">
+            <a href="mailto:saikatahmmad701@gmail.com" class="contact-option-item opt-gmail">
+                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 <span>Gmail Support</span>
             </a>
-            <a href="tel:01733185830" class="contact-option-item">
+            <a href="tel:01733185830" class="contact-option-item opt-phone">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                 <span>Phone: 01733185830</span>
             </a>
         </div>
     </div>
 </div>
-
-<!-- Invoice Modal Popup -->
-<div class="invoice-modal" id="invoiceModal">
-    <div class="invoice-box">
-        <div class="invoice-header">
-            <h3 style="margin:0; font-size:18px;">Order Invoice</h3>
-            <p style="margin:4px 0 0; font-size:12px; color:var(--text-muted);">E-Football Coin Shop BD</p>
-        </div>
-        <div id="invoiceDetailsContainer"></div>
-        <button class="buy-btn" style="margin-top:15px; padding:10px;" onclick="closeInvoiceModal()">Close</button>
-    </div>
-</div>
-
-<!-- Bottom Dock Navigation Bar -->
 <div class="bottom-dock">
     <button class="dock-item active" onclick="switchTab(this, 'tab-home')">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -1035,23 +1156,44 @@
         Account
     </button>
 </div>
-
-<!-- Custom Glass Alert HTML Structure -->
 <div class="glass-overlay" id="glassOverlay">
     <div class="glass-box">
-        <div class="glass-title">eFootball Shop</div>
+        <div class="glass-title" id="glassTitle">site.com says</div>
         <div class="glass-message" id="glassMessage">এখানে মেসেজ থাকবে</div>
         <button class="glass-btn" onclick="hideGlassAlert()">OK</button>
     </div>
 </div>
 
-<!-- Firebase & Main Script -->
+<!-- Invoice Modal Popup -->
+<div class="contact-modal" id="invoiceModal">
+    <div class="contact-modal-content" style="max-width: 420px; text-align: left;">
+        <div class="modal-header">
+            <h3>Invoice / Cash Memo</h3>
+            <button class="close-modal" onclick="toggleInvoiceModal()">&times;</button>
+        </div>
+        <div id="invoiceDetailsContent" style="font-size: 13px; color: #cbd5e1; line-height: 1.6;">
+            <!-- Dynamic Invoice Content -->
+        </div>
+        <div style="margin-top: 20px; display: flex; gap: 10px;">
+            <button class="buy-btn" style="margin: 0;" onclick="window.print()">Print / Download</button>
+            <button class="buy-btn" style="margin: 0; background-color: rgba(59, 130, 246, 0.4); border-color: rgba(59, 130, 246, 0.6);" onclick="toggleInvoiceModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<!-- Firebase SDK Imports -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
     import { 
-        getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, 
-        signOut, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail
+        getAuth, 
+        signInWithEmailAndPassword, 
+        createUserWithEmailAndPassword, 
+        signOut, 
+        onAuthStateChanged,
+        GoogleAuthProvider,
+        signInWithPopup,
+        sendPasswordResetEmail
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     
     const firebaseConfig = {
@@ -1065,54 +1207,127 @@
     };
     
     const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
     const auth = getAuth(app);
-    
     window.firebaseLogin = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
-        if(!email || !password) { showGlassAlert('দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!'); return; }
+        if(!email || !password) {
+            showGlassAlert('eFootball Shop', 'দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!');
+            return;
+        }
         signInWithEmailAndPassword(auth, email, password)
-        .then(() => { showGlassAlert('লগইন সফল হয়েছে!'); })
-        .catch((error) => { showGlassAlert("লগইন ব্যর্থ হয়েছে: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'লগইন সফল হয়েছে!'); })
+        .catch((error) => {
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                showGlassAlert('eFootball Shop', "ভুল পাসওয়ার্ড! পাসওয়ার্ড রিসেট করতে চাইলে 'Forgot Password?' এ ক্লিক করুন।");
+            } else {
+                showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message);
+            }
+        });
     }
     window.firebaseRegister = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
-        if(!email || !password) { showGlassAlert('দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!'); return; }
+        if(!email || !password) {
+            showGlassAlert('eFootball Shop', 'দয়া করে ইমেইল এবং পাসওয়ার্ড দিন!');
+            return;
+        }
         createUserWithEmailAndPassword(auth, email, password)
-        .then(() => { showGlassAlert('রেজিস্ট্রেশন সফল হয়েছে!'); })
-        .catch((error) => { showGlassAlert("রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
+        .then(() => { showGlassAlert('eFootball Shop', 'রেজিস্ট্রেশন সফল হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
     window.firebaseGoogleLogin = function() {
-        signInWithPopup(auth, new GoogleAuthProvider())
-        .then(() => { showGlassAlert('Google দিয়ে সফলভাবে লগইন হয়েছে!'); })
-        .catch((error) => { showGlassAlert("লগইন ব্যর্থ হয়েছে: " + error.message); });
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+        .then(() => { showGlassAlert('eFootball Shop', 'Google দিয়ে সফলভাবে লগইন হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message); });
+    }
+    window.forgotPassword = function() {
+        let email = document.getElementById('authEmail').value;
+        if(!email) {
+            showGlassAlert('eFootball Shop', "দয়া করে প্রথমে আপনার ইমেইল ঘরটিতে ইমেইল লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            return;
+        }
+        sendPasswordResetEmail(auth, email)
+        .then(() => { showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "ত্রুটি: " + error.message); });
+    }
+    window.firebasePhoneLogin = function() {
+        let phone = document.getElementById('authPhone').value;
+        let password = document.getElementById('authPhonePassword').value;
+        if(!phone || !password) {
+            showGlassAlert('eFootball Shop', 'দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!');
+            return;
+        }
+        let fauxEmail = phone + "@phone.shopbd.com";
+        signInWithEmailAndPassword(auth, fauxEmail, password)
+        .then(() => { showGlassAlert('eFootball Shop', 'ফোন নম্বর দিয়ে লগইন সফল হয়েছে!'); })
+        .catch((error) => {
+            if (error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                showGlassAlert('eFootball Shop', 'ভুল পাসওয়ার্ড!');
+            } else {
+                showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message);
+            }
+        });
+    }
+    window.firebasePhoneRegister = function() {
+        let phone = document.getElementById('authPhone').value;
+        let password = document.getElementById('authPhonePassword').value;
+        if(!phone || !password) {
+            showGlassAlert('eFootball Shop', 'দয়া করে ফোন নম্বর এবং পাসওয়ার্ড দিন!');
+            return;
+        }
+        let fauxEmail = phone + "@phone.shopbd.com";
+        createUserWithEmailAndPassword(auth, fauxEmail, password)
+        .then(() => { showGlassAlert('eFootball Shop', 'ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!'); })
+        .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
+    }
+    window.forgotPhonePassword = function() {
+        let phone = document.getElementById('authPhone').value;
+        if(!phone) {
+            showGlassAlert('eFootball Shop', "দয়া করে প্রথমে আপনার ফোন নম্বরটি লিখুন, তারপর 'Forgot Password?' এ ক্লিক করুন।");
+            return;
+        }
+        let fauxEmail = phone + "@phone.shopbd.com";
+        sendPasswordResetEmail(auth, fauxEmail)
+        .then(() => { 
+            showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।'); 
+        })
+        .catch((error) => { 
+            showGlassAlert('eFootball Shop', 'এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!'); 
+        });
     }
     window.firebaseLogout = function() {
-        signOut(auth).then(() => { showGlassAlert('লগআউট হয়েছে!'); });
+        signOut(auth).then(() => { showGlassAlert('eFootball Shop', 'লগআউট হয়েছে!'); }).catch((error) => { showGlassAlert('eFootball Shop', error.message); });
     }
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
         let loggedInUserEmail = document.getElementById('loggedInUserEmail');
+        let authDesc = document.getElementById('authDesc');
         if (user) {
             authFormView.style.display = 'none';
             userProfileView.style.display = 'block';
-            loggedInUserEmail.innerText = "Logged in as: " + user.email;
+            let identifier = user.email.includes("@phone.shopbd.com") ? user.email.split("@")[0] : user.email;
+            loggedInUserEmail.innerText = "Logged in as: " + identifier;
+            authDesc.innerText = "আপনার অ্যাকাউন্ট প্যানেলে স্বাগতম!";
         } else {
             authFormView.style.display = 'block';
             userProfileView.style.display = 'none';
+            authDesc.innerText = "নিরাপদে লগইন অথবা রেজিস্টার করুন।";
         }
     });
 </script>
-
 <script>
     let selectedPackages = []; 
     let selectedPay = "";
+    
     let ordersList = JSON.parse(localStorage.getItem('savedOrders')) || [];
     renderOrders();
     
-    function showGlassAlert(message) {
+    function showGlassAlert(title, message) {
+        document.getElementById('glassTitle').innerText = title + ' says';
         document.getElementById('glassMessage').innerText = message;
         document.getElementById('glassOverlay').classList.add('active');
     }
@@ -1120,7 +1335,9 @@
         document.getElementById('glassOverlay').classList.remove('active');
     }
     function selectDevice(element, deviceName) {
-        document.querySelectorAll('.device-card').forEach(card => card.classList.remove('active'));
+        document.querySelectorAll('.device-card').forEach(card => {
+            card.classList.remove('active');
+        });
         element.classList.add('active');
         document.getElementById('device').value = deviceName;
     }
@@ -1130,11 +1347,15 @@
         let emailSec = document.getElementById('emailAuthSection');
         let phoneSec = document.getElementById('phoneAuthSection');
         if(mode === 'email') {
-            emailBtn.classList.add('active'); phoneBtn.classList.remove('active');
-            emailSec.style.display = 'block'; phoneSec.style.display = 'none';
+            emailBtn.classList.add('active');
+            phoneBtn.classList.remove('active');
+            emailSec.style.display = 'block';
+            phoneSec.style.display = 'none';
         } else {
-            phoneBtn.classList.add('active'); emailBtn.classList.remove('active');
-            phoneSec.style.display = 'block'; emailSec.style.display = 'none';
+            phoneBtn.classList.add('active');
+            emailBtn.classList.remove('active');
+            phoneSec.style.display = 'block';
+            emailSec.style.display = 'none';
         }
     }
     function togglePackage(el, name, price) {
@@ -1157,11 +1378,13 @@
         el.classList.add('active');
         selectedPay = method;
         let instructionBox = document.getElementById('payInstructionBox');
-        document.getElementById('payMethodName').innerText = method;
+        let methodNameSpan = document.getElementById('payMethodName');
         instructionBox.style.display = 'flex';
+        methodNameSpan.innerText = method;
     }
     function copyNumber() {
-        navigator.clipboard.writeText(document.getElementById('payNumber').innerText).then(() => {
+        let numberText = document.getElementById('payNumber').innerText;
+        navigator.clipboard.writeText(numberText).then(() => {
             let copyBtn = document.querySelector('.copy-btn');
             copyBtn.innerText = "Copied!";
             setTimeout(() => { copyBtn.innerText = "Copy"; }, 2000);
@@ -1170,6 +1393,43 @@
     function toggleContactModal() {
         let modal = document.getElementById('contactModal');
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+    
+    function toggleInvoiceModal() {
+        let modal = document.getElementById('invoiceModal');
+        modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    function viewInvoice(orderId) {
+        let order = ordersList.find(o => o.id == orderId);
+        if(!order) return;
+
+        let content = `
+            <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 10px;">
+                <h4 style="margin: 0; color: white; font-size: 16px;">E-Football Coin Shop BD</h4>
+                <p style="margin: 2px 0; font-size: 12px; color: var(--text-muted);">Official Digital Invoice</p>
+            </div>
+            <p><strong>Order ID:</strong> #${order.id}</p>
+            <p><strong>Date:</strong> ${order.date}</p>
+            <p><strong>Device:</strong> ${order.device || 'Android'}</p>
+            <p><strong>WhatsApp:</strong> ${order.whatsapp || 'N/A'}</p>
+            <p><strong>Packages:</strong> ${order.packages}</p>
+            <p><strong>Payment Method:</strong> ${order.payment}</p>
+            <p><strong>Sender No (Last 4):</strong> ${order.lastDigit || 'N/A'}</p>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px; display: flex; justify-content: space-between; font-size: 15px; color: white; font-weight: bold;">
+                <span>Total Paid:</span>
+                <span style="color: var(--success-green);">৳${order.price}</span>
+            </div>
+        `;
+        document.getElementById('invoiceDetailsContent').innerHTML = content;
+        toggleInvoiceModal();
+    }
+
+    window.onclick = function(event) {
+        let modal = document.getElementById('contactModal');
+        let invoiceModal = document.getElementById('invoiceModal');
+        if (event.target === modal) { modal.style.display = 'none'; }
+        if (event.target === invoiceModal) { invoiceModal.style.display = 'none'; }
     }
     function switchTab(btn, tabId) {
         document.querySelectorAll('.dock-item').forEach(item => item.classList.remove('active'));
@@ -1186,55 +1446,49 @@
         let lastDigit = document.getElementById('lastDigit').value;
         
         if (!gmail || !pass || !whatsapp) {
-            showGlassAlert('দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!');
+            showGlassAlert('E-Football Shop', 'দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!');
             return;
         }
         if (selectedPackages.length === 0) {
-            showGlassAlert('দয়া করে কমপক্ষে একটি প্যাকেজ সিলেক্ট করুন!');
+            showGlassAlert('E-Football Shop', 'দয়া করে কমপক্ষে একটি বা অধিক প্যাকেজ সিলেক্ট করুন!');
             return;
         }
         if (!selectedPay) {
-            showGlassAlert('দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!');
+            showGlassAlert('E-Football Shop', 'দয়া করে পেমেন্ট মেথড সিলেক্ট করুন!');
             return;
         }
         if (!lastDigit) {
-            showGlassAlert('দয়া করে লাস্ট ৪ ডিজিট দিন!');
+            showGlassAlert('E-Football Shop', 'দয়া করে লাস্ট ৪ ডিজিট বা সেন্ডার নম্বর দিন!');
             return;
         }
         
         let pkgNames = selectedPackages.map(p => p.name).join(', ');
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
-        let orderNumber = Math.floor(100000 + Math.random() * 900000);
-        let invoiceNumber = "INV-" + Math.floor(100000 + Math.random() * 900000);
-        let currentDate = new Date().toLocaleDateString();
-
         let newOrder = {
-            invoiceNumber: invoiceNumber,
-            invoiceDate: currentDate,
-            orderNumber: orderNumber,
-            orderDate: currentDate,
-            gmail: gmail,
+            id: Math.floor(100000 + Math.random() * 900000),
+            device: device,
             whatsapp: whatsapp,
+            lastDigit: lastDigit,
             packages: pkgNames,
+            price: totalPrice,
             payment: selectedPay,
-            price: totalPrice
+            date: new Date().toLocaleDateString()
         };
         
         ordersList.unshift(newOrder);
         localStorage.setItem('savedOrders', JSON.stringify(ordersList));
         renderOrders();
-        
         let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
-                  `📄 Invoice: ${invoiceNumber}%0A` +
-                  `🆔 Order Number: ${orderNumber}%0A` +
+                  `📱 Device: ${device}%0A` +
                   `📧 Gmail: ${gmail}%0A` +
-                  `📞 WhatsApp: ${whatsapp}%0A` +
-                  `📦 Package: ${pkgNames}%0A` +
-                  `💰 Total Amount: ৳${totalPrice}%0A` +
-                  `💳 Payment Method: ${selectedPay}`;
+                  `🔑 Password: ${pass}%0A` +
+                  `📞 WhatsApp: ${whatsapp}%0A%0A` +
+                  `📦 Package(s): ${pkgNames}%0A` +
+                  `💰 Total Price: ${totalPrice} TK%0A%0A` +
+                  `💳 Payment Method: ${selectedPay}%0A` +
+                  `🔢 Last 4 Digit: ${lastDigit}`;
         window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
     }
-
     function renderOrders() {
         let container = document.getElementById('ordersListContainer');
         if (ordersList.length === 0) {
@@ -1242,41 +1496,40 @@
             return;
         }
         let html = '';
-        ordersList.forEach((ord, index) => {
+        ordersList.forEach(ord => {
             html += `
                 <div class="order-card-item">
-                    <div>
-                        <div style="font-weight: bold; font-size: 14px; margin-bottom: 3px;">Order #${ord.orderNumber}</div>
-                        <div style="color: var(--text-muted); font-size: 12px; margin-bottom: 2px;">Pack: ${ord.packages}</div>
-                        <div style="color: var(--success-green); font-size: 12px;">৳${ord.price} | ${ord.payment}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-weight: bold; font-size: 14px; margin-bottom: 5px;">
+                        <span>Order #${ord.id}</span>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="invoice-btn" onclick="viewInvoice(${ord.id})">Invoice</button>
+                            <span style="color: var(--success-green); font-size: 12px;">Complete</span>
+                        </div>
                     </div>
-                    <button class="invoice-btn" onclick="openInvoice(${index})">View Invoice</button>
+                    <div style="color: var(--text-muted); font-size: 13px; margin-bottom: 3px;">Package: ${ord.packages}</div>
+                    <div style="color: var(--text-muted); font-size: 12px;">Price: ৳${ord.price} | Payment: ${ord.payment} | Date: ${ord.date}</div>
                 </div>
             `;
         });
         container.innerHTML = html;
     }
-
-    function openInvoice(index) {
-        let ord = ordersList[index];
-        let container = document.getElementById('invoiceDetailsContainer');
-        container.innerHTML = `
-            <div class="invoice-row"><span>Invoice Number:</span> <span>${ord.invoiceNumber}</span></div>
-            <div class="invoice-row"><span>Invoice Date:</span> <span>${ord.invoiceDate}</span></div>
-            <div class="invoice-row"><span>Order Number:</span> <span>${ord.orderNumber}</span></div>
-            <div class="invoice-row"><span>Order Date:</span> <span>${ord.orderDate}</span></div>
-            <div class="invoice-row"><span>Gmail:</span> <span>${ord.gmail}</span></div>
-            <div class="invoice-row"><span>WhatsApp Number:</span> <span>${ord.whatsapp}</span></div>
-            <div class="invoice-row"><span>Payment Method:</span> <span>${ord.payment}</span></div>
-            <div class="invoice-row"><span>Purchase Pack:</span> <span>${ord.packages}</span></div>
-            <div class="invoice-row" style="border-bottom:none; margin-top:8px; font-size:15px;"><span>Total Amount:</span> <span style="color:var(--success-green);">৳${ord.price}</span></div>
-        `;
-        document.getElementById('invoiceModal').style.display = 'flex';
-    }
-
-    function closeInvoiceModal() {
-        document.getElementById('invoiceModal').style.display = 'none';
-    }
+    
+    document.querySelectorAll('button, .pkg-card, .pay-method, .dock-item, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .device-card').forEach(elem => {
+        elem.addEventListener('click', function(e) {
+            let ripple = document.createElement('span');
+            ripple.classList.add('liquid-ripple');
+            
+            let rect = this.getBoundingClientRect();
+            let size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - rect.left - size/2}px`;
+            ripple.style.top = `${e.clientY - rect.top - size/2}px`;
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
 </script>
 </body>
 </html>
