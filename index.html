@@ -1163,7 +1163,6 @@
         <button class="glass-btn" onclick="hideGlassAlert()">OK</button>
     </div>
 </div>
-
 <!-- Invoice Modal Popup -->
 <div class="contact-modal" id="invoiceModal">
     <div class="contact-modal-content" style="max-width: 420px; text-align: left;">
@@ -1180,7 +1179,6 @@
         </div>
     </div>
 </div>
-
 <!-- Firebase SDK Imports -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -1399,11 +1397,9 @@
         let modal = document.getElementById('invoiceModal');
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
-
     function viewInvoice(orderId) {
         let order = ordersList.find(o => o.id == orderId);
         if(!order) return;
-
         let content = `
             <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 10px;">
                 <h4 style="margin: 0; color: white; font-size: 16px;">E-Football Coin Shop BD</h4>
@@ -1424,7 +1420,6 @@
         document.getElementById('invoiceDetailsContent').innerHTML = content;
         toggleInvoiceModal();
     }
-
     window.onclick = function(event) {
         let modal = document.getElementById('contactModal');
         let invoiceModal = document.getElementById('invoiceModal');
