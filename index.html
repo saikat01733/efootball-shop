@@ -8,8 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
     
     <style>
+        /* CSS Variables for Themes */
         :root {
+            /* Dark Theme (Default) */
             --bg-color: #0d0e12;
+            --bg-image: radial-gradient(circle at 15% 15%, rgba(255, 62, 62, 0.2) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 85%, rgba(0, 136, 204, 0.15) 0%, transparent 45%);
             --accent-red: #ff3e3e;
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
@@ -17,30 +21,58 @@
             --glass-bg: rgba(255, 255, 255, 0.08);
             --glass-border: rgba(255, 255, 255, 0.25);
             --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+            --section-bg: rgba(255, 255, 255, 0.05);
+            --input-bg: rgba(255, 255, 255, 0.06);
+            --card-hover-bg: rgba(255, 255, 255, 0.14);
+            --dock-bg: rgba(255, 255, 255, 0.08);
+            --modal-bg: rgba(255, 255, 255, 0.08);
         }
+
+        [data-theme="light"] {
+            /* Light Theme */
+            --bg-color: #e2e8f0;
+            --bg-image: radial-gradient(circle at 15% 15%, rgba(255, 62, 62, 0.12) 0%, transparent 45%),
+                        radial-gradient(circle at 85% 85%, rgba(0, 136, 204, 0.12) 0%, transparent 45%);
+            --accent-red: #e11d48;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --success-green: #16a34a;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.8);
+            --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+            --section-bg: rgba(255, 255, 255, 0.55);
+            --input-bg: rgba(255, 255, 255, 0.85);
+            --card-hover-bg: rgba(255, 255, 255, 0.9);
+            --dock-bg: rgba(255, 255, 255, 0.7);
+            --modal-bg: rgba(255, 255, 255, 0.85);
+        }
+
         body {
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(255, 62, 62, 0.2) 0%, transparent 45%),
-                radial-gradient(circle at 85% 85%, rgba(0, 136, 204, 0.15) 0%, transparent 45%);
+            background-image: var(--bg-image);
             background-attachment: fixed;
             color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 20px;
             padding-bottom: 90px;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
+
         .container {
             max-width: 550px;
             margin: 0 auto;
         }
+
         .header {
             text-align: center;
             margin-bottom: 25px;
+            position: relative;
         }
+
         .header h2 {
             font-family: 'Bodoni Moda', serif;
-            color: #ffffff;
+            color: var(--text-main);
             font-size: 28px;
             font-weight: 700;
             letter-spacing: 1.5px;
@@ -48,11 +80,99 @@
             margin: 0;
             text-shadow: 0 2px 10px rgba(255, 62, 62, 0.3);
         }
+
+        /* PREMIUM SWITCH UI STYLES */
+        .theme-switch-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .theme-switch {
+            position: relative;
+            width: 140px;
+            height: 52px;
+            background: #d8dde6;
+            border-radius: 30px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: inset 5px 5px 10px #b8bdc7, inset -5px -5px 10px #ffffff;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+            user-select: none;
+        }
+
+        [data-theme="dark"] .theme-switch {
+            background: #18191e;
+            box-shadow: inset 4px 4px 8px #090a0d, inset -4px -4px 8px #27282f;
+        }
+
+        .switch-icon {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        .switch-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #7e8798;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: stroke 0.3s ease;
+        }
+
+        .switch-slider {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffb300, #ff8c00);
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), background 0.4s ease, box-shadow 0.4s ease;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .switch-slider svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: #ffffff;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* Dark Mode Switcher State */
+        [data-theme="dark"] .theme-switch .switch-slider {
+            transform: translateX(83px);
+            background: linear-gradient(135deg, #333742, #1f222a);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 2px 3px rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="light"] .sun-icon svg { stroke: #ffffff; }
+        [data-theme="dark"] .moon-icon svg { stroke: #ffffff; }
+
+        /* General UI Adjustments for Light/Dark */
         .badge-container {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 12px;
+            margin-top: 15px;
         }
         .badge-item {
             display: flex;
@@ -67,10 +187,11 @@
             -webkit-backdrop-filter: blur(25px) saturate(180%);
             border: 1px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
+            color: var(--text-main);
         }
         .badge-safety {
-            background-color: rgba(255, 62, 62, 0.2);
-            border: 1px solid rgba(255, 62, 62, 0.5);
+            background-color: rgba(255, 62, 62, 0.15);
+            border: 1px solid rgba(255, 62, 62, 0.4);
             color: var(--accent-red);
         }
         .badge-time {
@@ -83,16 +204,15 @@
         }
         
         .section {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--section-bg);
             backdrop-filter: blur(30px) saturate(200%);
             -webkit-backdrop-filter: blur(30px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 28px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
-                        inset 0 2px 3px rgba(255, 255, 255, 0.3),
-                        inset 0 -2px 3px rgba(0, 0, 0, 0.5);
+            box-shadow: var(--glass-shadow);
+            transition: background 0.4s ease, border 0.4s ease;
         }
         .section-title {
             display: flex;
@@ -100,6 +220,7 @@
             margin-bottom: 15px;
             font-weight: bold;
             font-size: 16px;
+            color: var(--text-main);
         }
         .step-number {
             background: linear-gradient(135deg, var(--accent-red), #ff6b6b);
@@ -132,42 +253,37 @@
         input, select {
             width: 100%;
             padding: 12px;
-            background: rgba(255, 255, 255, 0.06);
+            background: var(--input-bg);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
             border-radius: 16px;
-            color: white;
+            color: var(--text-main);
             box-sizing: border-box;
             font-size: 14px;
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1);
         }
         input:focus, select:focus {
             border-color: var(--accent-red);
-            background: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.35), inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 15px rgba(255, 62, 62, 0.25);
             outline: none;
         }
         
         .device-card, .pkg-card, .pay-method, .copy-btn, .invoice-btn, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .glass-btn {
             position: relative;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--glass-bg);
             backdrop-filter: blur(20px) saturate(200%);
             -webkit-backdrop-filter: blur(20px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             cursor: pointer;
             transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 
-                0 10px 25px rgba(0, 0, 0, 0.4),
-                inset 0 2px 3px rgba(255, 255, 255, 0.35),
-                inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--glass-shadow);
+            color: var(--text-main);
         }
         .device-card:hover, .pkg-card:hover, .pay-method:hover, .social-btn:hover {
             transform: translateY(-2px) scale(1.01);
-            background: rgba(255, 255, 255, 0.14);
-            border-color: rgba(255, 255, 255, 0.4);
+            background: var(--card-hover-bg);
         }
         .soft-press {
             animation: softPressEffect 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -180,10 +296,8 @@
         .device-card.active, .pkg-card.active, .pay-method.active, .auth-tab-btn.active { 
             background: linear-gradient(135deg, rgba(255, 62, 62, 0.45), rgba(255, 107, 107, 0.25));
             border-color: rgba(255, 150, 150, 0.7);
-            box-shadow: 
-                0 12px 28px rgba(255, 62, 62, 0.4),
-                inset 0 2px 5px rgba(255, 255, 255, 0.8),
-                inset 0 -2px 5px rgba(180, 0, 0, 0.5);
+            box-shadow: 0 12px 28px rgba(255, 62, 62, 0.3);
+            color: var(--text-main);
         }
         .device-selector-container {
             display: grid;
@@ -240,11 +354,10 @@
             font-size: 13px;
         }
         .pkg-price { 
-            color: #ff6b6b; 
+            color: var(--accent-red); 
             font-weight: bold; 
             margin-top: 6px; 
             font-size: 15px;
-            text-shadow: 0 2px 8px rgba(255, 62, 62, 0.3);
         }
         .pkg-stock {
             color: var(--success-green);
@@ -264,24 +377,24 @@
         }
         
         .payment-instructions {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(15px);
             padding: 12px 16px;
             border-radius: 16px;
             margin-top: 15px;
             font-size: 13px;
-            color: #cbd5e1;
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border);
         }
         .payment-instructions span {
             color: #38bdf8;
             font-weight: bold;
         }
         .copy-btn {
-            background: rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 0.6);
             color: white;
             padding: 6px 14px;
             font-size: 12px;
@@ -289,7 +402,7 @@
             font-weight: 600;
         }
         .invoice-btn {
-            background: rgba(34, 197, 94, 0.4);
+            background: rgba(34, 197, 94, 0.6);
             color: white;
             padding: 6px 14px;
             font-size: 12px;
@@ -297,10 +410,10 @@
             font-weight: 600;
         }
         .total-display-btn {
-            background: rgba(0, 0, 0, 0.4);
+            background: var(--input-bg);
             backdrop-filter: blur(10px);
-            color: #38bdf8;
-            border: 1px dashed rgba(255, 255, 255, 0.25);
+            color: #0284c7;
+            border: 1px dashed var(--glass-border);
             display: inline-block;
             padding: 10px 20px;
             border-radius: 16px;
@@ -308,7 +421,6 @@
             font-size: 14px;
             margin-top: 15px;
         }
-
         .truck-order-btn {
             position: relative;
             width: 100%;
@@ -319,7 +431,7 @@
             overflow: hidden;
             cursor: pointer;
             margin-top: 15px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         .truck-btn-text {
             position: absolute;
@@ -390,22 +502,15 @@
             border-left: 25px solid rgba(255, 235, 59, 0);
             transition: border-left-color 0.3s ease 0.8s;
         }
-        .truck-order-btn.animating .truck-btn-text {
-            opacity: 0;
-        }
-        .truck-order-btn.animating .road-line {
-            opacity: 1;
-        }
-        .truck-order-btn.animating .truck-vehicle {
-            left: 110%;
-        }
-        .truck-order-btn.animating .truck-headlight {
-            border-left-color: rgba(255, 235, 59, 0.85);
-        }
+        .truck-order-btn.animating .truck-btn-text { opacity: 0; }
+        .truck-order-btn.animating .road-line { opacity: 1; }
+        .truck-order-btn.animating .truck-vehicle { left: 110%; }
+        .truck-order-btn.animating .truck-headlight { border-left-color: rgba(255, 235, 59, 0.85); }
+
         .social-footer {
             margin-top: 30px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--glass-border);
             padding-top: 20px;
         }
         .social-footer p {
@@ -425,7 +530,7 @@
             padding: 12px 20px;
             border-radius: 18px;
             text-decoration: none;
-            color: white;
+            color: var(--text-main);
             font-weight: 600;
             font-size: 13px;
         }
@@ -437,7 +542,7 @@
             z-index: 1000;
         }
         .contact-float-btn {
-            background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 107, 107, 0.3));
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.8), rgba(255, 107, 107, 0.6));
             color: white;
             padding: 12px 22px;
             border-radius: 35px;
@@ -453,7 +558,6 @@
             height: 18px;
             fill: white;
         }
-
         .bottom-dock {
             position: fixed;
             bottom: 12px;
@@ -461,19 +565,16 @@
             transform: translateX(-50%);
             width: 90%;
             max-width: 500px;
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--dock-bg);
             backdrop-filter: blur(30px) saturate(200%);
             -webkit-backdrop-filter: blur(30px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--glass-border);
             border-radius: 35px;
             display: flex;
             justify-content: space-around;
             padding: 8px 10px;
             z-index: 999;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.7),
-                inset 0 2px 3px rgba(255, 255, 255, 0.4),
-                inset 0 -2px 3px rgba(0, 0, 0, 0.4);
+            box-shadow: var(--glass-shadow);
         }
         .dock-item {
             background: none;
@@ -497,15 +598,14 @@
             margin-bottom: 3px;
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
         .dock-item:hover, .dock-item.magnify-pop {
             transform: scale(1.35) translateY(-6px);
-            color: #ffffff;
+            color: var(--text-main);
             z-index: 10;
         }
         .dock-item.active {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
             transform: scale(1.2) translateY(-4px);
         }
@@ -519,7 +619,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             z-index: 1100;
@@ -529,15 +629,15 @@
             box-sizing: border-box;
         }
         .contact-modal-content {
-            background: rgba(255, 255, 255, 0.08);
+            background: var(--modal-bg);
             backdrop-filter: blur(35px) saturate(200%);
             -webkit-backdrop-filter: blur(35px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--glass-border);
             width: 100%;
             max-width: 380px;
             border-radius: 28px;
             padding: 22px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            box-shadow: var(--glass-shadow);
             position: relative;
         }
         .modal-header {
@@ -545,7 +645,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
             padding-bottom: 10px;
         }
         .modal-header h3 {
@@ -554,8 +654,8 @@
             color: var(--text-main);
         }
         .close-modal {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: var(--input-bg);
+            border: 1px solid var(--glass-border);
             color: var(--text-muted);
             width: 32px;
             height: 32px;
@@ -578,28 +678,26 @@
             padding: 14px;
             border-radius: 18px;
             text-decoration: none;
-            color: white;
+            color: var(--text-main);
             font-weight: 600;
             font-size: 14px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: inset 0 1px 2px rgba(255,255,255,0.3);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
         }
-        .contact-option-item svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+        .contact-option-item svg { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
         
         .tab-content { display: none; }
         .tab-content.active-tab { display: block; }
         .empty-orders { text-align: center; padding: 40px 20px; color: var(--text-muted); }
         .order-card-item {
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--input-bg);
             backdrop-filter: blur(10px);
             padding: 15px;
             border-radius: 18px;
             margin-bottom: 12px;
             border-left: 4px solid var(--accent-red);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
         }
-
         .lamp-login-container {
             display: flex;
             flex-direction: column;
@@ -625,7 +723,7 @@
             border-radius: 40px 40px 10px 10px;
             position: relative;
             z-index: 3;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
             transition: background 0.4s ease, box-shadow 0.4s ease;
         }
         .lamp-stand {
@@ -641,7 +739,6 @@
             border-radius: 12px 12px 4px 4px;
             z-index: 2;
         }
-
         .pull-string {
             position: absolute;
             top: 42px;
@@ -663,10 +760,7 @@
             border-radius: 50%;
             box-shadow: 0 2px 5px rgba(0,0,0,0.4);
         }
-        .pull-string.pulled {
-            transform: translateY(15px);
-        }
-
+        .pull-string.pulled { transform: translateY(15px); }
         .lamp-glow {
             position: absolute;
             top: 40px;
@@ -688,17 +782,16 @@
             background: #fff;
             box-shadow: 0 0 30px rgba(255, 220, 100, 0.8);
         }
-
         .interactive-auth-box {
             width: 100%;
             max-width: 360px;
-            background: rgba(20, 22, 30, 0.6);
+            background: var(--modal-bg);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border);
             border-radius: 28px;
             padding: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: var(--glass-shadow);
             opacity: 0.2;
             pointer-events: none;
             transform: translateY(10px);
@@ -747,18 +840,18 @@
         .divider::before, .divider::after {
             content: '';
             flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--glass-border);
         }
         .divider::before { margin-right: .5em; }
         .divider::after { margin-left: .5em; }
         
         .auth-toggle-tabs {
             display: flex;
-            background: rgba(0, 0, 0, 0.3);
+            background: var(--input-bg);
             border-radius: 16px;
             padding: 4px;
             margin-bottom: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--glass-border);
         }
         .auth-tab-btn {
             flex: 1;
@@ -771,7 +864,7 @@
             border-radius: 12px;
         }
         .buy-btn-style {
-            background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 90, 90, 0.4));
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.7), rgba(255, 90, 90, 0.5));
             border: 1px solid rgba(255, 150, 150, 0.6);
             color: white;
             width: 100%;
@@ -788,7 +881,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
@@ -800,24 +893,24 @@
         }
         .glass-overlay.active { opacity: 1; visibility: visible; }
         .glass-box {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--modal-bg);
             backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8), inset 0 2px 3px rgba(255,255,255,0.4);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
             padding: 25px 20px;
             width: 85%;
             max-width: 320px;
             border-radius: 28px;
             text-align: center;
-            color: #ffffff;
+            color: var(--text-main);
             transform: scale(0.8);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .glass-overlay.active .glass-box { transform: scale(1); }
-        .glass-title { font-size: 14px; font-weight: 600; color: rgba(255, 255, 255, 0.6); margin-bottom: 10px; }
-        .glass-message { font-size: 16px; font-weight: 500; color: #ffffff; margin-bottom: 20px; }
+        .glass-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin-bottom: 10px; }
+        .glass-message { font-size: 16px; font-weight: 500; color: var(--text-main); margin-bottom: 20px; }
         .glass-btn {
-            background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 90, 90, 0.4));
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.7), rgba(255, 90, 90, 0.5));
             border: 1px solid rgba(255, 150, 150, 0.5);
             color: #ffffff;
             padding: 12px 30px;
@@ -829,10 +922,27 @@
         }
     </style>
 </head>
-<body>
+<body data-theme="dark">
 <div class="container">
     <div class="header">
         <h2>E-Football Coin Shop BD</h2>
+        
+        <!-- PREMIUM SWITCH UI CONTAINER -->
+        <div class="theme-switch-wrapper">
+            <div class="theme-switch" id="themeSwitchBtn" onclick="toggleTheme()">
+                <div class="switch-icon sun-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </div>
+                <div class="switch-slider" id="switchSlider">
+                    <!-- Dynamic Icon inside Knob -->
+                    <svg id="sliderIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </div>
+                <div class="switch-icon moon-icon">
+                    <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </div>
+            </div>
+        </div>
+
         <div class="badge-container">
             <div class="badge-item badge-safety">
                 <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
@@ -866,7 +976,7 @@
                         </div>
                     </div>
                     <div class="device-card" onclick="selectDevice(this, 'iOS')">
-                        <div class="device-icon" style="color: #ffffff;">
+                        <div class="device-icon" style="color: var(--text-main);">
                             <svg viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.09c.62-.75 1.04-1.79.93-2.83-.92.04-2.03.62-2.69 1.37-.58.67-1.1 1.74-.96 2.77 1.03.08 2.1-.51 2.72-1.31z"/></svg>
                         </div>
                         <div class="device-info">
@@ -891,12 +1001,10 @@
                 <input type="text" id="whatsapp" placeholder="Enter your WhatsApp number">
             </div>
         </div>
-
         <div class="section">
             <div class="section-title">
                 <div class="step-number">2</div> Select Package (Multiple allowed)
             </div>
-            <!-- প্যাকেজের সংশোধিত ও সঠিক মূল্যতালিকা -->
             <div class="pkg-grid" id="pkgGrid">
                 <div class="pkg-card" onclick="togglePackage(this, '130 Coin', 140)">
                     <div>
@@ -910,7 +1018,7 @@
                         <div class="pkg-name">260 Coin</div>
                         <div class="pkg-price">৳***</div>
                     </div>
-                    <div class="pkg-stock">🔴 Out of Stock</div>
+                    <div class="pkg-stock" style="color: red;">🔴 Out of Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '300 Coin', 320)">
                     <div>
@@ -938,7 +1046,7 @@
                         <div class="pkg-name">840 Coin</div>
                         <div class="pkg-price">৳***</div>
                     </div>
-                    <div class="pkg-stock">🔴 Out of Stock</div>
+                    <div class="pkg-stock" style="color: red;">🔴 Out of Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '1040 Coin', 1080)">
                     <div>
@@ -952,7 +1060,7 @@
                         <div class="pkg-name">1630 Coin</div>
                         <div class="pkg-price">৳****</div>
                     </div>
-                    <div class="pkg-stock">🔴 Out of Stock</div>
+                    <div class="pkg-stock" style="color: red;">🔴 Out of Stock</div>
                 </div>
                 <div class="pkg-card" onclick="togglePackage(this, '2130 Coin', 2200)">
                     <div>
@@ -998,7 +1106,6 @@
                 </div>
             </div>
         </div>
-
         <div class="section">
             <div class="section-title">
                 <div class="step-number">3</div> Payment Method
@@ -1031,7 +1138,6 @@
                 </div>
             </div>
         </div>
-
         <div class="social-footer">
             <p>Connect With Us</p>
             <div class="social-buttons">
@@ -1044,7 +1150,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 2: WALLET VIEW -->
     <div id="tab-wallet" class="tab-content">
         <div class="section">
@@ -1056,7 +1161,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 3: ORDERS VIEW -->
     <div id="tab-orders" class="tab-content">
         <div class="section">
@@ -1066,7 +1170,6 @@
             </div>
         </div>
     </div>
-
     <!-- TAB 4: CODES VIEW -->
     <div id="tab-codes" class="tab-content">
         <div class="section">
@@ -1074,7 +1177,6 @@
             <div class="empty-orders">বর্তমানে কোনো কুপন বা রিডিম কোড নেই।</div>
         </div>
     </div>
-
     <!-- TAB 5: ACCOUNT VIEW -->
     <div id="tab-account" class="tab-content">
         <div class="lamp-login-container" id="lampContainer">
@@ -1087,16 +1189,15 @@
                 </div>
                 <div class="lamp-glow"></div>
             </div>
-
             <div class="interactive-auth-box">
                 <div class="welcome-badge">স্বাগতম!</div>
-                <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
+                <h3 style="margin-top: 0; color: var(--text-main);">E-Football Coin Shop BD</h3>
                 <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
                     ল্যাম্প টান দিয়ে আলো জ্বালান এবং লগইন করুন।
                 </p>
                 <div id="userProfileView" style="display: none;">
                     <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
-                    <button class="buy-btn-style" style="background: rgba(255,255,255,0.1); margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
+                    <button class="buy-btn-style" style="background: rgba(255,255,255,0.1); margin-top: 10px; color: var(--text-main);" onclick="firebaseLogout()">Logout</button>
                 </div>
                 <div id="authFormView">
                     <button class="google-btn" onclick="firebaseGoogleLogin()">
@@ -1122,7 +1223,7 @@
                         </div>
                         <div style="display: flex; gap: 10px;">
                             <button class="buy-btn-style" onclick="firebaseLogin()">Login</button>
-                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.4);" onclick="firebaseRegister()">Register</button>
+                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.6);" onclick="firebaseRegister()">Register</button>
                         </div>
                     </div>
                     <div id="phoneAuthSection" style="display: none; text-align: left;">
@@ -1139,7 +1240,7 @@
                         </div>
                         <div style="display: flex; gap: 10px;">
                             <button class="buy-btn-style" onclick="firebasePhoneLogin()">Login</button>
-                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.4);" onclick="firebasePhoneRegister()">Register</button>
+                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.6);" onclick="firebasePhoneRegister()">Register</button>
                         </div>
                     </div>
                 </div>
@@ -1147,14 +1248,12 @@
         </div>
     </div>
 </div>
-
 <div class="contact-float-container">
     <button class="contact-float-btn" onclick="toggleContactModal()">
         <svg viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-4.79 2.44c-.32.16-.7.11-.97-.13l-3.3-3.08-3.08 3.3c-.27.24-.65.29-.97.13L3.53 17.38c-.32-.17-.53-.5-.53-.88v-3.79c0-.28.11-.53.29-.72l4.8-4.8c.38-.38 1.02-.38 1.4 0l1.24 1.24 1.24-1.24c.38-.38 1.02-.38 1.4 0l4.8 4.8c.18.19.29.44.29.72v3.79zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
         Contact Us
     </button>
 </div>
-
 <div class="contact-modal" id="contactModal">
     <div class="contact-modal-content">
         <div class="modal-header">
@@ -1181,7 +1280,6 @@
         </div>
     </div>
 </div>
-
 <div class="bottom-dock">
     <button class="dock-item active" onclick="switchTab(this, 'tab-home')">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -1204,7 +1302,6 @@
         Account
     </button>
 </div>
-
 <div class="glass-overlay" id="glassOverlay">
     <div class="glass-box">
         <div class="glass-title" id="glassTitle">site.com says</div>
@@ -1212,17 +1309,16 @@
         <button class="glass-btn" onclick="hideGlassAlert()">OK</button>
     </div>
 </div>
-
 <div class="contact-modal" id="invoiceModal">
     <div class="contact-modal-content" style="max-width: 420px; text-align: left;">
         <div class="modal-header">
             <h3>Invoice / Cash Memo</h3>
             <button class="close-modal" onclick="toggleInvoiceModal()">&times;</button>
         </div>
-        <div id="invoiceDetailsContent" style="font-size: 13px; color: #cbd5e1; line-height: 1.6;"></div>
+        <div id="invoiceDetailsContent" style="font-size: 13px; color: var(--text-muted); line-height: 1.6;"></div>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
             <button class="buy-btn-style" style="margin: 0;" onclick="window.print()">Print / Download</button>
-            <button class="buy-btn-style" style="margin: 0; background: rgba(255,255,255,0.1);" onclick="toggleInvoiceModal()">Close</button>
+            <button class="buy-btn-style" style="margin: 0; background: rgba(255,255,255,0.1); color: var(--text-main);" onclick="toggleInvoiceModal()">Close</button>
         </div>
     </div>
 </div>
@@ -1254,7 +1350,6 @@
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const auth = getAuth(app);
-
     window.firebaseLogin = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -1272,7 +1367,6 @@
             }
         });
     }
-
     window.firebaseRegister = function() {
         let email = document.getElementById('authEmail').value;
         let password = document.getElementById('authPassword').value;
@@ -1284,14 +1378,12 @@
         .then(() => { showGlassAlert('eFootball Shop', 'রেজিস্ট্রেশন সফল হয়েছে!'); })
         .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.firebaseGoogleLogin = function() {
         const provider = new GoogleAuthProvider();
         signInWithPopup(auth, provider)
         .then(() => { showGlassAlert('eFootball Shop', 'Google দিয়ে সফলভাবে লগইন হয়েছে!'); })
         .catch((error) => { showGlassAlert('eFootball Shop', "লগইন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.forgotPassword = function() {
         let email = document.getElementById('authEmail').value;
         if(!email) {
@@ -1302,7 +1394,6 @@
         .then(() => { showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট লিঙ্ক আপনার ইমেইলে পাঠানো হয়েছে। ইনবক্স চেক করুন।'); })
         .catch((error) => { showGlassAlert('eFootball Shop', "ত্রুটি: " + error.message); });
     }
-
     window.firebasePhoneLogin = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
@@ -1321,7 +1412,6 @@
             }
         });
     }
-
     window.firebasePhoneRegister = function() {
         let phone = document.getElementById('authPhone').value;
         let password = document.getElementById('authPhonePassword').value;
@@ -1334,7 +1424,6 @@
         .then(() => { showGlassAlert('eFootball Shop', 'ফোন নম্বর দিয়ে রেজিস্ট্রেশন সফল হয়েছে!'); })
         .catch((error) => { showGlassAlert('eFootball Shop', "রেজিস্ট্রেশন ব্যর্থ হয়েছে: " + error.message); });
     }
-
     window.forgotPhonePassword = function() {
         let phone = document.getElementById('authPhone').value;
         if(!phone) {
@@ -1350,11 +1439,9 @@
             showGlassAlert('eFootball Shop', 'এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!'); 
         });
     }
-
     window.firebaseLogout = function() {
         signOut(auth).then(() => { showGlassAlert('eFootball Shop', 'লগআউট হয়েছে!'); }).catch((error) => { showGlassAlert('eFootball Shop', error.message); });
     }
-
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
@@ -1375,33 +1462,52 @@
 </script>
 
 <script>
-    let selectedPackages = []; 
-    let selectedPay = "";
-    
-    let ordersList = JSON.parse(localStorage.getItem('savedOrders')) || [];
-    
+    // THEME TOGGLE SCRIPT
+    const sunSvg = `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>`;
+    const moonSvg = `<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>`;
+
+    function toggleTheme() {
+        const currentTheme = document.body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+    }
+
+    function setTheme(theme) {
+        document.body.setAttribute('data-theme', theme);
+        localStorage.setItem('userTheme', theme);
+        
+        const sliderIcon = document.getElementById('sliderIcon');
+        if(theme === 'light') {
+            sliderIcon.innerHTML = sunSvg;
+        } else {
+            sliderIcon.innerHTML = moonSvg;
+        }
+    }
+
+    // Auto-load saved theme or default to dark
     document.addEventListener("DOMContentLoaded", function() {
+        const savedTheme = localStorage.getItem('userTheme') || 'dark';
+        setTheme(savedTheme);
         renderOrders();
     });
-    
+
+    let selectedPackages = []; 
+    let selectedPay = "";
+    let ordersList = JSON.parse(localStorage.getItem('savedOrders')) || [];
+
     function showGlassAlert(title, message) {
         document.getElementById('glassTitle').innerText = title + ' says';
         document.getElementById('glassMessage').innerText = message;
         document.getElementById('glassOverlay').classList.add('active');
     }
-
     function hideGlassAlert() {
         document.getElementById('glassOverlay').classList.remove('active');
     }
-
     function selectDevice(element, deviceName) {
-        document.querySelectorAll('.device-card').forEach(card => {
-            card.classList.remove('active');
-        });
+        document.querySelectorAll('.device-card').forEach(card => card.classList.remove('active'));
         element.classList.add('active');
         document.getElementById('device').value = deviceName;
     }
-
     function switchAuthMode(mode) {
         let emailBtn = document.getElementById('emailTabBtn');
         let phoneBtn = document.getElementById('phoneTabBtn');
@@ -1419,7 +1525,6 @@
             emailSec.style.display = 'none';
         }
     }
-
     function togglePackage(el, name, price) {
         let index = selectedPackages.findIndex(pkg => pkg.name === name);
         if (index > -1) {
@@ -1431,12 +1536,10 @@
         }
         updateTotalPrice();
     }
-
     function updateTotalPrice() {
         let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
         document.getElementById('totalDisplay').innerText = `Total Price: ৳${totalPrice}`;
     }
-
     function selectPay(el, method) {
         document.querySelectorAll('.pay-method').forEach(c => c.classList.remove('active'));
         el.classList.add('active');
@@ -1446,7 +1549,6 @@
         instructionBox.style.display = 'flex';
         methodNameSpan.innerText = method;
     }
-
     function copyNumber() {
         let numberText = document.getElementById('payNumber').innerText;
         navigator.clipboard.writeText(numberText).then(() => {
@@ -1455,23 +1557,20 @@
             setTimeout(() => { copyBtn.innerText = "Copy"; }, 2000);
         });
     }
-
     function toggleContactModal() {
         let modal = document.getElementById('contactModal');
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
-
     function toggleInvoiceModal() {
         let modal = document.getElementById('invoiceModal');
         modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
     }
-
     function viewInvoice(orderId) {
         let order = ordersList.find(o => o.id == orderId);
         if(!order) return;
         let content = `
-            <div style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; margin-bottom: 10px;">
-                <h4 style="margin: 0; color: white; font-size: 16px;">E-Football Coin Shop BD</h4>
+            <div style="border-bottom: 1px solid var(--glass-border); padding-bottom: 10px; margin-bottom: 10px;">
+                <h4 style="margin: 0; color: var(--text-main); font-size: 16px;">E-Football Coin Shop BD</h4>
                 <p style="margin: 2px 0; font-size: 12px; color: var(--text-muted);">Official Digital Invoice</p>
             </div>
             <p><strong>Order ID:</strong> #${order.id}</p>
@@ -1481,7 +1580,7 @@
             <p><strong>Packages:</strong> ${order.packages}</p>
             <p><strong>Payment Method:</strong> ${order.payment}</p>
             <p><strong>Sender No (Last 4):</strong> ${order.lastDigit || 'N/A'}</p>
-            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; margin-top: 10px; display: flex; justify-content: space-between; font-size: 15px; color: white; font-weight: bold;">
+            <div style="border-top: 1px solid var(--glass-border); padding-top: 10px; margin-top: 10px; display: flex; justify-content: space-between; font-size: 15px; color: var(--text-main); font-weight: bold;">
                 <span>Total Paid:</span>
                 <span style="color: var(--success-green);">৳${order.price}</span>
             </div>
@@ -1489,14 +1588,12 @@
         document.getElementById('invoiceDetailsContent').innerHTML = content;
         toggleInvoiceModal();
     }
-
     window.onclick = function(event) {
         let modal = document.getElementById('contactModal');
         let invoiceModal = document.getElementById('invoiceModal');
         if (event.target === modal) { modal.style.display = 'none'; }
         if (event.target === invoiceModal) { invoiceModal.style.display = 'none'; }
     }
-
     function switchTab(btn, tabId) {
         document.querySelectorAll('.dock-item').forEach(item => {
             item.classList.remove('active');
@@ -1512,7 +1609,6 @@
         document.getElementById(tabId).classList.add('active-tab');
         window.scrollTo(0, 0);
     }
-
     function orderNow() {
         let device = document.getElementById('device').value;
         let gmail = document.getElementById('gmail').value;
@@ -1540,13 +1636,11 @@
         }
         
         if(truckBtn.classList.contains('animating')) return;
-
         truckBtn.classList.add('animating');
         setTimeout(() => {
             btnText.innerText = "Order Placed";
             btnText.style.opacity = "1";
         }, 1800);
-
         setTimeout(() => {
             let pkgNames = selectedPackages.map(p => p.name).join(', ');
             let totalPrice = selectedPackages.reduce((sum, pkg) => sum + pkg.price, 0);
@@ -1564,7 +1658,6 @@
             ordersList.unshift(newOrder);
             localStorage.setItem('savedOrders', JSON.stringify(ordersList));
             renderOrders();
-
             let msg = `*New Order - eFootball Coin Shop BD*%0A%0A` +
                       `📱 Device: ${device}%0A` +
                       `📧 Gmail: ${gmail}%0A` +
@@ -1576,14 +1669,12 @@
                       `🔢 Last 4 Digit: ${lastDigit}`;
             
             window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
-
             setTimeout(() => {
                 truckBtn.classList.remove('animating');
                 btnText.innerText = "Buy Now";
             }, 1000);
         }, 2300);
     }
-
     function renderOrders() {
         let container = document.getElementById('ordersListContainer');
         if (!container) return;
@@ -1609,7 +1700,6 @@
         });
         container.innerHTML = html;
     }
-
     function toggleLampLight() {
         let pullStr = document.getElementById('pullString');
         let lampCont = document.getElementById('lampContainer');
@@ -1620,7 +1710,6 @@
             lampCont.classList.toggle('light-on');
         }, 200);
     }
-
     document.querySelectorAll('button, .pkg-card, .pay-method, .dock-item, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .device-card').forEach(elem => {
         elem.addEventListener('click', function() {
             this.classList.add('soft-press');
