@@ -150,7 +150,7 @@
             outline: none;
         }
         
-        /* 1. JELLY BOUNCE CLICK ANIMATION RULE */
+        /* Interactive Soft Click Feedback Animation */
         .device-card, .pkg-card, .pay-method, .copy-btn, .invoice-btn, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .glass-btn {
             position: relative;
             background: rgba(255, 255, 255, 0.08);
@@ -159,28 +159,24 @@
             border: 1px solid rgba(255, 255, 255, 0.25);
             border-radius: 20px;
             cursor: pointer;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s, box-shadow 0.3s;
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 
                 0 10px 25px rgba(0, 0, 0, 0.4),
                 inset 0 2px 3px rgba(255, 255, 255, 0.35),
                 inset 0 -2px 3px rgba(0, 0, 0, 0.4);
-            user-select: none;
         }
         .device-card:hover, .pkg-card:hover, .pay-method:hover, .social-btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            background: rgba(255, 255, 255, 0.16);
-            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px) scale(1.01);
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.4);
         }
-
-        .jelly-anim {
-            animation: jellyBounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        .soft-press {
+            animation: softPressEffect 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
-        @keyframes jellyBounce {
-            0% { transform: scale(1, 1); }
-            30% { transform: scale(1.15, 0.85); }
-            50% { transform: scale(0.9, 1.1); }
-            70% { transform: scale(1.05, 0.95); }
-            100% { transform: scale(1, 1); }
+        @keyframes softPressEffect {
+            0% { transform: scale(1); }
+            50% { transform: scale(0.95); opacity: 0.9; }
+            100% { transform: scale(1); }
         }
 
         .device-card.active, .pkg-card.active, .pay-method.active, .auth-tab-btn.active { 
@@ -213,10 +209,24 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        .device-icon svg { width: 100%; height: 100%; fill: currentColor; }
-        .device-info { display: flex; flex-direction: column; }
-        .device-name { font-weight: bold; font-size: 14px; color: var(--text-main); }
-        .device-sub { font-size: 11px; color: var(--text-muted); }
+        .device-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+        .device-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .device-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+        .device-sub {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
 
         .pkg-grid {
             display: grid;
@@ -229,12 +239,33 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .pkg-name { font-weight: bold; font-size: 13px; }
-        .pkg-price { color: #ff6b6b; font-weight: bold; margin-top: 6px; font-size: 15px; text-shadow: 0 2px 8px rgba(255, 62, 62, 0.3); }
-        .pkg-stock { color: var(--success-green); font-size: 11px; margin-top: 6px; }
+        .pkg-name { 
+            font-weight: bold; 
+            font-size: 13px;
+        }
+        .pkg-price { 
+            color: #ff6b6b; 
+            font-weight: bold; 
+            margin-top: 6px; 
+            font-size: 15px;
+            text-shadow: 0 2px 8px rgba(255, 62, 62, 0.3);
+        }
+        .pkg-stock {
+            color: var(--success-green);
+            font-size: 11px;
+            margin-top: 6px;
+        }
         
-        .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .pay-method { padding: 15px; text-align: center; font-weight: bold; }
+        .pay-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+        .pay-method { 
+            padding: 15px; 
+            text-align: center; 
+            font-weight: bold;
+        }
         
         .payment-instructions {
             background: rgba(0, 0, 0, 0.4);
@@ -249,9 +280,26 @@
             justify-content: space-between;
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
-        .payment-instructions span { color: #38bdf8; font-weight: bold; }
-        .copy-btn { background: rgba(59, 130, 246, 0.4); color: white; padding: 6px 14px; font-size: 12px; border-radius: 12px; font-weight: 600; }
-        .invoice-btn { background: rgba(34, 197, 94, 0.4); color: white; padding: 6px 14px; font-size: 12px; border-radius: 12px; font-weight: 600; }
+        .payment-instructions span {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+        .copy-btn {
+            background: rgba(59, 130, 246, 0.4);
+            color: white;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        .invoice-btn {
+            background: rgba(34, 197, 94, 0.4);
+            color: white;
+            padding: 6px 14px;
+            font-size: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
         .total-display-btn {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -265,107 +313,101 @@
             margin-top: 15px;
         }
 
-        /* 2. CUSTOM TRUCK ANIMATED BUY BUTTON (VIDEO MATCHED) */
-        .animated-buy-btn {
+        /* ----------------------------------------------------
+           NEW VIDEO-INSPIRED TRUCK DELIVERY BUY BUTTON
+        ---------------------------------------------------- */
+        .truck-order-btn {
             position: relative;
             width: 100%;
-            height: 56px;
-            background: #181920;
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 28px;
-            margin-top: 15px;
-            cursor: pointer;
+            height: 60px;
+            background: #11141c;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 0 2px 3px rgba(255, 255, 255, 0.2);
         }
-        .animated-buy-btn .btn-label {
+        .truck-btn-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
             font-size: 16px;
-            font-weight: bold;
-            color: #ffffff;
+            font-weight: 700;
             letter-spacing: 0.5px;
+            z-index: 5;
             transition: opacity 0.3s ease;
         }
-        .btn-road {
+        .road-line {
             position: absolute;
             top: 50%;
             left: 0;
             width: 100%;
             height: 2px;
-            border-top: 2px dashed rgba(255, 255, 255, 0.6);
-            transform: translateY(-50%);
+            background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(255, 255, 255, 0.4) 10px, rgba(255, 255, 255, 0.4) 20px);
             opacity: 0;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s ease;
         }
-        .btn-truck {
+        .truck-vehicle {
             position: absolute;
-            left: -80px;
             top: 50%;
+            left: -80px;
             transform: translateY(-50%);
-            width: 60px;
-            height: 30px;
             display: flex;
             align-items: center;
-            z-index: 5;
-            opacity: 0;
+            z-index: 4;
+            transition: left 2.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .truck-body {
+        .truck-box {
             width: 38px;
-            height: 22px;
-            background: #e2e8f0;
+            height: 26px;
+            background: #ffffff;
             border-radius: 4px;
             position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        .truck-cabin {
-            width: 18px;
-            height: 20px;
-            background: #2563eb;
-            border-radius: 0 8px 6px 0;
-            position: relative;
-            margin-left: 1px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-        }
-        .truck-cabin::after {
+        .truck-box::after {
             content: '';
             position: absolute;
-            top: 3px;
-            right: 3px;
-            width: 7px;
-            height: 7px;
-            background: #93c5fd;
+            top: 4px;
+            left: 4px;
+            width: 8px;
+            height: 18px;
+            background: rgba(255,62,62,0.8);
             border-radius: 2px;
+        }
+        .truck-cab {
+            width: 20px;
+            height: 22px;
+            background: #ff3e3e;
+            border-radius: 0 6px 6px 0;
+            position: relative;
+            margin-left: 1px;
         }
         .truck-headlight {
             position: absolute;
+            top: 6px;
             right: -25px;
-            top: 3px;
             width: 0;
             height: 0;
-            border-top: 7px solid transparent;
-            border-bottom: 7px solid transparent;
-            border-right: 25px solid rgba(253, 224, 71, 0.85);
-            filter: drop-shadow(0 0 6px #fde047);
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 25px solid rgba(255, 235, 59, 0);
+            transition: border-left-color 0.3s ease 0.8s;
         }
-
-        .animated-buy-btn.animating {
-            pointer-events: none;
-            background: #0d0f14;
+        .truck-order-btn.animating .truck-btn-text {
+            opacity: 0;
         }
-        .animated-buy-btn.animating .btn-label { opacity: 0; }
-        .animated-buy-btn.animating .btn-road { opacity: 1; }
-        .animated-buy-btn.animating .btn-truck {
+        .truck-order-btn.animating .road-line {
             opacity: 1;
-            animation: driveTruck 2.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
         }
-        @keyframes driveTruck {
-            0% { left: -70px; }
-            45% { left: calc(50% - 30px); }
-            65% { left: calc(50% - 30px); }
-            100% { left: 105%; }
+        .truck-order-btn.animating .truck-vehicle {
+            left: 110%;
+        }
+        .truck-order-btn.animating .truck-headlight {
+            border-left-color: rgba(255, 235, 59, 0.85);
         }
 
         .social-footer {
@@ -374,15 +416,55 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
         }
-        .social-footer p { color: var(--text-muted); font-size: 14px; margin-bottom: 12px; }
-        .social-buttons { display: flex; justify-content: center; gap: 12px; }
-        .social-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 18px; text-decoration: none; color: white; font-weight: 600; font-size: 13px; }
+        .social-footer p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 18px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 13px;
+        }
         
-        .contact-float-container { position: fixed; bottom: 80px; right: 20px; z-index: 1000; }
-        .contact-float-btn { background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 107, 107, 0.3)); color: white; padding: 12px 22px; border-radius: 35px; display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: bold; font-size: 13px; }
-        .contact-float-btn svg { width: 18px; height: 18px; fill: white; }
+        .contact-float-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+        .contact-float-btn {
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 107, 107, 0.3));
+            color: white;
+            padding: 12px 22px;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .contact-float-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: white;
+        }
 
-        /* 3. GLASS FLOATING BOTTOM DOCK WITH MAGNIFYING BOUNCE EFFECT */
+        /* ----------------------------------------------------
+           MAGNIFYING GLASS DOCK EFFECT
+        ---------------------------------------------------- */
         .bottom-dock {
             position: fixed;
             bottom: 12px;
@@ -414,33 +496,32 @@
             cursor: pointer;
             font-size: 11px;
             text-decoration: none;
-            padding: 6px 14px;
+            padding: 8px 14px;
             border-radius: 20px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s, background 0.3s;
-            user-select: none;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease, background 0.3s ease;
+            transform-origin: bottom center;
         }
         .dock-item svg {
             width: 22px;
             height: 22px;
             fill: currentColor;
             margin-bottom: 3px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-
-        /* MAGNIFYING ACTIVE STATE */
+        /* Magnifying Glass Zoom Effect on Active & Hover */
+        .dock-item:hover, .dock-item.magnify-pop {
+            transform: scale(1.35) translateY(-6px);
+            color: #ffffff;
+            z-index: 10;
+        }
         .dock-item.active {
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-8px) scale(1.22);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            transform: scale(1.2) translateY(-4px);
         }
         .dock-item.active svg {
             color: var(--accent-red);
-            transform: scale(1.15);
-        }
-        .dock-item:hover:not(.active) {
-            transform: translateY(-3px) scale(1.08);
-            color: #ffffff;
         }
 
         .contact-modal {
@@ -479,7 +560,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 10px;
         }
-        .modal-header h3 { margin: 0; font-size: 18px; color: var(--text-main); }
+        .modal-header h3 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text-main);
+        }
         .close-modal {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -493,7 +578,11 @@
             align-items: center;
             justify-content: center;
         }
-        .contact-options { display: flex; flex-direction: column; gap: 12px; }
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
         .contact-option-item {
             display: flex;
             align-items: center;
@@ -522,15 +611,121 @@
             border-left: 4px solid var(--accent-red);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .account-box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+        /* ----------------------------------------------------
+           NEW VIDEO-INSPIRED LAMP PULL-STRING LOGIN UI
+        ---------------------------------------------------- */
+        .lamp-login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 10px;
+            position: relative;
+            min-height: 380px;
+        }
+        .lamp-stage {
+            position: relative;
+            width: 120px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .lamp-head {
+            width: 80px;
+            height: 45px;
+            background: #e2e8f0;
+            border-radius: 40px 40px 10px 10px;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        .lamp-stand {
+            width: 8px;
+            height: 90px;
+            background: #cbd5e1;
+            z-index: 2;
+        }
+        .lamp-base {
+            width: 60px;
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 12px 12px 4px 4px;
+            z-index: 2;
+        }
+        /* Pull String Switch */
+        .pull-string {
+            position: absolute;
+            top: 42px;
+            right: 28px;
+            width: 2px;
+            height: 50px;
+            background: #a1a1aa;
+            z-index: 4;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .pull-knob {
+            position: absolute;
+            bottom: -10px;
+            left: -5px;
+            width: 12px;
+            height: 12px;
+            background: #f43f5e;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+        .pull-string.pulled {
+            transform: translateY(15px);
+        }
+        /* Lamp Glow Effect */
+        .lamp-glow {
+            position: absolute;
+            top: 40px;
+            width: 0px;
+            height: 0px;
+            background: radial-gradient(circle, rgba(255, 230, 150, 0.45) 0%, rgba(255, 200, 80, 0.15) 50%, transparent 80%);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease, width 0.5s ease, height 0.5s ease;
+            pointer-events: none;
+        }
+        .lamp-login-container.light-on .lamp-glow {
+            opacity: 1;
+            width: 320px;
+            height: 320px;
+        }
+        .lamp-login-container.light-on .lamp-head {
+            background: #fff;
+            box-shadow: 0 0 30px rgba(255, 220, 100, 0.8);
+        }
+        /* Interactive Form Box */
+        .interactive-auth-box {
+            width: 100%;
+            max-width: 360px;
+            background: rgba(20, 22, 30, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 28px;
             padding: 25px;
-            text-align: center;
             box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            opacity: 0.2;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: 5;
         }
+        .lamp-login-container.light-on .interactive-auth-box {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
         .welcome-badge {
             background: rgba(255, 62, 62, 0.2);
             color: var(--accent-red);
@@ -591,17 +786,18 @@
             font-weight: bold;
             border-radius: 12px;
         }
-        .liquid-ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(0);
-            animation: liquidEffect 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-            pointer-events: none;
+        .buy-btn-style {
+            background: linear-gradient(135deg, rgba(255, 62, 62, 0.6), rgba(255, 90, 90, 0.4));
+            border: 1px solid rgba(255, 150, 150, 0.6);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 18px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
         }
-        @keyframes liquidEffect {
-            to { transform: scale(4); opacity: 0; }
-        }
+        
         .glass-overlay {
             position: fixed;
             top: 0;
@@ -711,7 +907,6 @@
                 <input type="text" id="whatsapp" placeholder="Enter your WhatsApp number">
             </div>
         </div>
-
         <div class="section">
             <div class="section-title">
                 <div class="step-number">2</div> Select Package (Multiple allowed)
@@ -817,7 +1012,6 @@
                 </div>
             </div>
         </div>
-
         <div class="section">
             <div class="section-title">
                 <div class="step-number">3</div> Payment Method
@@ -840,17 +1034,16 @@
                 </div>
             </div>
             
-            <!-- Video Animation Truck Buy Button -->
-            <button class="animated-buy-btn" id="animatedBuyBtn" onclick="orderNow()">
-                <span class="btn-label" id="buyBtnText">Order Now</span>
-                <div class="btn-road"></div>
-                <div class="btn-truck">
-                    <div class="truck-body"></div>
-                    <div class="truck-cabin">
-                        <div class="truck-headlight"></div>
-                    </div>
+            <!-- Video-Inspired Interactive Truck Order Button Replacement -->
+            <div class="truck-order-btn" id="truckOrderBtn" onclick="orderNow()">
+                <span class="truck-btn-text" id="truckBtnText">Buy Now</span>
+                <div class="road-line"></div>
+                <div class="truck-vehicle">
+                    <div class="truck-box"></div>
+                    <div class="truck-cab"></div>
+                    <div class="truck-headlight"></div>
                 </div>
-            </button>
+            </div>
         </div>
 
         <div class="social-footer">
@@ -873,9 +1066,7 @@
             <div style="text-align: center; padding: 20px 0;">
                 <p style="color: var(--text-muted); margin: 0;">Available Balance</p>
                 <h1 style="color: var(--success-green); font-size: 36px; margin: 10px 0;">৳0.00</h1>
-                <button class="animated-buy-btn" style="width: 200px; margin: 15px auto 0 auto;" onclick="showGlassAlert('Wallet', 'Wallet top-up feature coming soon!')">
-                    <span class="btn-label">Add Funds</span>
-                </button>
+                <button class="buy-btn-style" style="margin-top: 15px;" onclick="showGlassAlert('Wallet', 'Wallet top-up feature coming soon!')">Add Funds</button>
             </div>
         </div>
     </div>
@@ -898,62 +1089,74 @@
         </div>
     </div>
 
-    <!-- TAB 5: ACCOUNT VIEW -->
+    <!-- TAB 5: ACCOUNT VIEW (VIDEO-INSPIRED LAMP LOGIN PAGE) -->
     <div id="tab-account" class="tab-content">
-        <div class="account-box">
-            <div class="welcome-badge">স্বাগতম!</div>
-            <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
-            <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
-                নিরাপদে লগইন অথবা রেজিস্টার করুন।
-            </p>
-            <div id="userProfileView" style="display: none;">
-                <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
-                <button class="animated-buy-btn" style="background: rgba(255,255,255,0.1); margin-top: 10px;" onclick="firebaseLogout()">
-                    <span class="btn-label">Logout</span>
-                </button>
+        <div class="lamp-login-container" id="lampContainer">
+            <!-- Lamp with Pull String -->
+            <div class="lamp-stage">
+                <div class="lamp-head"></div>
+                <div class="lamp-stand"></div>
+                <div class="lamp-base"></div>
+                <div class="pull-string" id="pullString" onclick="toggleLampLight()">
+                    <div class="pull-knob"></div>
+                </div>
+                <div class="lamp-glow"></div>
             </div>
-            <div id="authFormView">
-                <button class="google-btn" onclick="firebaseGoogleLogin()">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-                    Continue with Google
-                </button>
-                <div class="divider">অথবা</div>
-                <div class="auth-toggle-tabs">
-                    <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
-                    <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
+
+            <!-- Login Form -->
+            <div class="interactive-auth-box">
+                <div class="welcome-badge">স্বাগতম!</div>
+                <h3 style="margin-top: 0; color: white;">E-Football Coin Shop BD</h3>
+                <p style="color: var(--text-muted); font-size: 13px; line-height: 1.5; margin-bottom: 20px;" id="authDesc">
+                    ল্যাম্প টান দিয়ে আলো জ্বালান এবং লগইন করুন।
+                </p>
+                <div id="userProfileView" style="display: none;">
+                    <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
+                    <button class="buy-btn-style" style="background: rgba(255,255,255,0.1); margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
                 </div>
-                <div id="emailAuthSection">
-                    <div class="form-group" style="text-align: left;">
-                        <label>Email</label>
-                        <input type="email" id="authEmail" placeholder="Enter your email">
+                <div id="authFormView">
+                    <button class="google-btn" onclick="firebaseGoogleLogin()">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                        Continue with Google
+                    </button>
+                    <div class="divider">অথবা</div>
+                    <div class="auth-toggle-tabs">
+                        <button class="auth-tab-btn active" id="emailTabBtn" onclick="switchAuthMode('email')">Email / Password</button>
+                        <button class="auth-tab-btn" id="phoneTabBtn" onclick="switchAuthMode('phone')">Phone Number</button>
                     </div>
-                    <div class="form-group" style="text-align: left;">
-                        <label>Password</label>
-                        <input type="password" id="authPassword" placeholder="Enter password">
+                    <div id="emailAuthSection">
+                        <div class="form-group" style="text-align: left;">
+                            <label>Email</label>
+                            <input type="email" id="authEmail" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group" style="text-align: left;">
+                            <label>Password</label>
+                            <input type="password" id="authPassword" placeholder="Enter password">
+                        </div>
+                        <div style="text-align: right; margin-bottom: 10px;">
+                            <a href="#" onclick="forgotPassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="buy-btn-style" onclick="firebaseLogin()">Login</button>
+                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.4);" onclick="firebaseRegister()">Register</button>
+                        </div>
                     </div>
-                    <div style="text-align: right; margin-bottom: 10px;">
-                        <a href="#" onclick="forgotPassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
-                    </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="animated-buy-btn" onclick="firebaseLogin()"><span class="btn-label">Login</span></button>
-                        <button class="animated-buy-btn" style="background: rgba(59, 130, 246, 0.4);" onclick="firebaseRegister()"><span class="btn-label">Register</span></button>
-                    </div>
-                </div>
-                <div id="phoneAuthSection" style="display: none; text-align: left;">
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="text" id="authPhone" placeholder="01700000000">
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="authPhonePassword" placeholder="Enter password">
-                    </div>
-                    <div style="text-align: right; margin-bottom: 10px;">
-                        <a href="#" onclick="forgotPhonePassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
-                    </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="animated-buy-btn" onclick="firebasePhoneLogin()"><span class="btn-label">Login</span></button>
-                        <button class="animated-buy-btn" style="background: rgba(59, 130, 246, 0.4);" onclick="firebasePhoneRegister()"><span class="btn-label">Register</span></button>
+                    <div id="phoneAuthSection" style="display: none; text-align: left;">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="text" id="authPhone" placeholder="01700000000">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="authPhonePassword" placeholder="Enter password">
+                        </div>
+                        <div style="text-align: right; margin-bottom: 10px;">
+                            <a href="#" onclick="forgotPhonePassword()" style="color: #38bdf8; font-size: 12px; text-decoration: none;">Forgot Password?</a>
+                        </div>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="buy-btn-style" onclick="firebasePhoneLogin()">Login</button>
+                            <button class="buy-btn-style" style="background: rgba(59, 130, 246, 0.4);" onclick="firebasePhoneRegister()">Register</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -995,7 +1198,7 @@
     </div>
 </div>
 
-<!-- BOTTOM DOCK WITH MAGNIFY EFFECT -->
+<!-- Bottom Dock with Magnifying Glass Effect -->
 <div class="bottom-dock">
     <button class="dock-item active" onclick="switchTab(this, 'tab-home')">
         <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -1035,8 +1238,8 @@
         </div>
         <div id="invoiceDetailsContent" style="font-size: 13px; color: #cbd5e1; line-height: 1.6;"></div>
         <div style="margin-top: 20px; display: flex; gap: 10px;">
-            <button class="animated-buy-btn" style="margin: 0;" onclick="window.print()"><span class="btn-label">Print / Download</span></button>
-            <button class="animated-buy-btn" style="margin: 0; background: rgba(255,255,255,0.1);" onclick="toggleInvoiceModal()"><span class="btn-label">Close</span></button>
+            <button class="buy-btn-style" style="margin: 0;" onclick="window.print()">Print / Download</button>
+            <button class="buy-btn-style" style="margin: 0; background: rgba(255,255,255,0.1);" onclick="toggleInvoiceModal()">Close</button>
         </div>
     </div>
 </div>
@@ -1152,7 +1355,7 @@
         let fauxEmail = phone + "@phone.shopbd.com";
         sendPasswordResetEmail(auth, fauxEmail)
         .then(() => { 
-            showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট করার নির্দেশনা পাঠানো হয়েছে!'); 
+            showGlassAlert('eFootball Shop', 'পাসওয়ার্ড রিসেট করার নির্দেশনা আপনার ফোন নম্বরের সাথে যুক্ত রিকভারি সিস্টেমে পাঠানো হয়েছে। অথবা সাপোর্টে যোগাযোগ করুন।'); 
         })
         .catch((error) => { 
             showGlassAlert('eFootball Shop', 'এই ফোন নম্বর দিয়ে কোনো অ্যাকাউন্ট পাওয়া যায়নি!'); 
@@ -1175,7 +1378,7 @@
         } else {
             authFormView.style.display = 'block';
             userProfileView.style.display = 'none';
-            authDesc.innerText = "নিরাপদে লগইন অথবা রেজিস্টার করুন।";
+            authDesc.innerText = "ল্যাম্প টান দিয়ে আলো জ্বালান এবং লগইন করুন।";
         }
     });
 </script>
@@ -1183,6 +1386,7 @@
 <script>
     let selectedPackages = []; 
     let selectedPay = "";
+    
     let ordersList = JSON.parse(localStorage.getItem('savedOrders')) || [];
     renderOrders();
     
@@ -1195,7 +1399,9 @@
         document.getElementById('glassOverlay').classList.remove('active');
     }
     function selectDevice(element, deviceName) {
-        document.querySelectorAll('.device-card').forEach(card => card.classList.remove('active'));
+        document.querySelectorAll('.device-card').forEach(card => {
+            card.classList.remove('active');
+        });
         element.classList.add('active');
         document.getElementById('device').value = deviceName;
     }
@@ -1285,20 +1491,34 @@
         if (event.target === modal) { modal.style.display = 'none'; }
         if (event.target === invoiceModal) { invoiceModal.style.display = 'none'; }
     }
+
+    /* Magnifying Glass Dock Navigation Function */
     function switchTab(btn, tabId) {
-        document.querySelectorAll('.dock-item').forEach(item => item.classList.remove('active'));
+        document.querySelectorAll('.dock-item').forEach(item => {
+            item.classList.remove('active');
+            item.classList.remove('magnify-pop');
+        });
+        
         btn.classList.add('active');
+        btn.classList.add('magnify-pop');
+        setTimeout(() => {
+            btn.classList.remove('magnify-pop');
+        }, 450);
+
         document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active-tab'));
         document.getElementById(tabId).classList.add('active-tab');
         window.scrollTo(0, 0);
     }
 
+    /* Interactive Truck Animation Order Function */
     function orderNow() {
         let device = document.getElementById('device').value;
         let gmail = document.getElementById('gmail').value;
         let pass = document.getElementById('pass').value;
         let whatsapp = document.getElementById('whatsapp').value;
         let lastDigit = document.getElementById('lastDigit').value;
+        let truckBtn = document.getElementById('truckOrderBtn');
+        let btnText = document.getElementById('truckBtnText');
         
         if (!gmail || !pass || !whatsapp) {
             showGlassAlert('E-Football Shop', 'দয়া করে অ্যাকাউন্ট ইনফোর সব ফিল্ড পূরণ করুন!');
@@ -1317,16 +1537,15 @@
             return;
         }
         
-        let buyBtn = document.getElementById('animatedBuyBtn');
-        let btnText = document.getElementById('buyBtnText');
+        if(truckBtn.classList.contains('animating')) return;
 
-        // Play Truck Animation Matching Video
-        buyBtn.classList.add('animating');
+        // Trigger Truck Animation
+        truckBtn.classList.add('animating');
 
         setTimeout(() => {
             btnText.innerText = "Order Placed";
             btnText.style.opacity = "1";
-        }, 1100);
+        }, 1800);
 
         setTimeout(() => {
             let pkgNames = selectedPackages.map(p => p.name).join(', ');
@@ -1355,14 +1574,16 @@
                       `💰 Total Price: ${totalPrice} TK%0A%0A` +
                       `💳 Payment Method: ${selectedPay}%0A` +
                       `🔢 Last 4 Digit: ${lastDigit}`;
+            
             window.open(`https://wa.me/8801733185830?text=${msg}`, '_blank');
 
-            // Reset Button
+            // Reset Button State
             setTimeout(() => {
-                buyBtn.classList.remove('animating');
-                btnText.innerText = "Order Now";
+                truckBtn.classList.remove('animating');
+                btnText.innerText = "Buy Now";
             }, 1000);
-        }, 2200);
+
+        }, 2300);
     }
 
     function renderOrders() {
@@ -1389,26 +1610,26 @@
         });
         container.innerHTML = html;
     }
-    
-    // Add Jelly bounce & Ripple to buttons
-    document.querySelectorAll('button, .pkg-card, .pay-method, .dock-item, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .device-card').forEach(elem => {
-        elem.addEventListener('click', function(e) {
-            this.classList.remove('jelly-anim');
-            void this.offsetWidth;
-            this.classList.add('jelly-anim');
 
-            let ripple = document.createElement('span');
-            ripple.classList.add('liquid-ripple');
-            
-            let rect = this.getBoundingClientRect();
-            let size = Math.max(rect.width, rect.height);
-            ripple.style.width = ripple.style.height = `${size}px`;
-            ripple.style.left = `${e.clientX - rect.left - size/2}px`;
-            ripple.style.top = `${e.clientY - rect.top - size/2}px`;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => ripple.remove(), 600);
+    /* Lamp Pull-String Light Toggle Function */
+    function toggleLampLight() {
+        let pullStr = document.getElementById('pullString');
+        let lampCont = document.getElementById('lampContainer');
+        
+        pullStr.classList.add('pulled');
+        setTimeout(() => {
+            pullStr.classList.remove('pulled');
+            lampCont.classList.toggle('light-on');
+        }, 200);
+    }
+
+    /* Soft Touch Interaction Animation */
+    document.querySelectorAll('button, .pkg-card, .pay-method, .dock-item, .social-btn, .contact-float-btn, .google-btn, .auth-tab-btn, .device-card').forEach(elem => {
+        elem.addEventListener('click', function() {
+            this.classList.add('soft-press');
+            setTimeout(() => {
+                this.classList.remove('soft-press');
+            }, 350);
         });
     });
 </script>
