@@ -23,12 +23,12 @@
             --glass-border: rgba(255, 255, 255, 0.2);
             --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2), inset 0 -2px 4px rgba(0, 0, 0, 0.4);
             --input-bg: rgba(255, 255, 255, 0.06);
-            --header-bg: rgba(255, 255, 255, 0.07);
+            --header-bg: rgba(11, 12, 16, 0.75);
             --toggle-btn-bg: rgba(20, 20, 20, 0.7);
             --toggle-pill-shadow: 0 4px 15px rgba(0,0,0,0.8), inset 0 1px 2px rgba(255,255,255,0.15);
         }
         html.light-theme {
-            /* Light Theme Colors */
+            /* Light Theme Colors (Inverted/Reference Clean Metallic Light) */
             --bg-color: #e5e7eb;
             --bg-pattern: radial-gradient(circle at 15% 15%, rgba(255, 62, 62, 0.08) 0%, transparent 45%),
                         radial-gradient(circle at 85% 85%, rgba(0, 136, 204, 0.08) 0%, transparent 45%);
@@ -42,7 +42,7 @@
             --glass-border: rgba(255, 255, 255, 0.9);
             --glass-shadow: 0 15px 35px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.9), inset 0 -2px 4px rgba(0, 0, 0, 0.05);
             --input-bg: rgba(255, 255, 255, 0.8);
-            --header-bg: rgba(255, 255, 255, 0.45);
+            --header-bg: rgba(229, 231, 235, 0.8);
             --toggle-btn-bg: rgba(240, 240, 245, 0.9);
             --toggle-pill-shadow: 0 4px 15px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,1);
         }
@@ -66,56 +66,47 @@
             margin: 0 auto;
             padding: 0 15px;
         }
-
-        /* LIQUID GLASS TOP HEADER NAVIGATION BAR */
+        /* Top Header Navbar */
         .top-navbar {
             position: sticky;
             top: 0;
             z-index: 900;
-            width: 100%;
-            box-sizing: border-box;
             background: var(--header-bg);
-            backdrop-filter: blur(30px) saturate(210%);
-            -webkit-backdrop-filter: blur(30px) saturate(210%);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
             border-bottom: 1px solid var(--glass-border);
-            padding: 12px 16px;
+            padding: 10px 15px;
             margin-bottom: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25),
-                        inset 0 1px 2px rgba(255, 255, 255, 0.3),
-                        inset 0 -1px 2px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: background 0.4s ease;
         }
         .nav-content {
-            width: 100%;
-            max-width: 1000px;
+            max-width: 550px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            box-sizing: border-box;
+            gap: 10px;
         }
         .brand-logo {
             font-family: 'Bodoni Moda', serif;
-            font-size: clamp(14px, 2.5vw, 18px);
+            font-size: 16px;
             font-weight: 800;
             color: var(--text-main);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             white-space: nowrap;
-            flex-shrink: 0;
         }
         
         /* Search Bar */
         .search-box {
             position: relative;
             flex: 1;
-            max-width: 260px;
-            min-width: 120px;
+            max-width: 170px;
         }
         .search-box input {
             width: 100%;
-            padding: 8px 12px 8px 32px;
+            padding: 8px 12px 8px 30px;
             font-size: 12px;
             border-radius: 20px;
             background: var(--input-bg);
@@ -123,8 +114,6 @@
             color: var(--text-main);
             outline: none;
             box-sizing: border-box;
-            backdrop-filter: blur(10px);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
         }
         .search-box svg {
             position: absolute;
@@ -135,22 +124,21 @@
             height: 14px;
             fill: var(--text-muted);
         }
-        /* Theme Toggle Switch */
+        /* Video Reference Theme Toggle Switch */
         .theme-toggle-wrapper {
             display: flex;
             align-items: center;
-            flex-shrink: 0;
         }
         .theme-toggle-btn {
             position: relative;
-            width: 50px;
-            height: 28px;
+            width: 56px;
+            height: 30px;
             border-radius: 30px;
             background: var(--toggle-btn-bg);
             border: 1px solid var(--glass-border);
             box-shadow: var(--toggle-pill-shadow);
             cursor: pointer;
-            padding: 2px;
+            padding: 3px;
             box-sizing: border-box;
             display: flex;
             align-items: center;
@@ -164,7 +152,7 @@
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
@@ -174,18 +162,18 @@
             transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.4s ease;
         }
         html.light-theme .theme-slider-thumb {
-            transform: translateX(22px);
+            transform: translateX(26px);
             background: #ffffff;
             border-color: rgba(0,0,0,0.1);
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
         .theme-icon {
-            width: 12px;
-            height: 12px;
+            width: 13px;
+            height: 13px;
             fill: var(--text-main);
             transition: transform 0.4s ease;
         }
-        /* Menu Button */
+        /* 3-Line Menu Button */
         .menu-trigger-btn {
             background: var(--input-bg);
             border: 1px solid var(--glass-border);
@@ -199,31 +187,13 @@
             cursor: pointer;
             box-shadow: var(--glass-shadow);
             flex-shrink: 0;
-            backdrop-filter: blur(10px);
         }
         .menu-trigger-btn svg {
             width: 18px;
             height: 18px;
             fill: currentColor;
         }
-
-        /* Responsive Breakpoint for Small Mobile Displays */
-        @media (max-width: 480px) {
-            .top-navbar {
-                padding: 10px 10px;
-            }
-            .nav-content {
-                gap: 8px;
-            }
-            .search-box {
-                max-width: 120px;
-            }
-            .brand-logo {
-                font-size: 13px;
-            }
-        }
-
-        /* Drawer Menu */
+        /* Side Drawer Menu */
         .side-drawer-overlay {
             position: fixed;
             top: 0;
@@ -1027,6 +997,93 @@
             cursor: pointer;
         }
         
+        /* NEW ANIMATED LOGOUT BUTTON STYLES */
+        .animated-logout-btn {
+            background: #1d1b2a;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            margin-top: 15px;
+            box-sizing: border-box;
+        }
+        .animated-logout-btn:active {
+            transform: scale(0.97);
+        }
+        .logout-btn-text {
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        .logout-door-container {
+            position: relative;
+            width: 32px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logout-door-frame {
+            position: absolute;
+            width: 24px;
+            height: 32px;
+            background: #5b48e7;
+            border-radius: 3px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logout-door-leaf {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 20px;
+            height: 32px;
+            background: #5b48e7;
+            border-left: 2px solid #3c2eb2;
+            transform-origin: right center;
+            transform: rotateY(-65deg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1px;
+            z-index: 3;
+        }
+        .logout-door-knob {
+            position: absolute;
+            left: 3px;
+            top: 15px;
+            width: 3px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+        .logout-person-icon {
+            position: absolute;
+            left: 2px;
+            width: 16px;
+            height: 22px;
+            fill: #9d8bf9;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            z-index: 2;
+        }
+        .animated-logout-btn.logging-out .logout-door-leaf {
+            transform: rotateY(0deg);
+        }
+        .animated-logout-btn.logging-out .logout-person-icon {
+            transform: translateX(12px) scale(0.6);
+            opacity: 0;
+        }
+
         .glass-overlay {
             position: fixed;
             top: 0;
@@ -1075,7 +1132,7 @@
     </style>
 </head>
 <body>
-<!-- TOP HEADER NAVIGATION BAR WITH LIQUID GLASS THEME -->
+<!-- TOP HEADER NAVIGATION BAR -->
 <div class="top-navbar">
     <div class="nav-content">
         <div class="brand-logo">E-football coin shop</div>
@@ -1085,7 +1142,7 @@
             <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
             <input type="text" id="pkgSearchInput" placeholder="Search package..." onkeyup="filterPackages()">
         </div>
-        <!-- Dark/Light Mode Switch -->
+        <!-- Video Reference Glassmorphic Dark/Light Mode Switch -->
         <div class="theme-toggle-wrapper">
             <div class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleThemeMode()" title="Toggle Dark/Light Mode">
                 <div class="theme-slider-thumb" id="themeSliderThumb">
@@ -1398,7 +1455,21 @@
                 </p>
                 <div id="userProfileView" style="display: none;">
                     <p style="color: var(--success-green); font-weight: bold;" id="loggedInUserEmail"></p>
-                    <button class="buy-btn-style" style="background: rgba(255,255,255,0.1); margin-top: 10px;" onclick="firebaseLogout()">Logout</button>
+                    
+                    <!-- NEW ANIMATED LOGOUT BUTTON REPLACED HERE -->
+                    <button class="animated-logout-btn" id="animatedLogoutBtn" onclick="handleAnimatedLogout()">
+                        <span class="logout-btn-text">Log Out</span>
+                        <div class="logout-door-container">
+                            <div class="logout-door-frame">
+                                <svg class="logout-person-icon" viewBox="0 0 24 24">
+                                    <path d="M12 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-1.5 6h3a1.5 1.5 0 0 1 1.5 1.5v4.5h-1.5V22h-3v-5.5h-1V12h-1.5V9.5A1.5 1.5 0 0 1 10.5 8z"/>
+                                </svg>
+                            </div>
+                            <div class="logout-door-leaf">
+                                <div class="logout-door-knob"></div>
+                            </div>
+                        </div>
+                    </button>
                 </div>
                 <div id="authFormView">
                     <button class="google-btn" onclick="firebaseGoogleLogin()">
@@ -1642,6 +1713,21 @@
     window.firebaseLogout = function() {
         signOut(auth).then(() => { showGlassAlert('E-football coin shop', 'লগআউট হয়েছে!'); }).catch((error) => { showGlassAlert('E-football coin shop', error.message); });
     }
+    
+    /* ANIMATED LOGOUT HANDLER */
+    window.handleAnimatedLogout = function() {
+        let btn = document.getElementById('animatedLogoutBtn');
+        if (btn.classList.contains('logging-out')) return;
+        
+        btn.classList.add('logging-out');
+        setTimeout(() => {
+            window.firebaseLogout();
+            setTimeout(() => {
+                btn.classList.remove('logging-out');
+            }, 500);
+        }, 450);
+    }
+
     onAuthStateChanged(auth, (user) => {
         let authFormView = document.getElementById('authFormView');
         let userProfileView = document.getElementById('userProfileView');
@@ -1681,7 +1767,7 @@
             }
         });
     }
-    /* Theme Switcher (Dark / Light) */
+    /* Video Reference Theme Switcher (Dark / Light) */
     function toggleThemeMode() {
         let htmlEl = document.documentElement;
         let icon = document.getElementById('themeIcon');
